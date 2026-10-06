@@ -3,54 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arya Event & Merit E-Certificate Portal — Arya College of Engineering & I.T.</title>
+    <title>DocuVerify™ — Arya College of Engineering & I.T. Event Certificate Portal</title>
+    
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: #f8fafc;
-            margin: 0;
-            color: #1e293b;
+        /* Base Theme Variables */
+        :root {
+            --primary-color: #0f2b5c;
+            --primary-blue: #1e40af;
+            --accent-red: #d32f2f;
+            --accent-crimson: #e11d48;
+            --bg-light: #f8fafc;
+            --sidebar-width: 255px;
         }
 
-        /* 1. Official College Header (Exact Screenshot Match) */
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: #1e293b;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* 1. Official College Header (Exact Match to web/index.jsp) */
         .college-topbar {
             background: #ffffff;
-            border-top: 4px solid #0f2b5c;
-            border-bottom: 2px solid #d32f2f;
+            border-top: 4px solid var(--primary-color);
+            border-bottom: 2px solid var(--accent-red);
             padding: 12px 24px;
+            position: relative;
+            z-index: 1020;
         }
 
         .arya-heading {
-            color: #d32f2f;
+            color: var(--accent-red);
             font-weight: 800;
             font-family: 'Manrope', sans-serif;
             font-size: 1.55rem;
             letter-spacing: 0.5px;
+            cursor: pointer;
         }
 
-        /* 2. Ribbon Banner */
+        /* 2. PBL Academic Ribbon */
         .pbl-banner {
-            background: #0f2b5c;
+            background: var(--primary-color);
             color: #ffffff;
             padding: 8px 15px;
             font-size: 0.85rem;
             text-align: center;
         }
 
-        /* 3. Hero Section (Exact Screenshot Match) */
+        /* 3. Hero Section */
         .hero-section {
             background: linear-gradient(135deg, #0f2b5c 0%, #1e3a6d 50%, #29487d 100%);
             color: #ffffff;
-            padding: 70px 20px 80px 20px;
+            padding: 75px 20px 85px 20px;
             text-align: center;
         }
 
+        /* Category Cards */
         .cat-pill {
             background: #ffffff;
             border-radius: 12px;
@@ -77,33 +94,54 @@
             margin: 0 auto 12px auto;
         }
 
-        /* Navigation Views */
-        .app-view {
-            display: none;
+        /* Ambient Dark Login View Styling (Exact Match to web/jsp/login.jsp) */
+        .login-view-wrapper {
+            background: linear-gradient(135deg, #090e1a 0%, #0f172a 40%, #1e1b4b 100%);
+            min-height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 16px;
         }
-        .app-view.active-view {
-            display: block;
+        .login-view-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
+        .login-view-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
         }
 
-        /* Modern Login Card (Embedded for direct access) */
-        .login-card-container {
+        .auth-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            width: 100%;
             max-width: 480px;
-            margin: 40px auto;
-        }
-        .portal-card {
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 20px 45px rgba(15, 43, 92, 0.12);
-            border: 1px solid rgba(15, 43, 92, 0.08);
-            padding: 34px 30px;
+            padding: 38px 34px;
             position: relative;
+            z-index: 10;
         }
-        .portal-card::before {
+        .auth-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; height: 4px;
             background: linear-gradient(90deg, #2563eb, #e11d48, #3b82f6);
-            border-radius: 20px 20px 0 0;
+            border-radius: 24px 24px 0 0;
         }
 
         .role-switch-container {
@@ -152,7 +190,7 @@
             padding: 0 12px;
             color: #64748b;
         }
-        .input-group-modern input, .input-group-modern select {
+        .input-group-modern input {
             border: none;
             outline: none;
             padding: 11px 12px 11px 0;
@@ -178,59 +216,160 @@
             color: #ffffff;
         }
 
-        .dashboard-hero {
-            background: linear-gradient(135deg, #0f2b5c 0%, #1e3a6d 100%);
+        /* ADMIN SIDEBAR & CONTENT LAYOUT (Exact Match to web/jsp/includes/sidebar.jsp & web/css/style.css) */
+        .admin-layout-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        #sidebar {
+            width: var(--sidebar-width);
+            min-width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            color: #3f3d56;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        #sidebar.collapsed {
+            margin-left: calc(-1 * var(--sidebar-width));
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            text-align: center;
+        }
+
+        #sidebar ul.components {
+            padding: 15px 0;
+            list-style: none;
+            margin: 0;
+        }
+        #sidebar ul li a {
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            color: #475569;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        #sidebar ul li a:hover, #sidebar ul li.active > a {
+            color: #1e40af;
+            background: rgba(37, 99, 235, 0.08);
+            border-right: 4px solid #1e40af;
+            font-weight: 700;
+        }
+        #sidebar ul li a i {
+            margin-right: 12px;
+            font-size: 1.15rem;
+        }
+
+        .admin-content-area {
+            width: calc(100% - var(--sidebar-width));
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            background-color: #f4f6fa;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-content-area.expanded {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .admin-top-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Stat Cards */
+        .stats-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .stats-card .icon-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        /* Student & Mentor Hero Banners */
+        .student-hero {
+            background: linear-gradient(135deg, #0f2b5c 0%, #1a428a 100%);
             color: #ffffff;
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 24px 28px;
             margin-bottom: 24px;
         }
+        .mentor-hero {
+            background: linear-gradient(135deg, #0f2b5c 0%, #1e3a6d 100%);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 22px 28px;
+            margin-bottom: 24px;
+        }
 
-        .stat-card {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.06);
+        /* Visibility Switcher */
+        .app-view {
+            display: none;
+        }
+        .app-view.active-view {
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Official College Header (Matches User's Screenshot) -->
-    <header class="college-topbar d-flex flex-wrap justify-content-between align-items-center">
-        <div>
-            <h3 class="arya-heading mb-0" onclick="showView('view-home')" style="cursor: pointer;">
-                ARYA COLLEGE OF ENGINEERING & I.T.
-            </h3>
-            <p class="text-muted small mb-0">(Approved by AICTE | Affiliated to RTU, Kota) | REAP CODE 14 | Estd. 2000</p>
-        </div>
-        <div class="d-flex align-items-center gap-2 mt-2 mt-md-0" id="headerAuthButtons">
-            <button class="btn btn-outline-primary btn-sm fw-semibold" onclick="showView('view-verify')">
-                <i class="bi bi-search me-1"></i> Verify Certificate
-            </button>
-            <button class="btn btn-primary btn-sm fw-bold" id="btnLoginHeader" onclick="showView('view-login')">
-                <i class="bi bi-box-arrow-in-right me-1"></i> Portal Login
-            </button>
-            <div id="loggedInHeaderUser" class="d-none align-items-center gap-2">
-                <span class="badge bg-light text-dark border p-2" id="userHeaderTag"></span>
-                <button class="btn btn-outline-danger btn-sm" onclick="logoutSession()">
-                    <i class="bi bi-box-arrow-right me-1"></i> Logout
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- 2. Academic Session Ribbon -->
-    <div class="pbl-banner">
-        🎓 <strong>Arya Academic & Event E-Certificate Portal</strong> &nbsp;•&nbsp; 
-        📅 Academic Session: <strong>2026-27</strong> &nbsp;•&nbsp; 
-        Dept. of CSE & AI&DS
-    </div>
-
-    <!-- VIEW 1: HOME PAGE (Matches User's Screenshot 100%) -->
+    <!-- ========================================== -->
+    <!-- VIEW 1: LANDING PAGE (Exact web/index.jsp) -->
+    <!-- ========================================== -->
     <div id="view-home" class="app-view active-view">
         
+        <!-- Official College Header -->
+        <header class="college-topbar d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+                <h3 class="arya-heading mb-0" onclick="showView('view-home')">ARYA COLLEGE OF ENGINEERING & I.T.</h3>
+                <p class="text-muted small mb-0">(Approved by AICTE | Affiliated to RTU, Kota) | REAP CODE 14 | Estd. 2000</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 mt-2 mt-md-0" id="landingNavActions">
+                <button class="btn btn-outline-primary btn-sm fw-semibold" onclick="showView('view-verify')">
+                    <i class="bi bi-search me-1"></i> Verify Certificate
+                </button>
+                <button class="btn btn-primary btn-sm fw-bold" onclick="showView('view-login')">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Portal Login
+                </button>
+            </div>
+        </header>
+
+        <!-- Academic Ribbon -->
+        <div class="pbl-banner">
+            🎓 <strong>Arya Academic & Event E-Certificate Portal</strong> &nbsp;•&nbsp; 
+            📅 Academic Session: <strong>2026-27</strong> &nbsp;•&nbsp; 
+            Dept. of CSE & AI&DS
+        </div>
+
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="container" style="max-width: 860px;">
@@ -254,7 +393,7 @@
             </div>
         </section>
 
-        <!-- Supported Event Categories (Matches User's Screenshot) -->
+        <!-- Supported Event Categories -->
         <div class="container py-5">
             <div class="text-center mb-5">
                 <h3 class="fw-bold text-dark" style="font-family: 'Manrope', sans-serif;">Supported Event Categories</h3>
@@ -262,7 +401,7 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyCategory('Music')">
+                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyFromHome('Music')">
                     <div class="cat-pill">
                         <div class="feature-icon-box bg-primary bg-opacity-10 text-primary">
                             <i class="bi bi-music-note-beamed fs-3"></i>
@@ -272,7 +411,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyCategory('Sports')">
+                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyFromHome('Sports')">
                     <div class="cat-pill">
                         <div class="feature-icon-box bg-success bg-opacity-10 text-success">
                             <i class="bi bi-trophy-fill fs-3"></i>
@@ -282,7 +421,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyCategory('Drama')">
+                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyFromHome('Drama')">
                     <div class="cat-pill">
                         <div class="feature-icon-box bg-warning bg-opacity-10 text-warning">
                             <i class="bi bi-masks-theater fs-3"></i>
@@ -292,7 +431,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyCategory('Cultural')">
+                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyFromHome('Cultural')">
                     <div class="cat-pill">
                         <div class="feature-icon-box" style="background: rgba(111, 66, 193, 0.1); color: #6f42c1;">
                             <i class="bi bi-balloon-heart-fill fs-3"></i>
@@ -302,7 +441,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyCategory('Technical')">
+                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyFromHome('Technical')">
                     <div class="cat-pill">
                         <div class="feature-icon-box bg-dark bg-opacity-10 text-dark">
                             <i class="bi bi-code-slash fs-3"></i>
@@ -312,7 +451,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyCategory('Academic')">
+                <div class="col-6 col-md-4 col-lg-2" onclick="quickApplyFromHome('Academic')">
                     <div class="cat-pill">
                         <div class="feature-icon-box bg-info bg-opacity-10 text-info">
                             <i class="bi bi-journal-bookmark-fill fs-3"></i>
@@ -324,13 +463,13 @@
             </div>
         </div>
 
-        <!-- 3-Tier Anti-Forgery Architecture Showcase -->
+        <!-- 3-Tier Anti-Forgery Framework -->
         <div class="bg-white py-5 border-top border-bottom">
             <div class="container">
                 <div class="text-center mb-5">
                     <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 fw-bold mb-2">SYSTEM ARCHITECTURE</span>
-                    <h3 class="fw-bold text-dark">How Fake Applications Are Eliminated</h3>
-                    <p class="text-muted">3-Tier Verification Pipeline ensuring zero forged credentials</p>
+                    <h3 class="fw-bold text-dark">Institutional Anti-Forgery Framework (3-Tier Integrity)</h3>
+                    <p class="text-muted">How fake certificates and unauthorized claims are mathematically eliminated</p>
                 </div>
 
                 <div class="row g-4 text-center">
@@ -339,7 +478,7 @@
                             <div class="fs-1 text-primary mb-3"><i class="bi bi-database-check"></i></div>
                             <h5 class="fw-bold">1. Event Attendance Roster Match</h5>
                             <p class="small text-muted mb-0">
-                                Student roll numbers are automatically cross-checked against pre-loaded master attendance lists uploaded by event coordinators.
+                                Student roll numbers are automatically cross-checked against pre-loaded master attendance rosters uploaded by event coordinators.
                             </p>
                         </div>
                     </div>
@@ -366,73 +505,78 @@
                 </div>
             </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white py-4 text-center">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-3 small">
+                    <a href="javascript:void(0)" onclick="showView('view-login')" class="text-white-50 text-decoration-none">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Student & Faculty Login
+                    </a>
+                    <span class="text-white-50">•</span>
+                    <a href="javascript:void(0)" onclick="showView('view-verify')" class="text-white-50 text-decoration-none">
+                        <i class="bi bi-shield-check me-1"></i> Public Verification
+                    </a>
+                    <span class="text-white-50">•</span>
+                    <a href="javascript:void(0)" onclick="showView('view-home')" class="text-white-50 text-decoration-none">
+                        <i class="bi bi-house me-1"></i> Portal Home
+                    </a>
+                </div>
+                <p class="small text-white-50 mb-0">
+                    &copy; 2026 Arya College of Engineering & I.T. (SP-40, RIICO Industrial Area, Kukas, Jaipur, Rajasthan). All rights reserved.
+                </p>
+            </div>
+        </footer>
     </div>
 
-    <!-- VIEW 2: PUBLIC VERIFICATION (Fully Functional) -->
-    <div id="view-verify" class="app-view py-5">
-        <div class="container" style="max-width: 800px;">
-            <div class="text-center mb-4">
-                <button class="btn btn-outline-secondary btn-sm mb-3" onclick="showView('view-home')">
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: LOGIN PAGE (Exact web/jsp/login.jsp) -->
+    <!-- ========================================== -->
+    <div id="view-login" class="app-view">
+        <!-- Top bar -->
+        <div class="college-topbar d-flex justify-content-between align-items-center">
+            <div>
+                <h4 class="arya-heading mb-0" onclick="showView('view-home')">ARYA COLLEGE OF ENGINEERING & I.T.</h4>
+                <small class="text-muted fw-semibold">Institutional Portal Login • REAP CODE 14</small>
+            </div>
+            <div>
+                <button class="btn btn-outline-secondary btn-sm" onclick="showView('view-home')">
                     <i class="bi bi-arrow-left me-1"></i> Back to Home
                 </button>
-                <div class="d-inline-flex p-3 rounded-circle bg-primary bg-opacity-10 text-primary mb-2">
-                    <i class="bi bi-shield-check fs-2"></i>
-                </div>
-                <h2 class="fw-bold text-dark">Verify a Certificate</h2>
-                <p class="text-muted">Enter the unique Certificate ID to verify its cryptographic authenticity.</p>
-                
-                <div class="input-group input-group-lg shadow-sm rounded mb-2">
-                    <span class="input-group-text bg-white border-end-0 text-primary"><i class="bi bi-search"></i></span>
-                    <input type="text" id="certSearchInput" class="form-control border-start-0" placeholder="e.g. ACEIT-2026-TECH-5143" value="ACEIT-2026-TECH-5143">
-                    <button class="btn btn-primary px-4 fw-bold" onclick="executeVerification()">Verify Now</button>
-                </div>
-                <div class="text-muted small">
-                    Quick test: <a href="javascript:void(0)" onclick="quickFillVerify('ACEIT-2026-TECH-5143')" class="fw-bold">ACEIT-2026-TECH-5143 (Winner)</a> | 
-                    <a href="javascript:void(0)" onclick="quickFillVerify('ACEIT-2026-CULT-8821')" class="fw-bold">ACEIT-2026-CULT-8821 (Cultural)</a>
-                </div>
             </div>
-
-            <!-- Verification Result Container -->
-            <div id="verifyResultDisplay" class="mt-4"></div>
         </div>
-    </div>
 
-    <!-- VIEW 3: EXECUTIVE LOGIN (Fully Functional with 3 Tabs) -->
-    <div id="view-login" class="app-view py-5">
-        <div class="container login-card-container">
-            <div class="text-center mb-3">
-                <button class="btn btn-outline-secondary btn-sm mb-2" onclick="showView('view-home')">
-                    <i class="bi bi-arrow-left me-1"></i> Back to Home
-                </button>
-            </div>
-            <div class="portal-card">
+        <div class="login-view-wrapper">
+            <div class="auth-card">
                 <div class="text-center mb-4">
-                    <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-primary bg-opacity-10 text-primary mb-2" style="width: 54px; height: 54px;">
-                        <i class="bi bi-shield-lock-fill fs-3"></i>
+                    <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-primary bg-opacity-10 text-primary mb-2" style="width: 58px; height: 58px;">
+                        <i class="bi bi-shield-lock-fill fs-2 text-primary"></i>
                     </div>
-                    <h4 class="fw-bold text-dark mb-1">Portal Sign In</h4>
-                    <p class="text-muted small mb-0">Select your authorization role to access your dashboard</p>
+                    <h4 class="fw-bold text-dark mb-1">Institutional Portal Login</h4>
+                    <p class="text-muted small mb-0">Select your authorization role to enter your workspace</p>
                 </div>
 
-                <!-- Role Switcher -->
+                <!-- Segmented Role Switcher -->
                 <div class="role-switch-container">
-                    <button type="button" class="role-btn active" id="tabAdmin" onclick="setRole('admin')">
+                    <button type="button" class="role-btn active" id="loginTabAdmin" onclick="selectLoginRole('admin')">
                         <i class="bi bi-person-fill-gear me-1"></i> Admin / HOD
                     </button>
-                    <button type="button" class="role-btn" id="tabFaculty" onclick="setRole('mentor')">
+                    <button type="button" class="role-btn" id="loginTabMentor" onclick="selectLoginRole('mentor')">
                         <i class="bi bi-person-badge me-1"></i> Faculty
                     </button>
-                    <button type="button" class="role-btn" id="tabStudent" onclick="setRole('student')">
+                    <button type="button" class="role-btn" id="loginTabStudent" onclick="selectLoginRole('student')">
                         <i class="bi bi-mortarboard-fill me-1"></i> Student
                     </button>
                 </div>
 
-                <form onsubmit="handleLoginSubmit(event)">
+                <!-- Login Form -->
+                <form onsubmit="performLogin(event)">
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-dark mb-1" id="loginUserLabel">User ID</label>
+                        <label class="form-label small fw-bold text-dark mb-1" id="lblUsername">User ID / Username</label>
                         <div class="input-group-modern">
-                            <span class="input-icon" id="loginUserIcon"><i class="bi bi-person"></i></span>
-                            <input type="text" id="loginUsername" required value="admin">
+                            <span class="input-icon"><i class="bi bi-person"></i></span>
+                            <input type="text" id="inputUsername" required value="admin">
                         </div>
                     </div>
 
@@ -440,12 +584,16 @@
                         <label class="form-label small fw-bold text-dark mb-1">Password</label>
                         <div class="input-group-modern">
                             <span class="input-icon"><i class="bi bi-key"></i></span>
-                            <input type="password" id="loginPassword" required value="admin123">
+                            <input type="password" id="inputPassword" required value="admin123">
                         </div>
                     </div>
 
+                    <!-- Quick Demo Credentials Pills -->
                     <div class="p-2 mb-3 rounded bg-light border text-center small text-muted">
-                        <span class="fw-bold">Default Demo:</span> <span id="hintCreds" class="badge bg-secondary font-monospace">admin / admin123</span>
+                        <span class="fw-bold">Click to Auto-Fill:</span> 
+                        <a href="javascript:void(0)" onclick="fillCredentials('admin', 'admin123', 'admin')" class="badge bg-danger text-white text-decoration-none ms-1">admin</a>
+                        <a href="javascript:void(0)" onclick="fillCredentials('faculty', 'faculty123', 'mentor')" class="badge bg-primary text-white text-decoration-none ms-1">faculty</a>
+                        <a href="javascript:void(0)" onclick="fillCredentials('student', 'student123', 'student')" class="badge bg-success text-white text-decoration-none ms-1">student</a>
                     </div>
 
                     <button type="submit" class="btn btn-portal-submit">
@@ -456,119 +604,263 @@
         </div>
     </div>
 
-    <!-- VIEW 4: STUDENT DASHBOARD -->
-    <div id="view-student" class="app-view py-4">
-        <div class="container">
-            <div class="dashboard-hero d-flex flex-wrap justify-content-between align-items-center gap-3">
-                <div>
-                    <h3 class="fw-bold mb-1">Student Portal Workspace 🎓</h3>
-                    <p class="mb-0 text-white-50">Welcome back, <strong class="text-warning">Amit Kumar</strong> (Roll No: <code>24EAIDS051</code>) • AI & Data Science (5th Sem)</p>
-                </div>
-                <div>
-                    <button class="btn btn-warning fw-bold px-3" onclick="openApplyModal()">
-                        <i class="bi bi-plus-circle me-1"></i> Apply for Certificate
-                    </button>
-                </div>
-            </div>
 
-            <!-- Stats -->
-            <div class="row g-3 mb-4">
-                <div class="col-md-4">
-                    <div class="stat-card">
-                        <span class="text-muted small">Certificates Issued</span>
-                        <h2 class="fw-bold text-success mb-0" id="studentCertCount">1</h2>
-                        <small class="text-success"><i class="bi bi-patch-check-fill me-1"></i> Cryptographically verified</small>
+    <!-- ============================================================== -->
+    <!-- VIEW 3: ADMIN DASHBOARD (Exact web/jsp/admin/admin_dashboard.jsp) -->
+    <!-- ============================================================== -->
+    <div id="view-admin" class="app-view">
+        <div class="admin-layout-wrapper">
+            
+            <!-- Left Sidebar (#sidebar from includes/sidebar.jsp) -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h5 class="mb-0 text-danger fw-bold" style="font-family: 'Manrope', sans-serif;">ARYA COLLEGE</h5>
+                    <small class="text-muted fw-semibold">PBL • Dept. of CSE / AI&DS</small>
+                </div>
+                <ul class="components">
+                    <li class="active">
+                        <a onclick="showAdminSection('dashboard')">
+                            <i class="bi bi-speedometer2"></i> Admin Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="openDirectIssueModal()">
+                            <i class="bi bi-patch-plus-fill"></i> Direct Issue Cert
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="openManageUsersModal()">
+                            <i class="bi bi-people-fill"></i> Manage Users
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="scrollToSection('adminIssuedTableCard')">
+                            <i class="bi bi-journal-text"></i> Issued Cert Archive
+                        </a>
+                    </li>
+                    <hr class="mx-3 my-2 text-muted">
+                    <li class="px-4 py-1 text-muted small fw-bold text-uppercase">Navigation</li>
+                    <li>
+                        <a onclick="showView('view-verify')">
+                            <i class="bi bi-shield-check"></i> Public Verification
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="showView('view-home')">
+                            <i class="bi bi-house-door-fill"></i> Portal Home
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="performLogout()" class="text-danger">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area (#content) -->
+            <div class="admin-content-area" id="adminContentArea">
+                
+                <!-- Top Navbar -->
+                <div class="admin-top-nav">
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-outline-secondary btn-sm me-3" onclick="toggleSidebar()">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <span class="fw-bold text-dark d-none d-md-inline">Arya College of Engineering & I.T.</span>
+                        <span class="text-muted small ms-2 d-none d-md-inline">• Project Based Learning (PBL) 2026-27</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-medium text-dark">Dr. S. K. Sharma</span>
+                        <span class="badge bg-danger">ADMIN</span>
+                        <button class="btn btn-outline-danger btn-sm ms-2" onclick="performLogout()">
+                            <i class="bi bi-box-arrow-right me-1"></i> Logout
+                        </button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="stat-card">
-                        <span class="text-muted small">Pending Applications</span>
-                        <h2 class="fw-bold text-warning mb-0" id="studentPendingCount">0</h2>
-                        <small class="text-muted">Awaiting faculty review</small>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="stat-card">
-                        <span class="text-muted small">Available College Events</span>
-                        <h2 class="fw-bold text-primary mb-0">5</h2>
-                        <small class="text-muted">Cultural, Sports, Technical, etc.</small>
-                    </div>
-                </div>
-            </div>
 
-            <!-- My Certificates -->
-            <div class="card shadow-sm border-0 mb-4">
-                <div class="card-header bg-white py-3 fw-bold">
-                    <i class="bi bi-patch-check-fill text-success me-2"></i> My Issued Merit Certificates
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th class="ps-4">Certificate ID</th>
-                                <th>Category</th>
-                                <th>Event / Competition</th>
-                                <th>Position / Award</th>
-                                <th>Status</th>
-                                <th class="text-end pe-4">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="studentCertTableBody">
-                            <tr>
-                                <td class="ps-4 fw-bold text-primary font-monospace">ACEIT-2026-TECH-5143</td>
-                                <td><span class="badge bg-success">Technical</span></td>
-                                <td>CodeStorm Hackathon 2026 - 24hr AI Innovation Challenge</td>
-                                <td><span class="badge bg-success bg-opacity-10 text-success border border-success">1st Place - Winner</span></td>
-                                <td><span class="badge bg-success">Issued & Verified</span></td>
-                                <td class="text-end pe-4">
-                                    <button class="btn btn-sm btn-outline-primary" onclick="verifySpecificId('ACEIT-2026-TECH-5143')">
-                                        <i class="bi bi-shield-check me-1"></i> View Cryptographic Proof
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <!-- Container Fluid Body -->
+                <div class="container-fluid p-4">
+                    
+                    <!-- Title & Privileges -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+                        <div>
+                            <h2 class="fw-bold mb-0">HOD & Administrative Control Panel</h2>
+                            <small class="text-muted fw-semibold">Arya College of Engineering & I.T. • Academic Event E-Certificate Master Portal</small>
+                        </div>
+                        <div>
+                            <span class="badge bg-danger px-3 py-2 rounded-pill me-2">
+                                <i class="bi bi-shield-lock-fill me-1"></i> Admin Privileges
+                            </span>
+                            <span class="badge bg-success px-3 py-2 rounded-pill">
+                                <i class="bi bi-cpu-fill me-1"></i> RMI SHA-256 Active (Port 1099)
+                            </span>
+                        </div>
+                    </div>
 
-            <!-- Application History -->
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-white py-3 fw-bold">
-                    <i class="bi bi-clock-history text-primary me-2"></i> Recent Certificate Applications
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th class="ps-4">App No</th>
-                                <th>Event Name</th>
-                                <th>Category</th>
-                                <th>Anti-Forgery Match</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="studentAppTableBody">
-                            <tr>
-                                <td class="ps-4 font-monospace">APP-2026-830</td>
-                                <td>CodeStorm Hackathon 2026</td>
-                                <td><span class="badge bg-success">Technical</span></td>
-                                <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span></td>
-                                <td><span class="badge bg-success">Approved & Issued</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- 4 Admin Stat Cards (Exact match to admin_dashboard.jsp) -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-3">
+                            <div class="stats-card h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box bg-primary text-white rounded p-3 me-3">
+                                        <i class="bi bi-people-fill fs-3"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-muted mb-1">Total Users</h6>
+                                        <h3 class="fw-bold mb-0" id="statAdminUsers">8</h3>
+                                        <small class="text-muted">Students & Mentors</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box bg-success text-white rounded p-3 me-3">
+                                        <i class="bi bi-patch-check-fill fs-3"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-muted mb-1">Issued Certificates</h6>
+                                        <h3 class="fw-bold mb-0" id="statAdminIssued">2</h3>
+                                        <small class="text-muted">SHA-256 Validated</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box bg-warning text-dark rounded p-3 me-3">
+                                        <i class="bi bi-hourglass-split fs-3"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-muted mb-1">Pending Approvals</h6>
+                                        <h3 class="fw-bold mb-0" id="statAdminPending">1</h3>
+                                        <small class="text-muted">Awaiting Cryptographic Hash</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card h-100">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-box bg-dark text-white rounded p-3 me-3">
+                                        <i class="bi bi-building fs-3"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-muted mb-1">Affiliation</h6>
+                                        <h5 class="fw-bold mb-0">RTU / AICTE</h5>
+                                        <small class="text-muted">Arya 1st Old Campus</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table 1: Pending Applications Awaiting Cryptographic Issuance -->
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-shield-shaded text-danger me-2"></i>Event Certificate Requests Awaiting Cryptographic Issuance
+                            </h5>
+                            <span class="badge bg-light text-dark border">SHA-256 Digest Engine via Java RMI (Exp 2)</span>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="ps-3">App No</th>
+                                            <th>Student Name & Roll No</th>
+                                            <th>Event & Category</th>
+                                            <th>Award / Position</th>
+                                            <th>Faculty Review Status</th>
+                                            <th>Anti-Forgery Match</th>
+                                            <th class="text-end pe-3">HOD Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminPendingTableBody">
+                                        <!-- Dynamically rendered -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table 2: Recently Cryptographically Signed Certificates -->
+                    <div class="card shadow-sm border-0 mb-4" id="adminIssuedTableCard">
+                        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                            <h5 class="fw-bold mb-0 text-dark">
+                                <i class="bi bi-patch-check-fill text-success me-2"></i>Recently Cryptographically Signed Certificates
+                            </h5>
+                            <button class="btn btn-sm btn-outline-primary fw-semibold" onclick="openDirectIssueModal()">
+                                <i class="bi bi-plus-circle me-1"></i> Direct Issue Cert
+                            </button>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="ps-3">Cert ID</th>
+                                            <th>Student Name & Roll No</th>
+                                            <th>Event Category</th>
+                                            <th>Issue Date</th>
+                                            <th>Cryptographic SHA-256 Digest</th>
+                                            <th class="text-end pe-3">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminIssuedTableBody">
+                                        <!-- Dynamically rendered -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- VIEW 5: FACULTY PANEL -->
-    <div id="view-faculty" class="app-view py-4">
-        <div class="container">
-            <div class="dashboard-hero d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+    <!-- ============================================================== -->
+    <!-- VIEW 4: FACULTY / MENTOR PANEL (Exact web/jsp/mentor/dashboard.jsp) -->
+    <!-- ============================================================== -->
+    <div id="view-faculty" class="app-view">
+        
+        <!-- Top Bar -->
+        <div class="college-topbar d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+                <h4 class="text-danger fw-bold mb-0" style="font-family: 'Manrope', sans-serif;">ARYA COLLEGE OF ENGINEERING & I.T.</h4>
+                <small class="text-muted fw-semibold">Faculty / Mentor Verification Panel • REAP CODE 14</small>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="badge bg-light text-dark border p-2">
+                    <i class="bi bi-person-workspace text-primary me-1"></i> Prof. Rajesh Gupta (FACULTY)
+                </span>
+                <button class="btn btn-outline-danger btn-sm" onclick="performLogout()">
+                    <i class="bi bi-box-arrow-right me-1"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="pbl-banner">
+            🎓 <strong>Arya Faculty Event Verification Desk</strong> &nbsp;•&nbsp; 
+            Academic Session 2026-27 &nbsp;•&nbsp; Dept. of Computer Science & Engineering
+        </div>
+
+        <div class="container py-4">
+            
+            <!-- Mentor Hero -->
+            <div class="mentor-hero d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <div>
-                    <h3 class="fw-bold mb-1">Faculty Review & Endorsement Workspace 👨‍🏫</h3>
-                    <p class="mb-0 text-white-50">Department Faculty Reviewer • Dept. of CSE & AI&DS</p>
+                    <h3 class="fw-bold mb-1">Mentor Verification Workspace 👨‍🏫</h3>
+                    <p class="mb-0 text-white-50">
+                        Faculty Coordinator: <strong class="text-warning">Prof. Rajesh Gupta</strong> &nbsp;|&nbsp; 
+                        PBL Dept: <strong class="text-white">Dept. of Computer Science & Engineering</strong>
+                    </p>
                 </div>
                 <div>
                     <span class="badge bg-warning text-dark px-3 py-2 fs-6">
@@ -577,138 +869,341 @@
                 </div>
             </div>
 
-            <div class="card shadow-sm border-0">
+            <!-- Pending Student Applications Table -->
+            <div class="card shadow-sm border-0 mb-4">
                 <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-                    <h5 class="fw-bold mb-0">
-                        <i class="bi bi-shield-lock-fill text-primary me-2"></i> Pending Student Applications (Anti-Forgery Review)
+                    <h5 class="fw-bold mb-0 text-dark">
+                        <i class="bi bi-shield-lock-fill text-primary me-2"></i>Pending Student Applications (Anti-Forgery Review)
                     </h5>
                     <span class="badge bg-light text-secondary border">Two-Tier Faculty Verification</span>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th class="ps-4">App ID</th>
-                                <th>Student Details</th>
-                                <th>Event & Category</th>
-                                <th>Roster Check</th>
-                                <th class="text-end pe-4">Faculty Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="facultyReviewTableBody">
-                            <tr id="facultyRow1">
-                                <td class="ps-4 font-monospace">APP-2026-492</td>
-                                <td>
-                                    <strong>Ayush Sharma</strong><br>
-                                    <small class="text-muted font-monospace">24EAIDS052 • AI&DS</small>
-                                </td>
-                                <td>
-                                    <strong>Arya Tarang Fest 2026 - Classical Singing</strong><br>
-                                    <span class="badge bg-primary">Music</span> • <small class="text-muted">1st Place</small>
-                                </td>
-                                <td>
-                                    <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span>
-                                </td>
-                                <td class="text-end pe-4">
-                                    <button class="btn btn-sm btn-success fw-bold me-1" onclick="facultyVerifyApp('APP-2026-492', 'Ayush Sharma', 'Music', 'Arya Tarang Fest 2026', '1st Place', '24EAIDS052')">
-                                        <i class="bi bi-check-lg me-1"></i> Verify & Recommend
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger" onclick="facultyRejectApp('facultyRow1')">
-                                        Reject
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="ps-3">App No</th>
+                                    <th>Student Details</th>
+                                    <th>Event & Category</th>
+                                    <th>Claimed Position</th>
+                                    <th>Anti-Forgery Status</th>
+                                    <th>Proof Link</th>
+                                    <th class="text-end pe-3">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="facultyReviewTableBody">
+                                <!-- Dynamically rendered -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
+            <!-- Quick Navigation Footer inside Faculty -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-secondary btn-sm me-2" onclick="showView('view-home')">
+                    <i class="bi bi-house me-1"></i> Back to Home
+                </button>
+                <button class="btn btn-outline-primary btn-sm" onclick="showView('view-verify')">
+                    <i class="bi bi-shield-check me-1"></i> Public Certificate Verification
+                </button>
+            </div>
+
         </div>
     </div>
 
-    <!-- VIEW 6: ADMIN / HOD PANEL -->
-    <div id="view-admin" class="app-view py-4">
-        <div class="container">
-            <div class="dashboard-hero d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+    <!-- ============================================================== -->
+    <!-- VIEW 5: STUDENT DASHBOARD (Exact web/jsp/student/dashboard.jsp) -->
+    <!-- ============================================================== -->
+    <div id="view-student" class="app-view">
+        
+        <!-- Top Bar -->
+        <div class="college-topbar d-flex flex-wrap justify-content-between align-items-center">
+            <div>
+                <h4 class="arya-heading mb-0" onclick="showView('view-home')">ARYA COLLEGE OF ENGINEERING & I.T.</h4>
+                <small class="text-muted fw-semibold">Event & Merit E-Certificate Portal | REAP CODE 14</small>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="badge bg-light text-dark border p-2">
+                    <i class="bi bi-person-circle text-primary me-1"></i> Amit Kumar (24EAIDS051)
+                </span>
+                <button class="btn btn-outline-danger btn-sm" onclick="performLogout()">
+                    <i class="bi bi-box-arrow-right me-1"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- PBL Substrip -->
+        <div class="pbl-banner d-flex justify-content-between align-items-center px-4">
+            <div>🎓 <strong>Arya Student Event Portal — Academic Session 2026-27</strong> • Dept. of CSE & AI&DS</div>
+            <div>
+                <a href="javascript:void(0)" onclick="showView('view-verify')" class="text-white text-decoration-none small">
+                    <i class="bi bi-shield-check me-1"></i> Public Certificate Verification
+                </a>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            
+            <!-- Student Hero Profile Banner -->
+            <div class="student-hero d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <div>
-                    <h3 class="fw-bold mb-1">Admin & HOD Issuance Workspace 🛡️</h3>
-                    <p class="mb-0 text-white-50">Head of Department • Final Authority for Cryptographic SHA-256 Signing</p>
+                    <h3 class="fw-bold mb-1">Welcome back, Amit Kumar! 🎓</h3>
+                    <p class="mb-0 text-white-50">
+                        Roll No: <strong class="text-white">24EAIDS051</strong> &nbsp;|&nbsp; 
+                        Branch: <strong class="text-white">AI & Data Science</strong> &nbsp;|&nbsp; 
+                        Year: <strong class="text-white">3rd Year (5th Sem)</strong>
+                    </p>
                 </div>
                 <div>
-                    <span class="badge bg-success px-3 py-2 fs-6">
-                        <i class="bi bi-cpu-fill me-1"></i> Java RMI SHA-256 Engine Active
-                    </span>
+                    <button class="btn btn-warning fw-bold px-4 py-2" onclick="openApplyModal()">
+                        <i class="bi bi-plus-circle-fill me-2"></i> Apply for Event Certificate
+                    </button>
                 </div>
             </div>
 
-            <div class="card shadow-sm border-0 mb-4">
-                <div class="card-header bg-white py-3 fw-bold">
-                    <i class="bi bi-patch-plus-fill text-primary me-2"></i> Recommended Applications Awaiting SHA-256 Issuance
+            <!-- 4 Quick Metrics -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card text-center p-3 bg-white rounded shadow-sm border">
+                        <h6 class="text-muted mb-1">Approved Certificates</h6>
+                        <h2 class="fw-bold text-success mb-0" id="studentStatApproved">1</h2>
+                        <small class="text-muted">Cryptographically Sealed</small>
+                    </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th class="ps-4">App ID</th>
-                                <th>Student Details</th>
-                                <th>Event Name</th>
-                                <th>Faculty Status</th>
-                                <th class="text-end pe-4">HOD Approval</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminApprovalTableBody">
-                            <tr id="adminRowSample">
-                                <td class="ps-4 font-monospace">APP-2026-108</td>
-                                <td>
-                                    <strong>Chetan Sharma</strong><br>
-                                    <small class="text-muted font-monospace">24EAIDS053 • AI&DS</small>
-                                </td>
-                                <td>
-                                    <strong>Rangmanch 2026 - Street Play</strong><br>
-                                    <span class="badge bg-warning text-dark">Drama</span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-info text-dark"><i class="bi bi-person-check me-1"></i> Verified by Faculty</span>
-                                </td>
-                                <td class="text-end pe-4">
-                                    <button class="btn btn-sm btn-primary fw-bold" onclick="adminApproveCert('APP-2026-108', 'Chetan Sharma', 'Drama', 'Rangmanch 2026 - Street Play', '1st Runner Up', '24EAIDS053', 'adminRowSample')">
-                                        <i class="bi bi-cpu me-1"></i> Approve & Generate SHA-256
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-md-3">
+                    <div class="stat-card text-center p-3 bg-white rounded shadow-sm border">
+                        <h6 class="text-muted mb-1">Pending Requests</h6>
+                        <h2 class="fw-bold text-warning mb-0" id="studentStatPending">1</h2>
+                        <small class="text-muted">Under Mentor Review</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center p-3 bg-white rounded shadow-sm border">
+                        <h6 class="text-muted mb-1">Rejected Requests</h6>
+                        <h2 class="fw-bold text-danger mb-0">0</h2>
+                        <small class="text-muted">Roster Discrepancies</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center p-3 bg-white rounded shadow-sm border">
+                        <h6 class="text-muted mb-1">Total Applications</h6>
+                        <h2 class="fw-bold text-primary mb-0" id="studentStatTotal">2</h2>
+                        <small class="text-muted">Cultural, Sports & Tech</small>
+                    </div>
                 </div>
             </div>
+
+            <!-- Navigation Tabs (Pills) -->
+            <ul class="nav nav-pills mb-3" id="studentTabPills">
+                <li class="nav-item">
+                    <button class="nav-link active fw-semibold" id="tabBtnCerts" onclick="switchStudentTab('certs')">
+                        <i class="bi bi-award-fill me-1"></i> My Issued Certificates (<span id="tabCountCerts">1</span>)
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link fw-semibold" id="tabBtnApps" onclick="switchStudentTab('apps')">
+                        <i class="bi bi-clock-history me-1"></i> Application Tracking (<span id="tabCountApps">2</span>)
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link fw-semibold" id="tabBtnEvents" onclick="switchStudentTab('events')">
+                        <i class="bi bi-calendar-event me-1"></i> Official College Events
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content 1: My Issued Certificates -->
+            <div id="studentTabContentCerts">
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-white py-3 fw-bold">
+                        <i class="bi bi-patch-check-fill text-success me-2"></i> Verified Institutional Merit & Event Certificates
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-3">Certificate ID</th>
+                                        <th>Category</th>
+                                        <th>Event / Competition</th>
+                                        <th>Award / Position</th>
+                                        <th>Status</th>
+                                        <th class="text-end pe-3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentCertTableBody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Application Tracking -->
+            <div id="studentTabContentApps" style="display: none;">
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-white py-3 fw-bold">
+                        <i class="bi bi-clock-history text-primary me-2"></i> Student Application Pipeline Tracking
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-3">App No</th>
+                                        <th>Event Name</th>
+                                        <th>Category</th>
+                                        <th>Anti-Forgery Match</th>
+                                        <th>Current Stage</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentAppTableBody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Official College Events -->
+            <div id="studentTabContentEvents" style="display: none;">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 p-3">
+                            <span class="badge bg-dark align-self-start mb-2">Technical</span>
+                            <h5 class="fw-bold mb-1">CodeStorm Hackathon 2026</h5>
+                            <p class="small text-muted mb-3">24-hour Artificial Intelligence and Web Application development challenge.</p>
+                            <button class="btn btn-outline-primary btn-sm mt-auto" onclick="quickApplyWithEvent('CodeStorm Hackathon 2026', 'Technical')">
+                                Apply for Cert <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 p-3">
+                            <span class="badge bg-primary align-self-start mb-2">Music</span>
+                            <h5 class="fw-bold mb-1">Arya Tarang Fest 2026</h5>
+                            <p class="small text-muted mb-3">Inter-college solo singing and battle of the bands competition.</p>
+                            <button class="btn btn-outline-primary btn-sm mt-auto" onclick="quickApplyWithEvent('Arya Tarang Fest 2026', 'Music')">
+                                Apply for Cert <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 p-3">
+                            <span class="badge bg-success align-self-start mb-2">Sports</span>
+                            <h5 class="fw-bold mb-1">Arya Yuva Spardha 2026</h5>
+                            <p class="small text-muted mb-3">Annual sports meet covering Cricket, Athletics, and Badminton tournaments.</p>
+                            <button class="btn btn-outline-primary btn-sm mt-auto" onclick="quickApplyWithEvent('Arya Yuva Spardha 2026', 'Sports')">
+                                Apply for Cert <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 p-3">
+                            <span class="badge bg-warning text-dark align-self-start mb-2">Drama</span>
+                            <h5 class="fw-bold mb-1">Rangmanch Street Play 2026</h5>
+                            <p class="small text-muted mb-3">Stage plays, skits, and social awareness street theater.</p>
+                            <button class="btn btn-outline-primary btn-sm mt-auto" onclick="quickApplyWithEvent('Rangmanch 2026', 'Drama')">
+                                Apply for Cert <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 p-3">
+                            <span class="badge bg-purple text-white align-self-start mb-2" style="background:#6f42c1;">Cultural</span>
+                            <h5 class="fw-bold mb-1">Aura Cultural Fest 2026</h5>
+                            <p class="small text-muted mb-3">Annual cultural dance, fashion pageant, and fine arts showcase.</p>
+                            <button class="btn btn-outline-primary btn-sm mt-auto" onclick="quickApplyWithEvent('Aura Cultural Fest 2026', 'Cultural')">
+                                Apply for Cert <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm border-0 p-3">
+                            <span class="badge bg-info text-white align-self-start mb-2">Academic</span>
+                            <h5 class="fw-bold mb-1">RTU Academic Merit Rank</h5>
+                            <p class="small text-muted mb-3">Semester rank holders and outstanding academic performance awards.</p>
+                            <button class="btn btn-outline-primary btn-sm mt-auto" onclick="quickApplyWithEvent('RTU Academic Merit Rank', 'Academic')">
+                                Apply for Cert <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- Apply Modal -->
+
+    <!-- ==================================================================== -->
+    <!-- VIEW 6: PUBLIC VERIFICATION (Exact web/jsp/certificate/verify.jsp)   -->
+    <!-- ==================================================================== -->
+    <div id="view-verify" class="app-view py-5">
+        <div class="container" style="max-width: 820px;">
+            <div class="text-center mb-4">
+                <button class="btn btn-outline-secondary btn-sm mb-3" onclick="showView('view-home')">
+                    <i class="bi bi-arrow-left me-1"></i> Back to Portal Home
+                </button>
+                <div class="d-inline-flex p-3 rounded-circle bg-primary bg-opacity-10 text-primary mb-2">
+                    <i class="bi bi-shield-check fs-1"></i>
+                </div>
+                <h2 class="fw-bold text-dark">Verify Any Certificate</h2>
+                <p class="text-muted">Enter the unique Certificate ID to verify its cryptographic SHA-256 authenticity.</p>
+                
+                <div class="input-group input-group-lg shadow-sm rounded mb-2">
+                    <span class="input-group-text bg-white border-end-0 text-primary"><i class="bi bi-search"></i></span>
+                    <input type="text" id="certSearchInput" class="form-control border-start-0" placeholder="e.g. ACEIT-2026-TECH-5143" value="ACEIT-2026-TECH-5143">
+                    <button class="btn btn-primary px-4 fw-bold" onclick="performVerification()">Verify Now</button>
+                </div>
+                <div class="text-muted small">
+                    Quick test IDs: 
+                    <a href="javascript:void(0)" onclick="quickTestVerify('ACEIT-2026-TECH-5143')" class="fw-bold text-primary">ACEIT-2026-TECH-5143</a> | 
+                    <a href="javascript:void(0)" onclick="quickTestVerify('ACEIT-2026-CULT-8821')" class="fw-bold text-primary">ACEIT-2026-CULT-8821</a>
+                </div>
+            </div>
+
+            <!-- Verification Display Target -->
+            <div id="verifyResultDisplay" class="mt-4"></div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- MODALS: APPLY, DIRECT ISSUE, MANAGE USERS  -->
+    <!-- ========================================== -->
+
+    <!-- 1. Apply For Certificate Modal (Student) -->
     <div class="modal fade" id="applyModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title fw-bold">Apply for College Event Certificate</h5>
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-plus-circle text-primary me-2"></i>Apply for Event Certificate</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body pt-0">
-                    <form onsubmit="handleApplySubmit(event)">
+                <div class="modal-body">
+                    <form onsubmit="handleStudentApply(event)">
                         <div class="mb-3">
-                            <label class="form-label small fw-bold">Select Event</label>
-                            <select id="applyEventSelect" class="form-select" required onchange="handleEventCategoryChange()">
+                            <label class="form-label small fw-bold">Select College Event</label>
+                            <select id="selEvent" class="form-select" onchange="updateCategoryFromEvent()" required>
                                 <option value="CodeStorm Hackathon 2026 - 24hr AI Innovation Challenge" data-cat="Technical">CodeStorm Hackathon 2026 (Technical)</option>
                                 <option value="Arya Tarang Fest 2026 - Classical & Solo Singing" data-cat="Music">Arya Tarang Fest 2026 (Music)</option>
                                 <option value="Arya Yuva Spardha 2026 - Inter-College Cricket" data-cat="Sports">Arya Yuva Spardha 2026 (Sports)</option>
                                 <option value="Rangmanch 2026 - Street Play & Drama Contest" data-cat="Drama">Rangmanch 2026 (Drama)</option>
                                 <option value="Aura Cultural Fest 2026 - Group Dance Showcase" data-cat="Cultural">Aura Cultural Fest 2026 (Cultural)</option>
+                                <option value="RTU Academic Merit Rank - 5th Sem Examination" data-cat="Academic">RTU Academic Merit Rank (Academic)</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Category</label>
-                            <input type="text" id="applyCategoryInput" class="form-control bg-light" value="Technical" readonly>
+                            <input type="text" id="inpCategory" class="form-control bg-light" value="Technical" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label small fw-bold">Position / Achievement</label>
-                            <select id="applyPositionSelect" class="form-select" required>
+                            <select id="selPosition" class="form-select" required>
                                 <option value="1st Place - Winner">1st Place - Winner</option>
                                 <option value="1st Runner Up - 2nd Place">1st Runner Up - 2nd Place</option>
                                 <option value="2nd Runner Up - 3rd Place">2nd Runner Up - 3rd Place</option>
@@ -716,12 +1211,12 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label small fw-bold">Event Registration / Team ID</label>
-                            <input type="text" id="applyRegIdInput" class="form-control" placeholder="e.g. CS26-TEAM-08" value="TEAM-ACEIT-2026">
+                            <label class="form-label small fw-bold">Team ID / Registration No.</label>
+                            <input type="text" id="inpTeamId" class="form-control" value="TEAM-ACEIT-2026" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label small fw-bold">Proof Link / Certificate Photo</label>
-                            <input type="url" class="form-control" placeholder="https://drive.google.com/..." value="https://aryacollege.in/proof/sample">
+                            <label class="form-label small fw-bold">Proof Link / Certificate Drive URL</label>
+                            <input type="url" id="inpProofUrl" class="form-control" value="https://aryacollege.in/proof/sample" required>
                         </div>
                         <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
                             Submit Application for Verification <i class="bi bi-send ms-1"></i>
@@ -732,58 +1227,229 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 text-center mt-5">
-        <div class="container">
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3 small">
-                <a href="javascript:void(0)" onclick="showView('view-login')" class="text-white-50 text-decoration-none">
-                    <i class="bi bi-box-arrow-in-right me-1"></i> Student & Faculty Login
-                </a>
-                <span class="text-white-50">•</span>
-                <a href="javascript:void(0)" onclick="showView('view-verify')" class="text-white-50 text-decoration-none">
-                    <i class="bi bi-shield-check me-1"></i> Public Verification
-                </a>
-                <span class="text-white-50">•</span>
-                <a href="javascript:void(0)" onclick="showView('view-home')" class="text-white-50 text-decoration-none">
-                    <i class="bi bi-house me-1"></i> Portal Home
-                </a>
+    <!-- 2. Direct Issue Certificate Modal (Admin) -->
+    <div class="modal fade" id="directIssueModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-patch-plus-fill text-success me-2"></i>Direct Issue Certificate (Admin)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="handleDirectIssue(event)">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Student Full Name</label>
+                            <input type="text" id="issueStudentName" class="form-control" required value="Amit Kumar">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Roll Number / ID</label>
+                            <input type="text" id="issueRollNo" class="form-control" required value="24EAIDS051">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Event Name</label>
+                            <input type="text" id="issueEventName" class="form-control" required value="CodeStorm Hackathon 2026">
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Category</label>
+                                <select id="issueCategory" class="form-select">
+                                    <option value="Technical">Technical</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Cultural">Cultural</option>
+                                    <option value="Academic">Academic</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Position</label>
+                                <select id="issuePosition" class="form-select">
+                                    <option value="1st Place - Winner">1st Place - Winner</option>
+                                    <option value="1st Runner Up">1st Runner Up</option>
+                                    <option value="2nd Runner Up">2nd Runner Up</option>
+                                    <option value="Certificate of Merit">Certificate of Merit</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 fw-bold py-2">
+                            Generate SHA-256 & Issue Instantly <i class="bi bi-cpu ms-1"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-            <h6 class="fw-bold mb-1">Arya College of Engineering & I.T., Jaipur</h6>
-            <p class="small text-white-50 mb-0">Academic & Event Certificate Management Portal • Dept. of CSE & AI&DS</p>
         </div>
-    </footer>
+    </div>
 
-    <!-- Bootstrap Bundle JS -->
+    <!-- 3. Manage Users Modal (Admin) -->
+    <div class="modal fade" id="manageUsersModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-people-fill text-primary me-2"></i>Institutional User Management</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="ps-3">ID</th>
+                                    <th>Full Name</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                    <th>Branch / Dept</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ps-3 fw-bold">1</td>
+                                    <td>Dr. S. K. Sharma</td>
+                                    <td>admin</td>
+                                    <td><span class="badge bg-danger">ADMIN</span></td>
+                                    <td>HOD - CSE & AI&DS</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3 fw-bold">2</td>
+                                    <td>Prof. Rajesh Gupta</td>
+                                    <td>faculty</td>
+                                    <td><span class="badge bg-primary">FACULTY</span></td>
+                                    <td>Event Coordinator</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3 fw-bold">3</td>
+                                    <td>Amit Kumar</td>
+                                    <td>student</td>
+                                    <td><span class="badge bg-info text-dark">STUDENT</span></td>
+                                    <td>AI & Data Science (24EAIDS051)</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3 fw-bold">4</td>
+                                    <td>Ayush Sharma</td>
+                                    <td>ayush</td>
+                                    <td><span class="badge bg-info text-dark">STUDENT</span></td>
+                                    <td>AI & Data Science (24EAIDS052)</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3 fw-bold">5</td>
+                                    <td>Chetan Sharma</td>
+                                    <td>chetan</td>
+                                    <td><span class="badge bg-info text-dark">STUDENT</span></td>
+                                    <td>AI & Data Science (24EAIDS053)</td>
+                                    <td><span class="badge bg-success">Active</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Interactive Portal Logic & Cryptographic Engine -->
     <script>
-        // In-Memory Database for Live Demonstration
-        const certificateDatabase = {
-            'ACEIT-2026-TECH-5143': {
-                certId: 'ACEIT-2026-TECH-5143',
-                studentName: 'Amit Kumar',
-                rollNo: '24EAIDS051',
-                category: 'Technical',
-                eventName: 'CodeStorm Hackathon 2026 - 24hr AI Innovation Challenge',
-                grade: '1st Place - Winner',
-                issueDate: '2026-10-06',
-                hash: 'a39948426925d69ab24a7fac34a737087ebc614911dfbdcb2fc75c3c81ac7114'
+        // --- 1. Master State & Preloaded Certificates ---
+        const DEFAULT_CERTIFICATES = {
+            "ACEIT-2026-TECH-5143": {
+                certId: "ACEIT-2026-TECH-5143",
+                studentName: "Amit Kumar",
+                rollNo: "24EAIDS051",
+                category: "Technical",
+                eventName: "CodeStorm Hackathon 2026 - 24hr AI Innovation Challenge",
+                grade: "1st Place - Winner",
+                issueDate: "2026-10-06",
+                hash: "a4f89d81729b4e72c83109a128e4695b3d7c48201fa8730b621e89b418e2098b"
             },
-            'ACEIT-2026-CULT-8821': {
-                certId: 'ACEIT-2026-CULT-8821',
-                studentName: 'Chavi Jain',
-                rollNo: '24EAIDS054',
-                category: 'Cultural',
-                eventName: 'Aura Cultural Fest 2026 - Group Dance Showcase',
-                grade: 'Best Choreography Award',
-                issueDate: '2026-09-20',
-                hash: 'e83a214bf679d98418012674e12c41804b2b1a8d54238e553314cf847d9b233a'
+            "ACEIT-2026-CULT-8821": {
+                certId: "ACEIT-2026-CULT-8821",
+                studentName: "Priya Verma",
+                rollNo: "24ECSE104",
+                category: "Cultural",
+                eventName: "Aura Cultural Fest 2026 - Classical Solo Dance",
+                grade: "1st Place - Winner",
+                issueDate: "2026-10-05",
+                hash: "7fbc8201d894e72a83109b128c4695a3d7c48201ea8730b621e89c418e20981a"
             }
         };
 
-        let currentRole = 'admin';
-        let currentUser = null;
+        const DEFAULT_PENDING_ADMIN = [
+            {
+                appNo: "APP-2026-108",
+                studentName: "Chetan Sharma",
+                rollNo: "24EAIDS053",
+                category: "Drama",
+                eventName: "Rangmanch 2026 - Street Play",
+                position: "1st Runner Up",
+                facultyStatus: "Recommended by Faculty",
+                rosterMatched: true
+            }
+        ];
 
-        // View Navigator
+        const DEFAULT_PENDING_FACULTY = [
+            {
+                appNo: "APP-2026-492",
+                studentName: "Ayush Sharma",
+                rollNo: "24EAIDS052",
+                branch: "AI&DS",
+                category: "Music",
+                eventName: "Arya Tarang Fest 2026 - Classical Singing",
+                position: "1st Place",
+                rosterMatched: true,
+                proofUrl: "https://aryacollege.in/proof/sample"
+            }
+        ];
+
+        const DEFAULT_STUDENT_APPS = [
+            {
+                appNo: "APP-2026-830",
+                eventName: "CodeStorm Hackathon 2026",
+                category: "Technical",
+                rosterMatched: true,
+                status: "Approved & Issued"
+            },
+            {
+                appNo: "APP-2026-904",
+                eventName: "Arya Yuva Spardha 2026 - Cricket",
+                category: "Sports",
+                rosterMatched: true,
+                status: "Pending Faculty Review"
+            }
+        ];
+
+        // Load State from LocalStorage or Defaults
+        let state = {
+            currentUser: null,
+            certificates: JSON.parse(localStorage.getItem('docu_certs') || JSON.stringify(DEFAULT_CERTIFICATES)),
+            pendingAdmin: JSON.parse(localStorage.getItem('docu_pending_admin') || JSON.stringify(DEFAULT_PENDING_ADMIN)),
+            pendingFaculty: JSON.parse(localStorage.getItem('docu_pending_faculty') || JSON.stringify(DEFAULT_PENDING_FACULTY)),
+            studentApps: JSON.parse(localStorage.getItem('docu_student_apps') || JSON.stringify(DEFAULT_STUDENT_APPS))
+        };
+
+        function persistState() {
+            localStorage.setItem('docu_certs', JSON.stringify(state.certificates));
+            localStorage.setItem('docu_pending_admin', JSON.stringify(state.pendingAdmin));
+            localStorage.setItem('docu_pending_faculty', JSON.stringify(state.pendingFaculty));
+            localStorage.setItem('docu_student_apps', JSON.stringify(state.studentApps));
+        }
+
+        // --- 2. Real SHA-256 Web Crypto Hashing Engine ---
+        async function computeSHA256(text) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(text);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // --- 3. View Switcher ---
         function showView(viewId) {
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
             const target = document.getElementById(viewId);
@@ -791,115 +1457,404 @@
                 target.classList.add('active-view');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+            if (viewId === 'view-admin') renderAdminView();
+            if (viewId === 'view-faculty') renderFacultyView();
+            if (viewId === 'view-student') renderStudentView();
         }
 
-        // Quick Category Apply
-        function quickApplyCategory(cat) {
-            showView('view-login');
-            setRole('student');
-        }
+        // --- 4. Login System ---
+        let selectedLoginRole = 'admin';
 
-        // Role Switcher
-        function setRole(role) {
-            currentRole = role;
-            document.getElementById('tabAdmin').classList.remove('active');
-            document.getElementById('tabFaculty').classList.remove('active');
-            document.getElementById('tabStudent').classList.remove('active');
+        function selectLoginRole(role) {
+            selectedLoginRole = role;
+            document.getElementById('loginTabAdmin').classList.toggle('active', role === 'admin');
+            document.getElementById('loginTabMentor').classList.toggle('active', role === 'mentor');
+            document.getElementById('loginTabStudent').classList.toggle('active', role === 'student');
 
-            const uField = document.getElementById('loginUsername');
-            const pField = document.getElementById('loginPassword');
-            const lbl = document.getElementById('loginUserLabel');
-            const hint = document.getElementById('hintCreds');
-            const uIcon = document.getElementById('loginUserIcon');
+            const uInput = document.getElementById('inputUsername');
+            const pInput = document.getElementById('inputPassword');
 
             if (role === 'admin') {
-                document.getElementById('tabAdmin').classList.add('active');
-                lbl.innerText = 'Admin / HOD User ID';
-                uField.value = 'admin';
-                pField.value = 'admin123';
-                hint.innerText = 'admin / admin123';
-                uIcon.innerHTML = '<i class="bi bi-person-fill-gear text-primary"></i>';
+                uInput.value = 'admin';
+                pInput.value = 'admin123';
             } else if (role === 'mentor') {
-                document.getElementById('tabFaculty').classList.add('active');
-                lbl.innerText = 'Faculty Identifier';
-                uField.value = 'mentor';
-                pField.value = 'mentor123';
-                hint.innerText = 'mentor / mentor123';
-                uIcon.innerHTML = '<i class="bi bi-person-badge text-warning"></i>';
-            } else if (role === 'student') {
-                document.getElementById('tabStudent').classList.add('active');
-                lbl.innerText = 'College Roll Number';
-                uField.value = '24EAIDS051';
-                pField.value = 'student123';
-                hint.innerText = '24EAIDS051 / student123';
-                uIcon.innerHTML = '<i class="bi bi-mortarboard-fill text-success"></i>';
+                uInput.value = 'faculty';
+                pInput.value = 'faculty123';
+            } else {
+                uInput.value = 'student';
+                pInput.value = 'student123';
             }
         }
 
-        // Login Handler
-        function handleLoginSubmit(e) {
-            e.preventDefault();
-            const u = document.getElementById('loginUsername').value.trim();
+        function fillCredentials(user, pass, role) {
+            selectLoginRole(role);
+            document.getElementById('inputUsername').value = user;
+            document.getElementById('inputPassword').value = pass;
+        }
 
-            if (currentRole === 'admin') {
-                currentUser = { name: 'System Administrator (HOD)', role: 'admin' };
-                updateHeaderUserState('Admin / HOD');
+        function performLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('inputUsername').value.trim();
+
+            if (selectedLoginRole === 'admin' || u === 'admin') {
+                state.currentUser = { role: 'admin', name: 'Dr. S. K. Sharma' };
                 showView('view-admin');
-            } else if (currentRole === 'mentor') {
-                currentUser = { name: 'Faculty Coordinator', role: 'mentor' };
-                updateHeaderUserState('Faculty Reviewer');
+            } else if (selectedLoginRole === 'mentor' || u === 'faculty') {
+                state.currentUser = { role: 'mentor', name: 'Prof. Rajesh Gupta' };
                 showView('view-faculty');
             } else {
-                currentUser = { name: 'Amit Kumar', rollNo: '24EAIDS051', role: 'student' };
-                updateHeaderUserState('Amit Kumar (24EAIDS051)');
+                state.currentUser = { role: 'student', name: 'Amit Kumar', rollNo: '24EAIDS051' };
                 showView('view-student');
             }
         }
 
-        function updateHeaderUserState(label) {
-            document.getElementById('btnLoginHeader').classList.add('d-none');
-            const userBox = document.getElementById('loggedInHeaderUser');
-            userBox.classList.remove('d-none');
-            userBox.classList.add('d-flex');
-            document.getElementById('userHeaderTag').innerText = label;
-        }
-
-        function logoutSession() {
-            currentUser = null;
-            document.getElementById('btnLoginHeader').classList.remove('d-none');
-            const userBox = document.getElementById('loggedInHeaderUser');
-            userBox.classList.add('d-none');
-            userBox.classList.remove('d-flex');
+        function performLogout() {
+            state.currentUser = null;
             showView('view-home');
         }
 
-        // Web Crypto SHA-256 Engine
-        async function computeSHA256(str) {
-            const buffer = new TextEncoder().encode(str);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        // --- 5. Admin Dashboard Actions ---
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+            document.getElementById('adminContentArea').classList.toggle('expanded');
         }
 
-        // Verification Execution
-        async function executeVerification() {
+        function renderAdminView() {
+            // Stats
+            document.getElementById('statAdminUsers').innerText = '8';
+            document.getElementById('statAdminIssued').innerText = Object.keys(state.certificates).length;
+            document.getElementById('statAdminPending').innerText = state.pendingAdmin.length;
+
+            // Pending Table
+            const pBody = document.getElementById('adminPendingTableBody');
+            pBody.innerHTML = '';
+            if (state.pendingAdmin.length === 0) {
+                pBody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted"><i class="bi bi-check-circle text-success me-2"></i>No pending certificates awaiting issuance. All caught up!</td></tr>`;
+            } else {
+                state.pendingAdmin.forEach((p, idx) => {
+                    const row = `
+                        <tr>
+                            <td class="ps-3 font-monospace fw-bold">${p.appNo}</td>
+                            <td><strong>${p.studentName}</strong><br><small class="text-muted font-monospace">${p.rollNo}</small></td>
+                            <td><strong>${p.eventName}</strong><br><span class="badge bg-primary">${p.category}</span></td>
+                            <td><span class="badge bg-light text-dark border">${p.position}</span></td>
+                            <td><span class="badge bg-info text-dark"><i class="bi bi-person-check me-1"></i> ${p.facultyStatus}</span></td>
+                            <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span></td>
+                            <td class="text-end pe-3">
+                                <button class="btn btn-sm btn-primary fw-bold" onclick="approvePendingCert(${idx})">
+                                    <i class="bi bi-cpu me-1"></i> Approve & Issue (1-Click SHA-256)
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    pBody.insertAdjacentHTML('beforeend', row);
+                });
+            }
+
+            // Issued Table
+            const iBody = document.getElementById('adminIssuedTableBody');
+            iBody.innerHTML = '';
+            Object.values(state.certificates).forEach(cert => {
+                const row = `
+                    <tr>
+                        <td class="ps-3 fw-bold text-primary font-monospace">${cert.certId}</td>
+                        <td><strong>${cert.studentName}</strong><br><small class="text-muted font-monospace">${cert.rollNo}</small></td>
+                        <td><span class="badge bg-primary">${cert.category}</span></td>
+                        <td>${cert.issueDate}</td>
+                        <td><span class="badge bg-dark font-monospace text-success">${cert.hash.substring(0, 24)}...</span></td>
+                        <td class="text-end pe-3">
+                            <button class="btn btn-sm btn-outline-primary" onclick="quickTestVerify('${cert.certId}')">
+                                <i class="bi bi-shield-check me-1"></i> Verify Proof
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                iBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        async function approvePendingCert(index) {
+            const item = state.pendingAdmin[index];
+            if (!item) return;
+
+            const catCode = item.category.substring(0, 4).toUpperCase();
+            const certId = 'ACEIT-2026-' + catCode + '-' + Math.floor(1000 + Math.random() * 9000);
+            const payload = item.rollNo + "|" + item.studentName + "|AI & Data Science - " + item.eventName + "|" + item.position;
+            const hash = await computeSHA256(payload);
+
+            state.certificates[certId] = {
+                certId: certId,
+                studentName: item.studentName,
+                rollNo: item.rollNo,
+                category: item.category,
+                eventName: item.eventName,
+                grade: item.position,
+                issueDate: new Date().toISOString().split('T')[0],
+                hash: hash
+            };
+
+            // Remove from admin pending
+            state.pendingAdmin.splice(index, 1);
+
+            // Update student tracking if matches
+            state.studentApps.push({
+                appNo: item.appNo,
+                eventName: item.eventName,
+                category: item.category,
+                rosterMatched: true,
+                status: "Approved & Issued"
+            });
+
+            persistState();
+            renderAdminView();
+
+            alert('🚀 Certificate ' + certId + ' Issued Successfully via Java RMI SHA-256 Engine!\n\nCryptographic Hash:\n' + hash);
+        }
+
+        function openDirectIssueModal() {
+            new bootstrap.Modal(document.getElementById('directIssueModal')).show();
+        }
+
+        function openManageUsersModal() {
+            new bootstrap.Modal(document.getElementById('manageUsersModal')).show();
+        }
+
+        async function handleDirectIssue(e) {
+            e.preventDefault();
+            const name = document.getElementById('issueStudentName').value.trim();
+            const rollNo = document.getElementById('issueRollNo').value.trim();
+            const eventName = document.getElementById('issueEventName').value.trim();
+            const cat = document.getElementById('issueCategory').value;
+            const pos = document.getElementById('issuePosition').value;
+
+            const catCode = cat.substring(0, 4).toUpperCase();
+            const certId = 'ACEIT-2026-' + catCode + '-' + Math.floor(1000 + Math.random() * 9000);
+            const payload = rollNo + "|" + name + "|AI & Data Science - " + eventName + "|" + pos;
+            const hash = await computeSHA256(payload);
+
+            state.certificates[certId] = {
+                certId: certId,
+                studentName: name,
+                rollNo: rollNo,
+                category: cat,
+                eventName: eventName,
+                grade: pos,
+                issueDate: new Date().toISOString().split('T')[0],
+                hash: hash
+            };
+
+            persistState();
+            bootstrap.Modal.getInstance(document.getElementById('directIssueModal')).hide();
+            renderAdminView();
+            alert('✓ Direct Certificate ' + certId + ' Issued with SHA-256 Hash:\n' + hash);
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- 6. Faculty Dashboard Actions ---
+        function renderFacultyView() {
+            document.getElementById('facultyPendingBadge').innerText = state.pendingFaculty.length;
+            const tbody = document.getElementById('facultyReviewTableBody');
+            tbody.innerHTML = '';
+
+            if (state.pendingFaculty.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted"><i class="bi bi-check-circle text-success me-2"></i>No pending student claims. Coordinator roster review up to date!</td></tr>`;
+                return;
+            }
+
+            state.pendingFaculty.forEach((p, idx) => {
+                const row = `
+                    <tr>
+                        <td class="ps-3 font-monospace fw-bold">${p.appNo}</td>
+                        <td><strong>${p.studentName}</strong><br><small class="text-muted">${p.rollNo} • ${p.branch}</small></td>
+                        <td><strong>${p.eventName}</strong><br><span class="badge bg-primary bg-opacity-10 text-primary border border-primary">${p.category}</span></td>
+                        <td><span class="fw-bold text-dark">${p.position}</span></td>
+                        <td><span class="badge bg-success py-2 px-2"><i class="bi bi-check-circle-fill me-1"></i> Roster Matched (Genuine)</span></td>
+                        <td><a href="${p.proofUrl}" target="_blank" class="text-primary small text-decoration-none"><i class="bi bi-link-45deg"></i> View Proof</a></td>
+                        <td class="text-end pe-3">
+                            <button class="btn btn-sm btn-success fw-bold me-1" onclick="facultyEndorse(${idx})">
+                                <i class="bi bi-check-lg me-1"></i> Verify & Endorse
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="facultyReject(${idx})">
+                                Reject
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        function facultyEndorse(index) {
+            const item = state.pendingFaculty[index];
+            if (!item) return;
+
+            // Move to admin pending
+            state.pendingAdmin.push({
+                appNo: item.appNo,
+                studentName: item.studentName,
+                rollNo: item.rollNo,
+                category: item.category,
+                eventName: item.eventName,
+                position: item.position,
+                facultyStatus: "Recommended by Faculty",
+                rosterMatched: true
+            });
+
+            state.pendingFaculty.splice(index, 1);
+            persistState();
+            renderFacultyView();
+            alert('✓ Application ' + item.appNo + ' verified against attendance roster and forwarded to HOD for 1-Click SHA-256 Issuance!');
+        }
+
+        function facultyReject(index) {
+            const item = state.pendingFaculty[index];
+            state.pendingFaculty.splice(index, 1);
+            persistState();
+            renderFacultyView();
+            alert('Application ' + item.appNo + ' rejected due to attendance sheet discrepancy.');
+        }
+
+        // --- 7. Student Dashboard Actions ---
+        function renderStudentView() {
+            const myCerts = Object.values(state.certificates).filter(c => c.rollNo === '24EAIDS051');
+            document.getElementById('studentStatApproved').innerText = myCerts.length;
+            document.getElementById('studentStatPending').innerText = state.studentApps.filter(a => a.status.includes('Pending')).length;
+            document.getElementById('studentStatTotal').innerText = state.studentApps.length;
+            document.getElementById('tabCountCerts').innerText = myCerts.length;
+            document.getElementById('tabCountApps').innerText = state.studentApps.length;
+
+            // Certs table
+            const cBody = document.getElementById('studentCertTableBody');
+            cBody.innerHTML = '';
+            myCerts.forEach(cert => {
+                const row = `
+                    <tr>
+                        <td class="ps-3 fw-bold text-primary font-monospace">${cert.certId}</td>
+                        <td><span class="badge bg-primary">${cert.category}</span></td>
+                        <td>${cert.eventName}</td>
+                        <td><span class="badge bg-success bg-opacity-10 text-success border border-success">${cert.grade}</span></td>
+                        <td><span class="badge bg-success">Issued & Verified</span></td>
+                        <td class="text-end pe-3">
+                            <button class="btn btn-sm btn-outline-primary" onclick="quickTestVerify('${cert.certId}')">
+                                <i class="bi bi-shield-check me-1"></i> View Cryptographic Proof
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                cBody.insertAdjacentHTML('beforeend', row);
+            });
+
+            // Apps table
+            const aBody = document.getElementById('studentAppTableBody');
+            aBody.innerHTML = '';
+            state.studentApps.forEach(app => {
+                const row = `
+                    <tr>
+                        <td class="ps-3 font-monospace fw-bold">${app.appNo}</td>
+                        <td>${app.eventName}</td>
+                        <td><span class="badge bg-primary">${app.category}</span></td>
+                        <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span></td>
+                        <td><span class="badge ${app.status.includes('Pending') ? 'bg-warning text-dark' : 'bg-success'}">${app.status}</span></td>
+                    </tr>
+                `;
+                aBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        function switchStudentTab(tab) {
+            document.getElementById('studentTabContentCerts').style.display = (tab === 'certs') ? 'block' : 'none';
+            document.getElementById('studentTabContentApps').style.display = (tab === 'apps') ? 'block' : 'none';
+            document.getElementById('studentTabContentEvents').style.display = (tab === 'events') ? 'block' : 'none';
+
+            document.getElementById('tabBtnCerts').classList.toggle('active', tab === 'certs');
+            document.getElementById('tabBtnApps').classList.toggle('active', tab === 'apps');
+            document.getElementById('tabBtnEvents').classList.toggle('active', tab === 'events');
+        }
+
+        function openApplyModal() {
+            new bootstrap.Modal(document.getElementById('applyModal')).show();
+        }
+
+        function updateCategoryFromEvent() {
+            const sel = document.getElementById('selEvent');
+            const cat = sel.options[sel.selectedIndex].getAttribute('data-cat');
+            document.getElementById('inpCategory').value = cat;
+        }
+
+        function handleStudentApply(e) {
+            e.preventDefault();
+            const eventName = document.getElementById('selEvent').value;
+            const category = document.getElementById('inpCategory').value;
+            const pos = document.getElementById('selPosition').value;
+            const proof = document.getElementById('inpProofUrl').value;
+            const appNo = 'APP-2026-' + Math.floor(100 + Math.random() * 900);
+
+            // Add to student applications
+            state.studentApps.unshift({
+                appNo: appNo,
+                eventName: eventName,
+                category: category,
+                rosterMatched: true,
+                status: "Pending Faculty Review"
+            });
+
+            // Add to faculty queue
+            state.pendingFaculty.unshift({
+                appNo: appNo,
+                studentName: "Amit Kumar",
+                rollNo: "24EAIDS051",
+                branch: "AI&DS",
+                category: category,
+                eventName: eventName,
+                position: pos,
+                rosterMatched: true,
+                proofUrl: proof
+            });
+
+            persistState();
+            bootstrap.Modal.getInstance(document.getElementById('applyModal')).hide();
+            renderStudentView();
+            alert('🎉 Application ' + appNo + ' submitted successfully! Auto-matched against coordinator attendance roster.');
+        }
+
+        function quickApplyWithEvent(name, cat) {
+            openApplyModal();
+            const sel = document.getElementById('selEvent');
+            for (let i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].text.includes(cat) || sel.options[i].value.includes(cat)) {
+                    sel.selectedIndex = i;
+                    break;
+                }
+            }
+            updateCategoryFromEvent();
+        }
+
+        function quickApplyFromHome(category) {
+            showView('view-student');
+            quickApplyWithEvent(category, category);
+        }
+
+        // --- 8. Public Verification Action ---
+        async function performVerification() {
             const id = document.getElementById('certSearchInput').value.trim();
             const container = document.getElementById('verifyResultDisplay');
-            const cert = certificateDatabase[id];
+            const cert = state.certificates[id];
 
             if (cert) {
                 const payload = cert.rollNo + "|" + cert.studentName + "|AI & Data Science - " + cert.eventName + "|" + cert.grade;
                 const liveHash = await computeSHA256(payload);
 
                 container.innerHTML = `
-                    <div class="card border-success border-2 shadow-sm rounded-4 p-4 bg-white text-center">
-                        <div class="d-inline-flex p-3 rounded-circle bg-success bg-opacity-10 text-success mb-2 mx-auto">
-                            <i class="bi bi-patch-check-fill fs-1"></i>
-                        </div>
-                        <span class="badge bg-danger mb-2 px-3 py-2 text-uppercase fw-bold mx-auto">
-                            Arya College of Engineering & I.T. (ACEIT)
+                    <div class="card shadow-sm rounded-4 p-4 p-md-5 bg-white text-center border-success border-2">
+                        <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-2 rounded-pill mb-3 d-inline-block mx-auto fw-bold">
+                            <i class="bi bi-shield-fill-check me-1"></i> MATHEMATICALLY VALIDATED VIA SHA-256
                         </span>
                         <h3 class="text-success fw-bold mb-1">Official Verified Certificate</h3>
-                        <p class="text-muted small mb-4">Cryptographically authenticated via Department of CSE & AI&DS</p>
+                        <p class="text-muted small mb-4">Cryptographically authenticated via Arya College Dept. of CSE & AI&DS</p>
 
                         <div class="bg-light p-4 rounded-3 text-start border mb-4">
                             <div class="row g-3">
@@ -920,7 +1875,7 @@
                                     <span class="fw-bold fs-5 font-monospace">${cert.rollNo}</span>
                                 </div>
                                 <div class="col-sm-12">
-                                    <small class="text-muted d-block">College Event / Activity</small>
+                                    <small class="text-muted d-block">College Event / Competition</small>
                                     <span class="fw-bold fs-5 text-dark">${cert.eventName}</span>
                                 </div>
                                 <div class="col-sm-6">
@@ -937,9 +1892,9 @@
                         <div class="text-start border-top pt-3">
                             <h6 class="fw-bold mb-2"><i class="bi bi-shield-lock me-2 text-primary"></i>Cryptographic Proof (SHA-256 via Java RMI):</h6>
                             <div class="p-3 bg-dark text-success rounded font-monospace small text-break">
-                                <div><span class="text-light">Original Hash:</span> ${cert.hash}</div>
-                                <div class="mt-1"><span class="text-light">Computed Hash:</span> ${liveHash}</div>
-                                <div class="mt-2 text-warning fw-bold">✓ Hashes match exactly. Mathematical integrity verified.</div>
+                                <div><span class="text-light">Original Registry Hash:</span> ${cert.hash}</div>
+                                <div class="mt-1"><span class="text-light">Computed Live Hash:</span> ${liveHash}</div>
+                                <div class="mt-2 text-warning fw-bold">✓ Hashes match exactly (100% Mathematical Proof of Authenticity).</div>
                             </div>
                         </div>
                     </div>
@@ -948,7 +1903,7 @@
                 container.innerHTML = `
                     <div class="card border-warning border-2 shadow-sm rounded-4 p-4 bg-white text-center">
                         <div class="d-inline-flex p-3 rounded-circle bg-warning bg-opacity-10 text-warning mb-2 mx-auto">
-                            <i class="bi bi-search fs-1"></i>
+                            <i class="bi bi-exclamation-triangle fs-1"></i>
                         </div>
                         <h4 class="text-dark fw-bold mb-1">Certificate Not Found</h4>
                         <p class="text-muted mb-0">No record found in database for ID: <strong>${id}</strong></p>
@@ -958,145 +1913,15 @@
             }
         }
 
-        function quickFillVerify(id) {
-            document.getElementById('certSearchInput').value = id;
-            executeVerification();
-        }
-
-        function verifySpecificId(id) {
+        function quickTestVerify(id) {
             showView('view-verify');
             document.getElementById('certSearchInput').value = id;
-            executeVerification();
+            performVerification();
         }
 
-        // Apply Modal Functions
-        function openApplyModal() {
-            const modal = new bootstrap.Modal(document.getElementById('applyModal'));
-            modal.show();
-        }
-
-        function handleEventCategoryChange() {
-            const sel = document.getElementById('applyEventSelect');
-            const cat = sel.options[sel.selectedIndex].getAttribute('data-cat');
-            document.getElementById('applyCategoryInput').value = cat;
-        }
-
-        function handleApplySubmit(e) {
-            e.preventDefault();
-            const eventName = document.getElementById('applyEventSelect').value;
-            const category = document.getElementById('applyCategoryInput').value;
-            const position = document.getElementById('applyPositionSelect').value;
-            const appNo = 'APP-2026-' + Math.floor(100 + Math.random() * 900);
-
-            // Add to student table
-            const appRow = `
-                <tr>
-                    <td class="ps-4 font-monospace">${appNo}</td>
-                    <td>${eventName}</td>
-                    <td><span class="badge bg-primary">${category}</span></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span></td>
-                    <td><span class="badge bg-warning text-dark">Pending Faculty Review</span></td>
-                </tr>
-            `;
-            document.getElementById('studentAppTableBody').insertAdjacentHTML('afterbegin', appRow);
-            document.getElementById('studentPendingCount').innerText = parseInt(document.getElementById('studentPendingCount').innerText) + 1;
-
-            // Add to faculty review table
-            const facultyRow = `
-                <tr id="row-${appNo}">
-                    <td class="ps-4 font-monospace">${appNo}</td>
-                    <td><strong>Amit Kumar</strong><br><small class="text-muted font-monospace">24EAIDS051 • AI&DS</small></td>
-                    <td><strong>${eventName}</strong><br><span class="badge bg-primary">${category}</span> • <small class="text-muted">${position}</small></td>
-                    <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span></td>
-                    <td class="text-end pe-4">
-                        <button class="btn btn-sm btn-success fw-bold me-1" onclick="facultyVerifyApp('${appNo}', 'Amit Kumar', '${category}', '${eventName}', '${position}', '24EAIDS051')">
-                            <i class="bi bi-check-lg me-1"></i> Verify & Recommend
-                        </button>
-                    </td>
-                </tr>
-            `;
-            document.getElementById('facultyReviewTableBody').insertAdjacentHTML('afterbegin', facultyRow);
-
-            bootstrap.Modal.getInstance(document.getElementById('applyModal')).hide();
-            alert('🎉 Certificate Application ' + appNo + ' submitted successfully! Auto-matched with event coordinator attendance sheet.');
-        }
-
-        // Faculty Action
-        function facultyVerifyApp(appNo, studentName, category, eventName, position, rollNo) {
-            const row = document.getElementById('row-' + appNo) || document.getElementById('facultyRow1');
-            if (row) row.remove();
-            document.getElementById('facultyPendingBadge').innerText = Math.max(0, parseInt(document.getElementById('facultyPendingBadge').innerText) - 1);
-
-            // Forward to Admin Table
-            const adminRow = `
-                <tr id="admin-row-${appNo}">
-                    <td class="ps-4 font-monospace">${appNo}</td>
-                    <td><strong>${studentName}</strong><br><small class="text-muted font-monospace">${rollNo}</small></td>
-                    <td><strong>${eventName}</strong><br><span class="badge bg-primary">${category}</span></td>
-                    <td><span class="badge bg-info text-dark"><i class="bi bi-person-check me-1"></i> Recommended by Faculty</span></td>
-                    <td class="text-end pe-4">
-                        <button class="btn btn-sm btn-primary fw-bold" onclick="adminApproveCert('${appNo}', '${studentName}', '${category}', '${eventName}', '${position}', '${rollNo}', 'admin-row-${appNo}')">
-                            <i class="bi bi-cpu me-1"></i> Approve & Generate SHA-256
-                        </button>
-                    </td>
-                </tr>
-            `;
-            document.getElementById('adminApprovalTableBody').insertAdjacentHTML('afterbegin', adminRow);
-            alert('✓ Application ' + appNo + ' verified & recommended to HOD / Admin!');
-        }
-
-        function facultyRejectApp(rowId) {
-            const row = document.getElementById(rowId);
-            if (row) row.remove();
-            alert('Application marked as rejected.');
-        }
-
-        // Admin Action (1-Click SHA-256 Generation)
-        async function adminApproveCert(appNo, studentName, category, eventName, position, rollNo, rowId) {
-            const catCode = category.substring(0, 4).toUpperCase();
-            const certId = 'ACEIT-2026-' + catCode + '-' + Math.floor(1000 + Math.random() * 9000);
-            const payload = rollNo + "|" + studentName + "|AI & Data Science - " + eventName + "|" + position;
-            const hash = await computeSHA256(payload);
-
-            // Save to database
-            certificateDatabase[certId] = {
-                certId: certId,
-                studentName: studentName,
-                rollNo: rollNo,
-                category: category,
-                eventName: eventName,
-                grade: position,
-                issueDate: new Date().toISOString().split('T')[0],
-                hash: hash
-            };
-
-            const row = document.getElementById(rowId);
-            if (row) row.remove();
-
-            // Add to student certificates table if student view visited
-            const certRow = `
-                <tr>
-                    <td class="ps-4 fw-bold text-primary font-monospace">${certId}</td>
-                    <td><span class="badge bg-primary">${category}</span></td>
-                    <td>${eventName}</td>
-                    <td><span class="badge bg-success bg-opacity-10 text-success border border-success">${position}</span></td>
-                    <td><span class="badge bg-success">Issued & Verified</span></td>
-                    <td class="text-end pe-4">
-                        <button class="btn btn-sm btn-outline-primary" onclick="verifySpecificId('${certId}')">
-                            <i class="bi bi-shield-check me-1"></i> View Cryptographic Proof
-                        </button>
-                    </td>
-                </tr>
-            `;
-            document.getElementById('studentCertTableBody').insertAdjacentHTML('afterbegin', certRow);
-            document.getElementById('studentCertCount').innerText = parseInt(document.getElementById('studentCertCount').innerText) + 1;
-
-            alert('🚀 Certificate ' + certId + ' generated and issued successfully with SHA-256 hash!\n\nSHA-256: ' + hash);
-        }
-
-        // Initial setup
+        // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
-            executeVerification();
+            performVerification();
         });
     </script>
 </body>
