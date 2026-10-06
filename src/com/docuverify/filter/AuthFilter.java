@@ -23,9 +23,8 @@ public class AuthFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String uri = req.getRequestURI();
 
-        // Allow public paths
+        // Allow public paths (Notice: /registry is NOT public to protect student privacy)
         if (uri.endsWith("/login") || uri.endsWith("/register") || uri.endsWith("/verify") ||
-            uri.endsWith("/registry") ||
             uri.endsWith("/index.jsp") || uri.equals(req.getContextPath()) || uri.equals(req.getContextPath() + "/") ||
             uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/") || uri.contains("/fonts/")) {
             chain.doFilter(request, response);

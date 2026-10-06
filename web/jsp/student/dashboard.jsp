@@ -59,14 +59,11 @@
     <!-- 2. PBL Ribbon -->
     <div class="pbl-substrip d-flex justify-content-between align-items-center">
         <div>
-            🎓 <strong>PBL Portal — 5th Sem (AI&DS / CSE)</strong> • Mentor: <span class="text-warning fw-bold">Er. Ram Babu Buri</span>
+            🎓 <strong>Arya Student Event Portal — Academic Session 2026-27</strong> • Dept. of CSE & AI&DS
         </div>
         <div>
-            <a href="${pageContext.request.contextPath}/verify" class="text-white text-decoration-none small me-3">
-                <i class="bi bi-search me-1"></i> Public Verify
-            </a>
-            <a href="${pageContext.request.contextPath}/registry" class="text-white text-decoration-none small">
-                <i class="bi bi-journal-text me-1"></i> College Registry
+            <a href="${pageContext.request.contextPath}/verify" class="text-white text-decoration-none small">
+                <i class="bi bi-shield-check me-1"></i> Public Certificate Verification
             </a>
         </div>
     </div>

@@ -45,8 +45,8 @@ The system provides tailored, role-specific portals for all three stakeholders:
                                            |
                                            v
 +---------------------------------------------------------------------------------------+
-|                                   MENTOR PANEL                                        |
-|                     Er. Ram Babu Buri (Dept. of CSE / AI&DS)                          |
+|                                FACULTY / REVIEWER PANEL                               |
+|                         Department Faculty & Event In-Charge                          |
 |  1. Reviews application queue                                                         |
 |  2. Inspects "Roster Matched (Genuine)" badge & event coordinator records             |
 |  3. Action: "Verify & Recommend" (or Reject with reason)                              |

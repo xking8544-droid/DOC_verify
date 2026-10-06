@@ -5,205 +5,415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PBL Portal Login — Arya College of Engineering & I.T.</title>
+    <title>Institutional Portal Login — Arya College of Engineering & I.T.</title>
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            --accent-crimson: #e11d48;
+            --dark-surface: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.98);
+        }
+
         body {
-            background-color: #f0f3f8;
-            font-family: 'DM Sans', sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #090e1a 0%, #0f172a 40%, #1e1b4b 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #1e293b;
+            position: relative;
+            overflow-x: hidden;
         }
-        .arya-header-strip {
-            background: #ffffff;
-            border-top: 4px solid #0f2b5c;
-            border-bottom: 2px solid #d32f2f;
-            padding: 12px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+        /* Ambient light blurs */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
         }
-        .arya-title {
-            color: #d32f2f;
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            right: 10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Modern Top Bar */
+        .portal-nav {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 28px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .college-emblem-text {
+            color: #ffffff;
             font-weight: 800;
-            font-size: 1.55rem;
             letter-spacing: 0.5px;
-            margin: 0;
-            font-family: 'Manrope', sans-serif;
-        }
-        .arya-subtitle {
-            color: #333333;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 1.15rem;
             margin: 0;
         }
-        .arya-code {
-            color: #555555;
-            font-size: 0.8rem;
-            margin: 0;
-        }
-        .pbl-banner {
-            background: #0f2b5c;
-            color: #ffffff;
-            padding: 9px 15px;
-            font-size: 0.85rem;
+
+        .college-tagline {
+            color: #94a3b8;
+            font-size: 0.75rem;
             font-weight: 500;
-            text-align: center;
+            margin: 0;
+            letter-spacing: 0.3px;
         }
-        .pbl-banner span.mentor-highlight {
-            color: #ffc107;
-            font-weight: 700;
+
+        /* Main Container */
+        .login-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 16px;
+            position: relative;
+            z-index: 1;
         }
-        .login-card-container {
-            max-width: 480px;
-            margin: 35px auto 40px auto;
+
+        .auth-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 470px;
+            padding: 38px 34px;
+            position: relative;
+            overflow: hidden;
         }
-        .portal-card {
-            background: #ffffff;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(15, 43, 92, 0.12);
-            border: 1px solid rgba(15, 43, 92, 0.08);
-            padding: 32px 30px;
+
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #e11d48, #3b82f6);
         }
-        .role-nav-btn {
-            border: 1.5px solid #0f2b5c;
-            color: #0f2b5c;
-            background: #ffffff;
+
+        /* Segmented Role Switcher */
+        .role-switch-container {
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 9px 8px;
+            font-size: 0.82rem;
             font-weight: 600;
-            font-size: 0.88rem;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            border-radius: 9px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
         }
-        .role-nav-btn.active {
-            background: #0f2b5c;
-            color: #ffffff;
+
+        .role-btn:hover {
+            color: #1e293b;
         }
-        .btn-arya-login {
-            background: #d32f2f;
-            border-color: #d32f2f;
-            color: #ffffff;
+
+        .role-btn.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
             font-weight: 700;
-            border-radius: 8px;
-            padding: 10px;
-            transition: all 0.2s;
         }
-        .btn-arya-login:hover {
-            background: #b71c1c;
-            border-color: #b71c1c;
+
+        /* Form Inputs */
+        .form-label-styled {
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-group-modern {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            background: #ffffff;
+            transition: all 0.2s ease;
+            overflow: hidden;
+        }
+
+        .input-group-modern:focus-within {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+        }
+
+        .input-group-modern .input-icon {
+            padding: 0 14px;
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .input-group-modern input {
+            border: none;
+            outline: none;
+            padding: 12px 14px 12px 0;
+            width: 100%;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: #0f172a;
+            background: transparent;
+        }
+
+        .input-group-modern input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .pwd-toggle-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            padding: 0 14px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .pwd-toggle-btn:hover {
+            color: #334155;
+        }
+
+        /* Preset Chips */
+        .chip-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 0.78rem;
+            color: #475569;
+        }
+
+        .chip-badge {
+            background: #e2e8f0;
+            color: #1e293b;
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        /* Submit Button */
+        .btn-portal-submit {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
             color: #ffffff;
-            transform: translateY(-1px);
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 13px;
+            border-radius: 12px;
+            width: 100%;
+            box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.4);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.2px;
         }
-        .helper-box {
-            background: #f1f5fa;
-            border-radius: 8px;
-            padding: 9px 12px;
-            font-size: 0.85rem;
-            color: #2b3e50;
+
+        .btn-portal-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -4px rgba(37, 99, 235, 0.5);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+            color: #ffffff;
+        }
+
+        /* Footer Links */
+        .auth-footer {
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+            font-size: 0.84rem;
+        }
+
+        .auth-footer a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.15s;
+        }
+
+        .auth-footer a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .bottom-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .bottom-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .bottom-links a:hover {
+            color: #0f172a;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. Official Arya College Header -->
-    <div class="arya-header-strip text-center">
-        <h1 class="arya-title">ARYA COLLEGE OF ENGINEERING & I.T.</h1>
-        <p class="arya-subtitle">(Approved by AICTE | Affiliated to RTU, Kota)</p>
-        <p class="arya-code">Estd. Yr. 2000 | ARYA 1st Old Campus | REAP CODE 14</p>
-    </div>
+    <!-- Header Bar -->
+    <header class="portal-nav d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="college-emblem-text">ARYA COLLEGE OF ENGINEERING & I.T.</h1>
+            <p class="college-tagline">Academic & Event Verification System • Dept. of CSE & AI&DS</p>
+        </div>
+        <div>
+            <a href="${pageContext.request.contextPath}/index.jsp" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                <i class="bi bi-house me-1"></i> Home
+            </a>
+        </div>
+    </header>
 
-    <!-- 2. PBL Ribbon Banner -->
-    <div class="pbl-banner">
-        🎓 <strong>Project Based Learning (PBL)</strong> — Java Projects • 5<sup>th</sup> Semester • CSE / AI&DS / IT &nbsp;|&nbsp; 
-        📅 Academic Year: <strong>2026-27</strong> &nbsp;|&nbsp; 
-        👨‍🏫 Mentor: <span class="mentor-highlight">Er. Ram Babu Buri</span>, Dept. of CSE
-    </div>
-
-    <!-- 3. Portal Login Card -->
-    <div class="container login-card-container">
-        <div class="portal-card">
+    <!-- Main Login Card -->
+    <main class="login-wrapper">
+        <div class="auth-card">
             
-            <div class="text-center mb-3">
-                <h4 class="fw-bold text-dark mb-1">🔐 PBL Portal Login — A.Y. 2026-27</h4>
-                <p class="text-muted small">Event Certificate Management & Verification System</p>
+            <div class="text-center mb-4">
+                <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-primary bg-opacity-10 text-primary mb-2" style="width: 56px; height: 56px;">
+                    <i class="bi bi-shield-lock-fill fs-3"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-1" style="letter-spacing: -0.3px;">Portal Sign In</h4>
+                <p class="text-muted small mb-0">Select your authorization role to access your dashboard</p>
             </div>
 
-            <!-- Role Selector Tabs -->
-            <div class="d-flex justify-content-between gap-2 mb-3">
-                <button type="button" class="btn role-nav-btn active flex-fill text-nowrap" id="tabAdmin" onclick="selectRole('admin')">
-                    <i class="bi bi-person-badge me-1"></i> Admin / HOD
+            <!-- Segmented Role Selector -->
+            <div class="role-switch-container">
+                <button type="button" class="role-btn active" id="tabAdmin" onclick="selectRole('admin')">
+                    <i class="bi bi-person-fill-gear me-1"></i> Admin / HOD
                 </button>
-                <button type="button" class="btn role-nav-btn flex-fill text-nowrap" id="tabMentor" onclick="selectRole('mentor')">
-                    <i class="bi bi-person-workspace me-1"></i> Mentor
+                <button type="button" class="role-btn" id="tabMentor" onclick="selectRole('mentor')">
+                    <i class="bi bi-person-badge me-1"></i> Faculty
                 </button>
-                <button type="button" class="btn role-nav-btn flex-fill text-nowrap" id="tabStudent" onclick="selectRole('student')">
-                    <i class="bi bi-mortarboard me-1"></i> Student
+                <button type="button" class="role-btn" id="tabStudent" onclick="selectRole('student')">
+                    <i class="bi bi-mortarboard-fill me-1"></i> Student
                 </button>
             </div>
 
-            <!-- Alert Messages -->
+            <!-- Alerts -->
             <c:if test="${not empty error}">
-                <div class="alert alert-danger alert-dismissible fade show py-2 small" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show py-2 px-3 small rounded-3 mb-3" role="alert">
                     <i class="bi bi-exclamation-triangle-fill me-1"></i> ${error}
                     <button type="button" class="btn-close py-2" data-bs-dismiss="alert"></button>
                 </div>
             </c:if>
 
             <c:if test="${not empty success}">
-                <div class="alert alert-success alert-dismissible fade show py-2 small" role="alert">
+                <div class="alert alert-success alert-dismissible fade show py-2 px-3 small rounded-3 mb-3" role="alert">
                     <i class="bi bi-check-circle-fill me-1"></i> ${success}
                     <button type="button" class="btn-close py-2" data-bs-dismiss="alert"></button>
                 </div>
             </c:if>
 
-            <!-- Exp 9: JSP Login Validation Form -->
-            <form action="${pageContext.request.contextPath}/login" method="POST" class="needs-validation" novalidate id="loginForm">
+            <!-- Form -->
+            <form action="${pageContext.request.contextPath}/login" method="POST" id="loginForm">
                 
                 <div class="mb-3">
-                    <label for="username" class="form-label fw-semibold small mb-1" id="lblUser">User ID <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your User ID">
-                    <div class="invalid-feedback">Please enter your User ID or Roll Number.</div>
+                    <label for="username" class="form-label-styled" id="lblUser">
+                        <span>User Identifier</span>
+                        <span class="text-danger small">*</span>
+                    </label>
+                    <div class="input-group-modern">
+                        <span class="input-icon" id="userIcon"><i class="bi bi-person"></i></span>
+                        <input type="text" id="username" name="username" required placeholder="Enter your identifier">
+                    </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="password" class="form-label fw-semibold small mb-1">Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" id="password" name="password" required placeholder="Enter password">
-                    <div class="invalid-feedback">Please enter your password.</div>
+                    <label for="password" class="form-label-styled">
+                        <span>Password</span>
+                        <span class="text-danger small">*</span>
+                    </label>
+                    <div class="input-group-modern">
+                        <span class="input-icon"><i class="bi bi-key"></i></span>
+                        <input type="password" id="password" name="password" required placeholder="Enter account password">
+                        <button type="button" class="pwd-toggle-btn" onclick="togglePasswordVisibility()">
+                            <i class="bi bi-eye" id="pwdEyeIcon"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Credential Helper Box -->
-                <div class="helper-box text-center mb-3" id="hintBox">
-                    <span class="fw-semibold">Default UserID:</span> <span id="hintUser" class="badge bg-primary">admin</span> &nbsp;|&nbsp; 
-                    <span class="fw-semibold">Password:</span> <span id="hintPass" class="badge bg-secondary">admin123</span>
+                <!-- Credential Helper Chip -->
+                <div class="chip-container" id="hintBox">
+                    <i class="bi bi-info-circle text-primary"></i>
+                    <span>Default demo:</span>
+                    <span class="chip-badge" id="hintUser">admin</span>
+                    <span>/</span>
+                    <span class="chip-badge" id="hintPass">admin123</span>
                 </div>
 
-                <div class="text-muted small text-center mb-3">
-                    <i class="bi bi-lock-fill text-warning me-1"></i> Passwords are confidential & shared by the Department. Contact Admin/HOD if forgotten.
-                </div>
-
-                <button type="submit" class="btn btn-arya-login w-100 mb-3">
-                    🚀 Login to Dashboard
+                <button type="submit" class="btn btn-portal-submit">
+                    Sign In to Portal <i class="bi bi-arrow-right ms-1"></i>
                 </button>
 
-                <div class="text-center pt-2 border-top">
-                    <p class="small text-muted mb-1">
-                        New student? <a href="${pageContext.request.contextPath}/register" class="fw-bold text-decoration-none text-primary">📝 Register your College Profile here</a>
-                    </p>
-                    <p class="small text-muted mb-0">
-                        <a href="${pageContext.request.contextPath}/verify" class="text-secondary text-decoration-none">🔍 Public Certificate Verification</a> &nbsp;•&nbsp; 
-                        <a href="${pageContext.request.contextPath}/index.jsp" class="text-secondary text-decoration-none">🏠 Portal Home</a>
-                    </p>
+                <div class="auth-footer">
+                    <div>
+                        New student? <a href="${pageContext.request.contextPath}/register">Create your student profile</a>
+                    </div>
+                    <div class="bottom-links">
+                        <a href="${pageContext.request.contextPath}/verify"><i class="bi bi-shield-check me-1"></i> Verify Certificate</a>
+                        <span>•</span>
+                        <a href="${pageContext.request.contextPath}/index.jsp"><i class="bi bi-house me-1"></i> Home</a>
+                    </div>
                 </div>
             </form>
 
         </div>
-    </div>
+    </main>
 
-    <!-- Bootstrap JS -->
+    <footer class="text-center py-3 text-white-50 small" style="position: relative; z-index: 10;">
+        Arya College of Engineering & I.T. • Academic Portal 2026-27
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function selectRole(role) {
@@ -216,35 +426,52 @@
             const lblUser = document.getElementById('lblUser');
             const hintUser = document.getElementById('hintUser');
             const hintPass = document.getElementById('hintPass');
+            const userIcon = document.getElementById('userIcon');
 
             if (role === 'admin') {
                 document.getElementById('tabAdmin').classList.add('active');
-                lblUser.innerHTML = 'Admin / HOD User ID <span class="text-danger">*</span>';
+                lblUser.innerHTML = '<span>Admin / HOD User ID</span><span class="text-danger small">*</span>';
                 uField.placeholder = 'e.g. admin';
                 uField.value = 'admin';
                 pField.value = 'admin123';
                 hintUser.innerText = 'admin';
                 hintPass.innerText = 'admin123';
+                userIcon.innerHTML = '<i class="bi bi-person-fill-gear text-primary"></i>';
             } else if (role === 'mentor') {
                 document.getElementById('tabMentor').classList.add('active');
-                lblUser.innerHTML = 'Mentor User ID <span class="text-danger">*</span>';
+                lblUser.innerHTML = '<span>Faculty Identifier</span><span class="text-danger small">*</span>';
                 uField.placeholder = 'e.g. mentor';
                 uField.value = 'mentor';
                 pField.value = 'mentor123';
                 hintUser.innerText = 'mentor';
                 hintPass.innerText = 'mentor123';
+                userIcon.innerHTML = '<i class="bi bi-person-badge text-warning"></i>';
             } else if (role === 'student') {
                 document.getElementById('tabStudent').classList.add('active');
-                lblUser.innerHTML = 'College Roll Number <span class="text-danger">*</span>';
+                lblUser.innerHTML = '<span>University Roll Number</span><span class="text-danger small">*</span>';
                 uField.placeholder = 'e.g. 24EAIDS051';
                 uField.value = '24EAIDS051';
                 pField.value = 'student123';
                 hintUser.innerText = '24EAIDS051';
                 hintPass.innerText = 'student123';
+                userIcon.innerHTML = '<i class="bi bi-mortarboard-fill text-success"></i>';
             }
         }
 
-        // Set default on load
+        function togglePasswordVisibility() {
+            const pwd = document.getElementById('password');
+            const icon = document.getElementById('pwdEyeIcon');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             selectRole('admin');
         });

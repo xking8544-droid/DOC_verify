@@ -34,8 +34,8 @@
              +-------------------------------+-------------------------------+
              |                               |                               |
              v                               v                               v
-    [ STUDENT PORTAL ]               [ MENTOR PANEL ]              [ ADMIN / HOD PANEL ]
-     - Roll No Login                  - Er. Ram Babu Buri           - Final Authority
+    [ STUDENT PORTAL ]               [ FACULTY PANEL ]             [ ADMIN / HOD PANEL ]
+     - Roll No Login                  - Department Faculty          - Final Authority
      - Apply for Certificate          - Coordinator Roster Match    - 1-Click Approval
      - Track Status (Pending/Approved)- Verify & Recommend          - SHA-256 via Java RMI
              |                               |                               |

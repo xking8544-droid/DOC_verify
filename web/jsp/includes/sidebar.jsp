@@ -27,6 +27,10 @@
                     <a href="${pageContext.request.contextPath}/admin/users">
                         <i class="bi bi-people-fill"></i> Manage Users
                     </a>
+                <li class="${pageContext.request.requestURI.contains('/registry') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/registry">
+                        <i class="bi bi-journal-text"></i> Issued Cert Archive
+                    </a>
                 </li>
             </c:when>
 
@@ -34,7 +38,7 @@
             <c:when test="${sessionScope.role == 'mentor'}">
                 <li class="${pageContext.request.requestURI.contains('/mentor/dashboard') ? 'active' : ''}">
                     <a href="${pageContext.request.contextPath}/mentor/dashboard">
-                        <i class="bi bi-shield-check"></i> Mentor Review Panel
+                        <i class="bi bi-shield-check"></i> Faculty Review Panel
                     </a>
                 </li>
             </c:when>
@@ -55,16 +59,11 @@
         </c:choose>
 
         <hr class="mx-3 text-muted">
-        <li class="px-4 py-1 text-muted small fw-bold text-uppercase">Public Portal</li>
+        <li class="px-4 py-1 text-muted small fw-bold text-uppercase">Navigation</li>
 
-        <li class="${pageContext.request.requestURI.contains('/registry') ? 'active' : ''}">
-            <a href="${pageContext.request.contextPath}/registry">
-                <i class="bi bi-journal-text"></i> College Registry
-            </a>
-        </li>
         <li class="${pageContext.request.requestURI.contains('/verify') ? 'active' : ''}">
             <a href="${pageContext.request.contextPath}/verify">
-                <i class="bi bi-search"></i> Public Verification
+                <i class="bi bi-shield-check"></i> Public Verification
             </a>
         </li>
         <li>

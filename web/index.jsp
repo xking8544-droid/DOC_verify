@@ -46,9 +46,6 @@
             <a href="${pageContext.request.contextPath}/verify" class="btn btn-outline-primary btn-sm fw-semibold">
                 <i class="bi bi-search me-1"></i> Verify Certificate
             </a>
-            <a href="${pageContext.request.contextPath}/registry" class="btn btn-outline-secondary btn-sm fw-semibold">
-                <i class="bi bi-journal-text me-1"></i> Public Registry
-            </a>
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                     <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-primary btn-sm fw-bold">
@@ -56,7 +53,7 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login" class="btn btn-danger btn-sm fw-bold">
+                    <a href="${pageContext.request.contextPath}/login" class="btn btn-primary btn-sm fw-bold">
                         <i class="bi bi-box-arrow-in-right me-1"></i> Portal Login
                     </a>
                 </c:otherwise>
@@ -66,9 +63,9 @@
 
     <!-- 2. PBL Ribbon -->
     <div class="pbl-banner">
-        🎓 <strong>Project Based Learning (PBL) — Java Projects • 5th Semester • CSE / AI&DS / IT</strong> &nbsp;|&nbsp; 
-        📅 A.Y. <strong>2026-27</strong> &nbsp;|&nbsp; 
-        👨‍🏫 Mentor: <span class="text-warning fw-bold">Er. Ram Babu Buri</span> (Dept. of CSE)
+        🎓 <strong>Arya Academic & Event E-Certificate Portal</strong> &nbsp;•&nbsp; 
+        📅 Academic Session: <strong>2026-27</strong> &nbsp;•&nbsp; 
+        Dept. of CSE & AI&DS
     </div>
 
     <!-- 3. Hero Section -->
@@ -222,14 +219,9 @@
                 <a href="${pageContext.request.contextPath}/verify" class="text-white-50 text-decoration-none hover-white">
                     <i class="bi bi-shield-check me-1"></i> Public Verification
                 </a>
-                <span class="text-white-50">•</span>
-                <a href="${pageContext.request.contextPath}/registry" class="text-white-50 text-decoration-none hover-white">
-                    <i class="bi bi-journal-text me-1"></i> Certificate Registry
-                </a>
             </div>
             <h6 class="fw-bold mb-1">Arya College of Engineering & I.T., Jaipur</h6>
-            <p class="small text-white-50 mb-1">Project Based Learning (PBL) 2026-27 • Team 5A (PBL2627-AI&DS-A-051)</p>
-            <p class="small text-white-50 mb-0">Team Leader: Amit Kumar • Mentor: Er. Ram Babu Buri (Dept. of CSE)</p>
+            <p class="small text-white-50 mb-0">Academic & Event Certificate Management Portal • Dept. of CSE & AI&DS</p>
         </div>
     </footer>
 

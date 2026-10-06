@@ -31,17 +31,17 @@
 <!-- Public Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
+        <a class="navbar-brand fw-bold text-primary" href="${pageContext.request.contextPath}/index.jsp">
             <i class="bi bi-shield-check me-2"></i>DocuVerify
         </a>
         <div class="ms-auto d-flex align-items-center gap-3">
-            <a href="${pageContext.request.contextPath}/registry" class="nav-link text-secondary"><i class="bi bi-journal-text me-1"></i>Registry</a>
+            <a href="${pageContext.request.contextPath}/index.jsp" class="nav-link text-secondary"><i class="bi bi-house me-1"></i>Home</a>
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-outline-primary">Go to Dashboard</a>
+                    <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-outline-primary btn-sm">Go to Dashboard</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login" class="btn btn-primary">Issuer Login</a>
+                    <a href="${pageContext.request.contextPath}/login" class="btn btn-primary btn-sm fw-semibold">Portal Login</a>
                 </c:otherwise>
             </c:choose>
         </div>
