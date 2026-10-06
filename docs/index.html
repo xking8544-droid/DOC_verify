@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuVerify™ ACEIT Edition — Live Interactive Showcase</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --dark-bg: #090e1a;
+            --card-surface: #0f172a;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        /* Glass Topbar */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Hero */
+        .hero-banner {
+            background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.2) 0%, rgba(9, 14, 26, 0.95) 70%);
+            padding: 70px 20px 40px 20px;
+            text-align: center;
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            color: #60a5fa;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Interactive Showcase Cards */
+        .demo-card {
+            background: var(--card-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+            transition: all 0.25s ease;
+        }
+
+        .nav-pills-custom .nav-link {
+            color: #94a3b8;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-pills-custom .nav-link.active {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        }
+
+        .cat-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            padding: 16px;
+            border-radius: 14px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .cat-chip:hover {
+            transform: translateY(-4px);
+            border-color: rgba(37, 99, 235, 0.4);
+        }
+
+        .terminal-box {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.88rem;
+            color: #10b981;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .hash-code {
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #38bdf8;
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg glass-nav py-3">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center gap-2" href="#">
+                <span class="badge bg-primary p-2 rounded-3"><i class="bi bi-shield-check fs-5"></i></span>
+                <span>DocuVerify <small class="text-white-50 fw-normal">ACEIT Edition</small></span>
+            </a>
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <a href="#simulator" class="btn btn-outline-light btn-sm rounded-pill px-3">
+                    <i class="bi bi-play-circle me-1"></i> Live Simulator
+                </a>
+                <a href="https://github.com/xking8544-droid/DOC_verify" target="_blank" class="btn btn-primary btn-sm rounded-pill px-3">
+                    <i class="bi bi-github me-1"></i> View Repository
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-banner">
+        <div class="container" style="max-width: 900px;">
+            <div class="brand-badge">
+                <i class="bi bi-mortarboard-fill"></i> Arya College of Engineering & I.T. (ACEIT) • PBL 2026-27
+            </div>
+            <h1 class="hero-title mb-3">
+                Cryptographic Event & Merit Certificate Portal
+            </h1>
+            <p class="lead text-white-50 mb-4">
+                A 3-role institutional web application engineered with Java Servlets, JSP, MySQL, and Remote Method Invocation (RMI) for tamper-proof SHA-256 certificate issuance & public verification.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="#simulator" class="btn btn-primary btn-lg rounded-pill px-4 fw-bold shadow">
+                    <i class="bi bi-cpu-fill me-2"></i> Try In-Browser SHA-256 Verifier
+                </a>
+                <a href="#architecture" class="btn btn-outline-secondary btn-lg rounded-pill px-4 text-white">
+                    <i class="bi bi-diagram-3 me-2"></i> 3-Tier Anti-Forgery Architecture
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Categories -->
+    <section class="py-5 border-top border-bottom" style="border-color: var(--border-subtle) !important;">
+        <div class="container">
+            <div class="text-center mb-4">
+                <span class="text-primary text-uppercase small fw-bold tracking-wider">Multi-Category Coverage</span>
+                <h3 class="fw-bold text-white mt-1">Official College Event Categories</h3>
+            </div>
+            <div class="row g-3">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cat-chip">
+                        <div class="fs-2 text-primary mb-2"><i class="bi bi-music-note-beamed"></i></div>
+                        <h6 class="fw-bold mb-1">Music</h6>
+                        <small class="text-white-50">Arya Tarang</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cat-chip">
+                        <div class="fs-2 text-success mb-2"><i class="bi bi-trophy"></i></div>
+                        <h6 class="fw-bold mb-1">Sports</h6>
+                        <small class="text-white-50">Yuva Spardha</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cat-chip">
+                        <div class="fs-2 text-warning mb-2"><i class="bi bi-masks-theater"></i></div>
+                        <h6 class="fw-bold mb-1">Drama</h6>
+                        <small class="text-white-50">Rangmanch</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cat-chip">
+                        <div class="fs-2 text-danger mb-2"><i class="bi bi-balloon-heart"></i></div>
+                        <h6 class="fw-bold mb-1">Cultural</h6>
+                        <small class="text-white-50">Aura Fest</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cat-chip">
+                        <div class="fs-2 text-info mb-2"><i class="bi bi-code-slash"></i></div>
+                        <h6 class="fw-bold mb-1">Technical</h6>
+                        <small class="text-white-50">CodeStorm 24h</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="cat-chip">
+                        <div class="fs-2 text-secondary mb-2"><i class="bi bi-award"></i></div>
+                        <h6 class="fw-bold mb-1">Academic</h6>
+                        <small class="text-white-50">Semester Merit</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Live Simulator -->
+    <section id="simulator" class="py-5">
+        <div class="container" style="max-width: 960px;">
+            <div class="text-center mb-4">
+                <span class="badge bg-primary bg-opacity-25 text-primary px-3 py-2 rounded-pill mb-2 fw-bold">LIVE IN-BROWSER SIMULATION</span>
+                <h2 class="fw-bold text-white">Experience Cryptographic Verification</h2>
+                <p class="text-white-50">Test how the public verification engine calculates SHA-256 mathematical proofs in real time.</p>
+            </div>
+
+            <div class="demo-card">
+                <!-- Nav Tabs -->
+                <ul class="nav nav-pills nav-pills-custom justify-content-center mb-4 gap-2" id="demoTabs" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="verify-tab" data-bs-toggle="pill" data-bs-target="#tab-verify" type="button">
+                            <i class="bi bi-shield-check me-1"></i> Public Verifier
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="tamper-tab" data-bs-toggle="pill" data-bs-target="#tab-tamper" type="button">
+                            <i class="bi bi-shield-slash me-1"></i> Tamper Detection Test
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="workflow-tab" data-bs-toggle="pill" data-bs-target="#tab-workflow" type="button">
+                            <i class="bi bi-cpu me-1"></i> 3-Role Workflow
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Tab 1: Live Verifier -->
+                    <div class="tab-pane fade show active text-center" id="tab-verify">
+                        <div class="input-group input-group-lg mb-3 mx-auto" style="max-width: 650px;">
+                            <input type="text" id="demoCertInput" class="form-control bg-dark text-white border-secondary" value="ACEIT-2026-TECH-5143">
+                            <button class="btn btn-primary px-4 fw-bold" onclick="simulateVerification()">
+                                <i class="bi bi-search me-1"></i> Verify Now
+                            </button>
+                        </div>
+                        <div class="text-white-50 small mb-4">Try sample ID: <code>ACEIT-2026-TECH-5143</code> (CodeStorm 2026 Winner)</div>
+
+                        <!-- Result Box -->
+                        <div id="verifyResultCard" class="card bg-dark border-success p-4 text-start mx-auto rounded-3" style="max-width: 700px;">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <span class="badge bg-success p-2 rounded-circle"><i class="bi bi-check-lg fs-6"></i></span>
+                                <h5 class="text-success fw-bold mb-0">Official Verified Certificate</h5>
+                                <span class="badge bg-primary ms-auto">Technical Event</span>
+                            </div>
+                            <div class="row g-2 text-white-50 small mb-3">
+                                <div class="col-sm-6"><strong class="text-white">Student Name:</strong> Amit Kumar</div>
+                                <div class="col-sm-6"><strong class="text-white">University Roll No:</strong> 24EAIDS051</div>
+                                <div class="col-sm-6"><strong class="text-white">Event:</strong> CodeStorm Hackathon 2026</div>
+                                <div class="col-sm-6"><strong class="text-white">Position:</strong> 1st Place - Winner</div>
+                            </div>
+                            <div class="p-3 rounded bg-black">
+                                <div class="text-muted small mb-1">Cryptographic Proof (SHA-256 via Java RMI):</div>
+                                <div class="hash-code" id="liveHashDisplay">a39948426925d69ab24a7fac34a737087ebc614911dfbdcb2fc75c3c81ac7114</div>
+                                <div class="text-success small mt-2"><i class="bi bi-check2-circle me-1"></i> Computed hash matches database record exactly. Zero alterations detected.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Tamper Detection -->
+                    <div class="tab-pane fade text-center" id="tab-tamper">
+                        <p class="text-white-50">Altering even 1 letter in a certificate immediately breaks the SHA-256 hash:</p>
+                        <div class="row g-3 text-start mx-auto mb-4" style="max-width: 700px;">
+                            <div class="col-md-6">
+                                <label class="small text-white-50">Original Student Name:</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" value="Amit Kumar" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small text-white-50">Tampered Student Name (Try modifying):</label>
+                                <input type="text" id="tamperInput" class="form-control bg-dark text-warning border-warning" value="Amit Kumar (Tampered)" oninput="recalcTamper()">
+                            </div>
+                        </div>
+                        <div class="card bg-dark border-danger p-4 text-start mx-auto rounded-3" style="max-width: 700px;">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge bg-danger p-2 rounded-circle"><i class="bi bi-x-lg fs-6"></i></span>
+                                <h5 class="text-danger fw-bold mb-0">Tampering Detected!</h5>
+                            </div>
+                            <p class="small text-white-50 mb-3">Computed hash no longer matches the authentic cryptographic seal:</p>
+                            <div class="p-3 rounded bg-black">
+                                <div class="text-muted small">Original Database Hash:</div>
+                                <div class="hash-code mb-2">a39948426925d69ab24a7fac34a737087ebc614911dfbdcb2fc75c3c81ac7114</div>
+                                <div class="text-muted small">Computed Hash from altered record:</div>
+                                <div class="hash-code text-danger" id="tamperHashDisplay">computing...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Workflow -->
+                    <div class="tab-pane fade" id="tab-workflow">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="p-3 rounded bg-dark border border-secondary h-100">
+                                    <div class="fs-4 text-primary mb-2"><i class="bi bi-mortarboard"></i> Student Portal</div>
+                                    <p class="small text-white-50">Student logs in with University Roll No (<code>24EAIDS051</code>) and submits claim with proof.</p>
+                                    <span class="badge bg-info text-dark">Roster Cross-Match</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 rounded bg-dark border border-secondary h-100">
+                                    <div class="fs-4 text-warning mb-2"><i class="bi bi-person-check"></i> Faculty Review</div>
+                                    <p class="small text-white-50">Department Faculty verifies against coordinator master roster and clicks "Verify & Recommend".</p>
+                                    <span class="badge bg-success">Genuine Verified</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 rounded bg-dark border border-secondary h-100">
+                                    <div class="fs-4 text-danger mb-2"><i class="bi bi-cpu"></i> Admin / HOD</div>
+                                    <p class="small text-white-50">1-Click approval invokes Java RMI to generate immutable SHA-256 certificate record.</p>
+                                    <span class="badge bg-primary">RMI Cryptographic Seal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-5 border-top border-bottom" style="border-color: var(--border-subtle) !important;">
+        <div class="container" style="max-width: 960px;">
+            <div class="text-center mb-5">
+                <span class="badge bg-danger bg-opacity-25 text-danger px-3 py-2 rounded-pill mb-2 fw-bold">SECURITY ARCHITECTURE</span>
+                <h2 class="fw-bold text-white">How Fake Applications Are Eliminated</h2>
+                <p class="text-white-50">3-Tier Verification Pipeline ensuring zero fake certificates are issued</p>
+            </div>
+
+            <div class="row g-4 text-start">
+                <div class="col-md-4">
+                    <div class="demo-card h-100 p-4">
+                        <div class="fs-2 text-primary mb-3"><i class="bi bi-table"></i></div>
+                        <h5 class="fw-bold text-white">1. Coordinator Roster Match</h5>
+                        <p class="small text-white-50 mb-0">
+                            Claims are automatically cross-checked against official attendance sheets in the <code>event_roster</code> table. Unlisted claims are flagged instantly.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-card h-100 p-4">
+                        <div class="fs-2 text-warning mb-3"><i class="bi bi-person-workspace"></i></div>
+                        <h5 class="fw-bold text-white">2. Faculty Verification</h5>
+                        <p class="small text-white-50 mb-0">
+                            Department faculty reviews the submission, examines attached proof, and endorses authentic claims before sending to HOD.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="demo-card h-100 p-4">
+                        <div class="fs-2 text-danger mb-3"><i class="bi bi-lock-fill"></i></div>
+                        <h5 class="fw-bold text-white">3. SHA-256 via Java RMI</h5>
+                        <p class="small text-white-50 mb-0">
+                            Approved certificates receive a 64-character SHA-256 cryptographic digest computed via remote Java RMI on port 1099.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Team & Lab Mapping -->
+    <section class="py-5">
+        <div class="container" style="max-width: 960px;">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold text-white">Project Based Learning (PBL) 2026-27</h3>
+                <p class="text-white-50">Team 5A • 5th Semester • Dept. of CSE & AI&DS • Arya College of Engineering & I.T.</p>
+            </div>
+
+            <div class="table-responsive demo-card p-0 overflow-hidden">
+                <table class="table table-dark table-hover mb-0 align-middle">
+                    <thead style="background: rgba(255,255,255,0.05);">
+                        <tr>
+                            <th class="ps-4">Member Name</th>
+                            <th>Roll Number</th>
+                            <th>Designated Module</th>
+                            <th>Lab Experiments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ps-4 fw-bold text-primary">Amit Kumar (Lead)</td>
+                            <td><code>24EAIDS051</code></td>
+                            <td>Authentication & Session Security</td>
+                            <td>Exp 1, Exp 8, Exp 9</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4 fw-bold">Ayush Sharma</td>
+                            <td><code>24EAIDS052</code></td>
+                            <td>Admin Operations & Audit Logs</td>
+                            <td>Exp 7, Exp 8, Exp 10</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4 fw-bold">Chetan Sharma</td>
+                            <td><code>24EAIDS053</code></td>
+                            <td>Java RMI SHA-256 Engine</td>
+                            <td>Exp 2, Exp 5, Exp 8</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4 fw-bold">Chavi Jain</td>
+                            <td><code>24EAIDS054</code></td>
+                            <td>Public Verification & Workflow</td>
+                            <td>Exp 3, Exp 8, Exp 9</td>
+                        </tr>
+                        <tr>
+                            <td class="ps-4 fw-bold">Divyanshu Goyal</td>
+                            <td><code>24EAIDS055</code></td>
+                            <td>Event Roster Matching & JDBC</td>
+                            <td>Exp 4, Exp 7, Exp 8</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center border-top" style="border-color: var(--border-subtle) !important;">
+        <div class="container text-white-50 small">
+            <p class="mb-1">Arya College of Engineering & I.T. (ACEIT), Jaipur • REAP CODE 14</p>
+            <p class="mb-0">Project Repository: <a href="https://github.com/xking8544-droid/DOC_verify" class="text-primary text-decoration-none" target="_blank">xking8544-droid/DOC_verify</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function recalcTamper() {
+            const tamperedName = document.getElementById('tamperInput').value;
+            const payload = "24EAIDS051|" + tamperedName + "|AI & Data Science - CodeStorm Hackathon 2026|1st Place - Winner";
+            const hash = await sha256(payload);
+            document.getElementById('tamperHashDisplay').innerText = hash;
+        }
+
+        function simulateVerification() {
+            const id = document.getElementById('demoCertInput').value.trim();
+            const card = document.getElementById('verifyResultCard');
+            if (id === 'ACEIT-2026-TECH-5143') {
+                card.className = 'card bg-dark border-success p-4 text-start mx-auto rounded-3';
+                card.innerHTML = `
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge bg-success p-2 rounded-circle"><i class="bi bi-check-lg fs-6"></i></span>
+                        <h5 class="text-success fw-bold mb-0">Official Verified Certificate</h5>
+                        <span class="badge bg-primary ms-auto">Technical Event</span>
+                    </div>
+                    <div class="row g-2 text-white-50 small mb-3">
+                        <div class="col-sm-6"><strong class="text-white">Student Name:</strong> Amit Kumar</div>
+                        <div class="col-sm-6"><strong class="text-white">University Roll No:</strong> 24EAIDS051</div>
+                        <div class="col-sm-6"><strong class="text-white">Event:</strong> CodeStorm Hackathon 2026</div>
+                        <div class="col-sm-6"><strong class="text-white">Position:</strong> 1st Place - Winner</div>
+                    </div>
+                    <div class="p-3 rounded bg-black">
+                        <div class="text-muted small mb-1">Cryptographic Proof (SHA-256 via Java RMI):</div>
+                        <div class="hash-code">a39948426925d69ab24a7fac34a737087ebc614911dfbdcb2fc75c3c81ac7114</div>
+                        <div class="text-success small mt-2"><i class="bi bi-check2-circle me-1"></i> Computed hash matches database record exactly. Zero alterations detected.</div>
+                    </div>
+                `;
+            } else {
+                card.className = 'card bg-dark border-warning p-4 text-start mx-auto rounded-3';
+                card.innerHTML = `
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="badge bg-warning text-dark p-2 rounded-circle"><i class="bi bi-exclamation-lg fs-6"></i></span>
+                        <h5 class="text-warning fw-bold mb-0">Certificate Not Found</h5>
+                    </div>
+                    <p class="small text-white-50 mb-0">No matching record found for ID: <code>${id}</code>. Please check certificate ID.</p>
+                `;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            recalcTamper();
+        });
+    </script>
+</body>
+</html>
