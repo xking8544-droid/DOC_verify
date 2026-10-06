@@ -64,10 +64,10 @@ In academic institutions, students participate in various intra-college and inte
 | Member | Roll Number | Designated Role | Core Java Files Owned | Lab Experiments |
 |---|---|---|---|---|
 | **Amit Kumar** *(Lead)* | `24EAIDS051` | Lead Architect & Auth | `LoginServlet.java`, `RegisterServlet.java`, `UserDAO.java`, `AuthFilter.java` | **Exp 1** (Threading), **Exp 8** (Servlet), **Exp 9** (JSP Login) |
-| **Ayush Sharma** | `24EAIDS052` | Operations & Admin | `AdminDashboardServlet.java`, `AuditLogDAO.java`, `AuditLog.java` | **Exp 7** (Exceptions/Logs), **Exp 8** (Servlet), **Exp 10** (Role Mini-Proj) |
-| **Chetan Sharma** | `24EAIDS053` | Cryptography & RMI | `CryptoRMI.java`, `CryptoService.java`, `Certificate.java` | **Exp 2** (Java RMI), **Exp 5** (Dynamic Layouts), **Exp 8** (Servlet) |
-| **Chavi Jain** | `24EAIDS054` | Public Verification | `VerifyCertificateServlet.java`, `ApplyCertificateServlet.java` | **Exp 3** (Event Handling), **Exp 8** (Servlet), **Exp 9** (Validation) |
-| **Divyanshu Goyal** | `24EAIDS055` | Roster & Data Arch | `ApplicationDAO.java`, `EventDAO.java`, `DBConnection.java`, `CertificateDAO.java` | **Exp 4** (JDBC), **Exp 7** (File I/O), **Exp 8** (Servlet) |
+| **Ayush Tiwari** | `24EAIDS052` | Operations & Admin | `AdminDashboardServlet.java`, `AuditLogDAO.java`, `AuditLog.java` | **Exp 7** (Exceptions/Logs), **Exp 8** (Servlet), **Exp 10** (Role Mini-Proj) |
+| **Aryan Mali** | `24EAIDS053` | Cryptography & RMI | `CryptoRMI.java`, `CryptoService.java`, `Certificate.java` | **Exp 2** (Java RMI), **Exp 5** (Dynamic Layouts), **Exp 8** (Servlet) |
+| **Aryan Jangir** | `24EAIDS054` | Public Verification | `VerifyCertificateServlet.java`, `ApplyCertificateServlet.java` | **Exp 3** (Event Handling), **Exp 8** (Servlet), **Exp 9** (Validation) |
+| **Ankit Jangir** | `24EAIDS055` | Roster & Data Arch | `ApplicationDAO.java`, `EventDAO.java`, `DBConnection.java`, `CertificateDAO.java` | **Exp 4** (JDBC), **Exp 7** (File I/O), **Exp 8** (Servlet) |
 
 ---
 
