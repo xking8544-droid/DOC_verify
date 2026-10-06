@@ -11,6 +11,8 @@ public class Certificate {
     private String studentName;
     private String rollNo;
     private String courseName;
+    private String category;
+    private String eventName;
     private String grade;
     private String cryptoHash;
     private int issuedBy;
@@ -18,6 +20,12 @@ public class Certificate {
     private boolean isRevoked;
 
     public Certificate() {}
+
+    public String getCategory() { return category != null ? category : "Cultural"; }
+    public void setCategory(String category) { this.category = category; }
+
+    public String getEventName() { return eventName != null ? eventName : "College Event"; }
+    public void setEventName(String eventName) { this.eventName = eventName; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

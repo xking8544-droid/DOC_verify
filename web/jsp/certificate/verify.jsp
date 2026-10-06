@@ -75,29 +75,42 @@
                         <div class="icon text-success">
                             <i class="bi bi-patch-check-fill"></i>
                         </div>
-                        <h2 class="text-success fw-bold mb-1">Authentic Certificate</h2>
-                        <p class="text-muted mb-4">This certificate is mathematically verified using SHA-256 and has not been tampered with.</p>
+                        <div class="border-bottom pb-3 mb-4">
+                            <span class="badge bg-danger mb-2 px-3 py-2 text-uppercase fw-bold" style="letter-spacing: 0.5px;">
+                                <i class="bi bi-mortarboard-fill me-1"></i> Arya College of Engineering & I.T. (ACEIT)
+                            </span>
+                            <h3 class="text-success fw-bold mb-1"><i class="bi bi-patch-check-fill me-2"></i>Official Verified Certificate</h3>
+                            <p class="text-muted small mb-0">Cryptographically authenticated via Department of CSE / AI&DS PBL Portal</p>
+                        </div>
                         
-                        <div class="bg-light p-4 rounded text-start mb-4">
+                        <div class="bg-light p-4 rounded text-start mb-4 border">
                             <div class="row g-3">
+                                <div class="col-sm-6">
+                                    <small class="text-muted d-block">Certificate ID</small>
+                                    <span class="fw-bold fs-5 text-primary font-monospace">${verificationResult.certificate.certId}</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <small class="text-muted d-block">Event Category</small>
+                                    <span class="badge bg-primary fs-6 px-3 py-1">${verificationResult.certificate.category}</span>
+                                </div>
                                 <div class="col-sm-6">
                                     <small class="text-muted d-block">Student Name</small>
                                     <span class="fw-bold fs-5">${verificationResult.certificate.studentName}</span>
                                 </div>
                                 <div class="col-sm-6">
-                                    <small class="text-muted d-block">Roll Number</small>
-                                    <span class="fw-bold fs-5">${verificationResult.certificate.rollNo}</span>
+                                    <small class="text-muted d-block">University Roll Number</small>
+                                    <span class="fw-bold fs-5 font-monospace">${verificationResult.certificate.rollNo}</span>
                                 </div>
                                 <div class="col-sm-12">
-                                    <small class="text-muted d-block">Course / Program</small>
-                                    <span class="fw-bold fs-5">${verificationResult.certificate.course}</span>
+                                    <small class="text-muted d-block">College Event / Activity</small>
+                                    <span class="fw-bold fs-5 text-dark">${verificationResult.certificate.eventName}</span>
                                 </div>
                                 <div class="col-sm-6">
-                                    <small class="text-muted d-block">Grade</small>
-                                    <span class="fw-bold fs-5 text-primary">${verificationResult.certificate.grade}</span>
+                                    <small class="text-muted d-block">Achievement / Recognition</small>
+                                    <span class="fw-bold fs-5 text-success">${verificationResult.certificate.grade}</span>
                                 </div>
                                 <div class="col-sm-6">
-                                    <small class="text-muted d-block">Date of Issue</small>
+                                    <small class="text-muted d-block">Date of Issuance</small>
                                     <span class="fw-bold fs-5">${verificationResult.certificate.issueDate}</span>
                                 </div>
                             </div>

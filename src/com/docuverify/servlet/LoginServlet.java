@@ -17,11 +17,21 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            String flashSuccess = (String) session.getAttribute("success");
+            if (flashSuccess != null) {
+                req.setAttribute("success", flashSuccess);
+                session.removeAttribute("success");
+            }
+        }
         req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String username = req.getParameter("username");
         String pass = req.getParameter("password");
         
@@ -30,19 +40,28 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             userDAO.updateLastLogin(user.getId());
             HttpSession session = req.getSession();
+            session.removeAttribute("success");
             session.setAttribute("user", user);
             session.setAttribute("userId", user.getId());
             session.setAttribute("username", user.getUsername());
             session.setAttribute("fullName", user.getFullName());
+            session.setAttribute("rollNo", user.getRollNo());
+            session.setAttribute("branch", user.getBranch());
             session.setAttribute("role", user.getRole());
             
-            if ("admin".equals(user.getRole())) {
+            if ("admin".equalsIgnoreCase(user.getRole())) {
                 resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
+            } else if ("mentor".equalsIgnoreCase(user.getRole())) {
+                resp.sendRedirect(req.getContextPath() + "/mentor/dashboard");
             } else {
-                resp.sendRedirect(req.getContextPath() + "/dashboard");
+                resp.sendRedirect(req.getContextPath() + "/student/dashboard");
             }
         } else {
-            req.setAttribute("error", "Invalid username or password");
+            HttpSession session = req.getSession(false);
+            if (session != null) {
+                session.removeAttribute("success");
+            }
+            req.setAttribute("error", "Invalid User ID/Roll Number or password.");
             req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
         }
     }

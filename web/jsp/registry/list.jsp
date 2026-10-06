@@ -42,8 +42,9 @@
                             <th class="ps-4">Cert ID</th>
                             <th>Student Name</th>
                             <th>Roll No</th>
-                            <th>Course</th>
-                            <th>Grade</th>
+                            <th>Category</th>
+                            <th>Event / Activity</th>
+                            <th>Grade / Award</th>
                             <th>Issue Date</th>
                             <th class="text-end pe-4">Actions</th>
                         </tr>
@@ -53,10 +54,20 @@
                             <c:when test="${not empty certificates}">
                                 <c:forEach items="${certificates}" var="cert">
                                     <tr>
-                                        <td class="ps-4 fw-medium text-primary">${cert.certId}</td>
+                                        <td class="ps-4 fw-medium text-primary font-monospace">${cert.certId}</td>
                                         <td class="fw-bold">${cert.studentName}</td>
-                                        <td>${cert.rollNo}</td>
-                                        <td>${cert.courseName}</td>
+                                        <td><span class="badge bg-light text-dark border font-monospace">${cert.rollNo}</span></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${cert.category == 'Sports'}"><span class="badge bg-danger">Sports</span></c:when>
+                                                <c:when test="${cert.category == 'Music'}"><span class="badge bg-info text-dark">Music</span></c:when>
+                                                <c:when test="${cert.category == 'Drama'}"><span class="badge bg-warning text-dark">Drama</span></c:when>
+                                                <c:when test="${cert.category == 'Cultural'}"><span class="badge bg-primary">Cultural</span></c:when>
+                                                <c:when test="${cert.category == 'Technical'}"><span class="badge bg-success">Technical</span></c:when>
+                                                <c:otherwise><span class="badge bg-secondary">${cert.category != null ? cert.category : 'General'}</span></c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>${cert.eventName != null ? cert.eventName : cert.courseName}</td>
                                         <td>
                                             <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">
                                                 ${cert.grade}

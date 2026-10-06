@@ -40,8 +40,13 @@ public class AuthFilter implements Filter {
             return;
         }
 
-        if (uri.contains("/admin") && !"admin".equals(user.getRole())) {
+        if (uri.contains("/admin") && !"admin".equalsIgnoreCase(user.getRole())) {
             res.sendError(HttpServletResponse.SC_FORBIDDEN, "Unauthorized admin access");
+            return;
+        }
+
+        if (uri.contains("/mentor") && !"mentor".equalsIgnoreCase(user.getRole()) && !"admin".equalsIgnoreCase(user.getRole())) {
+            res.sendError(HttpServletResponse.SC_FORBIDDEN, "Unauthorized mentor access");
             return;
         }
 

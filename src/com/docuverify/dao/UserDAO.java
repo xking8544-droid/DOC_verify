@@ -9,15 +9,18 @@ import com.docuverify.util.PasswordUtil;
 public class UserDAO {
 
     public boolean registerUser(User user) {
-        String sql = "INSERT INTO users (username, email, password_hash, full_name, role, is_active) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (username, email, password_hash, full_name, role, roll_no, branch, year, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getEmail());
+            stmt.setString(1, user.getUsername() != null ? user.getUsername().trim() : "");
+            stmt.setString(2, user.getEmail() != null ? user.getEmail().trim() : "");
             stmt.setString(3, user.getPasswordHash());
-            stmt.setString(4, user.getFullName());
-            stmt.setString(5, user.getRole());
-            stmt.setBoolean(6, user.isActive());
+            stmt.setString(4, user.getFullName() != null ? user.getFullName().trim() : "");
+            stmt.setString(5, user.getRole() != null ? user.getRole() : "student");
+            stmt.setString(6, user.getRollNo() != null ? user.getRollNo().trim() : user.getUsername());
+            stmt.setString(7, user.getBranch() != null ? user.getBranch() : "AI & Data Science");
+            stmt.setString(8, user.getYear() != null ? user.getYear() : "3rd Year / 5th Sem");
+            stmt.setBoolean(9, user.isActive());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -25,15 +28,19 @@ public class UserDAO {
         }
     }
 
-    public User loginUser(String username, String password) {
-        String sql = "SELECT * FROM users WHERE username = ? AND is_active = 1";
+    public User loginUser(String identifier, String password) {
+        if (identifier == null || password == null) return null;
+        String trimmed = identifier.trim();
+        String sql = "SELECT * FROM users WHERE (LOWER(username) = LOWER(?) OR LOWER(email) = LOWER(?) OR LOWER(roll_no) = LOWER(?)) AND is_active = 1";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, username);
+            stmt.setString(1, trimmed);
+            stmt.setString(2, trimmed);
+            stmt.setString(3, trimmed);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 String hash = rs.getString("password_hash");
-                if (PasswordUtil.checkPassword(password, hash)) {
+                if (PasswordUtil.checkPassword(password.trim(), hash)) {
                     return mapResultSetToUser(rs);
                 }
             }
@@ -134,6 +141,11 @@ public class UserDAO {
         user.setPasswordHash(rs.getString("password_hash"));
         user.setFullName(rs.getString("full_name"));
         user.setRole(rs.getString("role"));
+        try {
+            user.setRollNo(rs.getString("roll_no"));
+            user.setBranch(rs.getString("branch"));
+            user.setYear(rs.getString("year"));
+        } catch (SQLException ignored) {}
         user.setActive(rs.getBoolean("is_active"));
         user.setCreatedAt(rs.getTimestamp("created_at"));
         user.setLastLogin(rs.getTimestamp("last_login"));

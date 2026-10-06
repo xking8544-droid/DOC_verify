@@ -12,11 +12,23 @@ public class User {
     private String passwordHash;
     private String fullName;
     private String role;
+    private String rollNo;
+    private String branch;
+    private String year;
     private boolean isActive;
     private Timestamp createdAt;
     private Timestamp lastLogin;
 
     public User() {}
+
+    public String getRollNo() { return rollNo; }
+    public void setRollNo(String rollNo) { this.rollNo = rollNo; }
+
+    public String getBranch() { return branch; }
+    public void setBranch(String branch) { this.branch = branch; }
+
+    public String getYear() { return year; }
+    public void setYear(String year) { this.year = year; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

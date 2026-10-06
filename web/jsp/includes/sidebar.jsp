@@ -3,75 +3,110 @@
 
 <!-- Sidebar -->
 <nav id="sidebar">
-    <div class="sidebar-header d-flex align-items-center justify-content-center">
-        <h3 class="mb-0 text-primary fw-bold"><i class="bi bi-shield-check me-2"></i>DocuVerify</h3>
+    <div class="sidebar-header d-flex flex-column align-items-center justify-content-center py-3 border-bottom">
+        <h5 class="mb-0 text-danger fw-bold" style="font-family: 'Manrope', sans-serif;">ARYA COLLEGE</h5>
+        <small class="text-muted fw-semibold">PBL • Dept. of CSE / AI&DS</small>
     </div>
 
     <ul class="list-unstyled components">
-        <li class="${pageContext.request.requestURI.contains('/dashboard') && !pageContext.request.requestURI.contains('/admin/dashboard') ? 'active' : ''}">
-            <a href="${pageContext.request.contextPath}/dashboard">
-                <i class="bi bi-grid-1x2-fill"></i> Dashboard
-            </a>
-        </li>
-        <li class="${pageContext.request.requestURI.contains('/issue') ? 'active' : ''}">
-            <a href="${pageContext.request.contextPath}/issue">
-                <i class="bi bi-patch-plus-fill"></i> Issue Certificate
+        
+        <c:choose>
+            <%-- ADMIN MENU --%>
+            <c:when test="${sessionScope.role == 'admin'}">
+                <li class="${pageContext.request.requestURI.contains('/admin/dashboard') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/admin/dashboard">
+                        <i class="bi bi-speedometer2"></i> Admin Dashboard
+                    </a>
+                </li>
+                <li class="${pageContext.request.requestURI.contains('/issue') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/issue">
+                        <i class="bi bi-patch-plus-fill"></i> Direct Issue Cert
+                    </a>
+                </li>
+                <li class="${pageContext.request.requestURI.contains('/admin/users') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/admin/users">
+                        <i class="bi bi-people-fill"></i> Manage Users
+                    </a>
+                </li>
+            </c:when>
+
+            <%-- MENTOR MENU --%>
+            <c:when test="${sessionScope.role == 'mentor'}">
+                <li class="${pageContext.request.requestURI.contains('/mentor/dashboard') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/mentor/dashboard">
+                        <i class="bi bi-shield-check"></i> Mentor Review Panel
+                    </a>
+                </li>
+            </c:when>
+
+            <%-- STUDENT MENU --%>
+            <c:otherwise>
+                <li class="${pageContext.request.requestURI.contains('/student/dashboard') || (pageContext.request.requestURI.contains('/dashboard') && !pageContext.request.requestURI.contains('/admin/dashboard')) ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/student/dashboard">
+                        <i class="bi bi-grid-1x2-fill"></i> Student Dashboard
+                    </a>
+                </li>
+                <li class="${pageContext.request.requestURI.contains('/certificate/apply') || pageContext.request.requestURI.contains('/apply') ? 'active' : ''}">
+                    <a href="${pageContext.request.contextPath}/certificate/apply">
+                        <i class="bi bi-plus-circle-fill"></i> Apply for Certificate
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+
+        <hr class="mx-3 text-muted">
+        <li class="px-4 py-1 text-muted small fw-bold text-uppercase">Public Portal</li>
+
+        <li class="${pageContext.request.requestURI.contains('/registry') ? 'active' : ''}">
+            <a href="${pageContext.request.contextPath}/registry">
+                <i class="bi bi-journal-text"></i> College Registry
             </a>
         </li>
         <li class="${pageContext.request.requestURI.contains('/verify') ? 'active' : ''}">
             <a href="${pageContext.request.contextPath}/verify">
-                <i class="bi bi-search"></i> Verify Certificate
+                <i class="bi bi-search"></i> Public Verification
             </a>
         </li>
-        <li class="${pageContext.request.requestURI.contains('/registry') ? 'active' : ''}">
-            <a href="${pageContext.request.contextPath}/registry">
-                <i class="bi bi-journal-text"></i> Certificate Registry
+        <li>
+            <a href="${pageContext.request.contextPath}/index.jsp">
+                <i class="bi bi-house-door-fill"></i> Portal Home
             </a>
         </li>
-        
-        <c:if test="${sessionScope.role == 'admin'}">
-            <hr class="mx-3 text-muted">
-            <li class="px-4 py-2 text-muted small fw-bold text-uppercase">Admin</li>
-            <li class="${pageContext.request.requestURI.contains('/admin/dashboard') ? 'active' : ''}">
-                <a href="${pageContext.request.contextPath}/admin/dashboard">
-                    <i class="bi bi-speedometer2"></i> Admin Dashboard
-                </a>
-            </li>
-            <li class="${pageContext.request.requestURI.contains('/admin/users') ? 'active' : ''}">
-                <a href="${pageContext.request.contextPath}/admin/users">
-                    <i class="bi bi-people-fill"></i> Manage Users
-                </a>
-            </li>
-        </c:if>
     </ul>
 </nav>
 
 <!-- Page Content -->
 <div id="content">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
         <div class="container-fluid">
-            <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
-                <i class="bi bi-list"></i>
+            <button type="button" id="sidebarCollapse" class="btn btn-outline-secondary btn-sm me-2">
+                <i class="bi bi-list fs-5"></i>
             </button>
             
+            <div class="d-none d-md-block">
+                <span class="fw-bold text-dark">Arya College of Engineering & I.T.</span>
+                <span class="text-muted small ms-2">• Project Based Learning (PBL) 2026-27</span>
+            </div>
+
             <div class="ms-auto d-flex align-items-center">
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
-                        <span class="me-3 fw-medium">Welcome, ${sessionScope.user.fullName != null ? sessionScope.user.fullName : sessionScope.username}</span>
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle rounded-circle p-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle fs-5 text-primary"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile"><i class="bi bi-person me-2"></i>Profile</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
-                            </ul>
+                        <div class="d-flex align-items-center me-3">
+                            <span class="fw-medium text-dark me-2">${sessionScope.user.fullName}</span>
+                            <span class="badge bg-primary me-1">${sessionScope.user.role.toUpperCase()}</span>
+                            <c:if test="${not empty sessionScope.user.rollNo}">
+                                <span class="badge bg-light text-dark border font-monospace">${sessionScope.user.rollNo}</span>
+                            </c:if>
                         </div>
+                        <a href="${pageContext.request.contextPath}/logout" class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-box-arrow-right me-1"></i> Logout
+                        </a>
                     </c:when>
                     <c:otherwise>
-                        <a href="${pageContext.request.contextPath}/login" class="btn btn-sm btn-primary"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a>
+                        <a href="${pageContext.request.contextPath}/login" class="btn btn-sm btn-primary">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                        </a>
                     </c:otherwise>
                 </c:choose>
             </div>

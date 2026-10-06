@@ -1,305 +1,356 @@
-# 🚀 DocuVerify — 12-Week Portal Upload Guide & Master Viva Handbook
+# 🚀 DocuVerify (ACEIT Edition) — 12-Week Portal Upload Guide & Master Viva Handbook
 
 > [!IMPORTANT]
 > **Project Duration**: 6 July 2026 – 6 October 2026 (**12 Full Academic Weeks**)  
-> **Team 5A**: Amit (Leader), Ayush, Mali, Aryan, Ankit  
-> **Guide**: Er. Ram Babu Buri | **Track**: Web Application (JSP-Servlet + MySQL)  
+> **Team 5A**: Amit Kumar (Leader), Ayush Sharma, Chetan Sharma, Chavi Jain, Divyanshu Goyal  
+> **Guide / Mentor**: Er. Ram Babu Buri (Dept. of CSE / AI&DS)  
+> **Institution**: Arya College of Engineering & I.T. (ACEIT), Jaipur  
 > **Submission Requirements**: 3 Daily Logs per student per week (36 logs/student = **180 total logs**) + **12 Weekly Reports**.
 
 ---
 
-## 👤 Viva File Ownership (Kaun Sa Member Kya Explain Karega)
+## 👤 Module Ownership & Viva Allocation
 
-| Member | Primary Module | Core Java Files Owned | JSP & Frontend Views | Lab Exp Mapped | Key Concepts to Explain in Viva |
-|---|---|---|---|---|---|
-| **Amit** | 🔐 Authentication & Security | `LoginServlet.java`<br>`RegisterServlet.java`<br>`LogoutServlet.java`<br>`ProfileServlet.java`<br>`UserDAO.java`<br>`User.java`<br>`PasswordUtil.java`<br>`AuthFilter.java` | `login.jsp`<br>`register.jsp`<br>`profile.jsp` | **Exp 1** (Threading)<br>**Exp 8** (Servlet)<br>**Exp 9** (JSP Login) | Session management via `HttpSession`, password hashing, server-side validation error handling, role-based filter interception. |
-| **Ayush** | 🛠️ Admin Dashboard & Operations | `AdminDashboardServlet.java`<br>`ManageUsersServlet.java`<br>`AuditLogDAO.java`<br>`AuditLog.java` | `admin_dashboard.jsp`<br>`manage_users.jsp` | **Exp 7** (Exception/Log)<br>**Exp 8** (Servlet)<br>**Exp 10** (Role Mini-Proj) | Admin authorization boundaries, user CRUD actions, audit log tracking with timestamps & IP logging. |
-| **Mali** | 📜 Certificate Issuance & Crypto | `CryptoRMI.java`<br>`CryptoService.java`<br>`IssueCertificateServlet.java`<br>`Certificate.java` | `issue.jsp` | **Exp 2** (Java RMI)<br>**Exp 5** (Dynamic GUI)<br>**Exp 8** (Servlet) | SHA-256 digest computation over Java RMI (Port 1099), string concatenation formula (`roll|name|course|grade`), live DOM preview. |
-| **Aryan** | 🔍 Verification & Validation Engine | `VerifyCertificateServlet.java`<br>`DashboardServlet.java` | `verify.jsp`<br>`dashboard.jsp`<br>`index.jsp` | **Exp 3** (Form Input)<br>**Exp 8** (Servlet)<br>**Exp 9** (Validation) | Real-time hash comparison, cryptographic proof rendering, tamper detection logic, user dashboard certificate counters. |
-| **Ankit** | 📊 Registry & Database Architecture | `RegistryServlet.java`<br>`DBConnection.java`<br>`CertificateDAO.java` | `list.jsp`<br>`web.xml`<br>`schema.sql` | **Exp 4** (JDBC)<br>**Exp 7** (Exception/Files)<br>**Exp 8** (Servlet) | MySQL JDBC driver connectivity, parameterized `PreparedStatement` queries to prevent SQL Injection, table search & filtering. |
+| Member | Roll No | Primary Module | Core Java Files Owned | JSP & Frontend Views | Lab Exp Mapped | Key Concepts to Explain in Viva |
+|---|---|---|---|---|---|---|
+| **Amit Kumar** | `24EAIDS051` | 🔐 Authentication & Session Security | `LoginServlet.java`<br>`RegisterServlet.java`<br>`LogoutServlet.java`<br>`UserDAO.java`<br>`User.java`<br>`AuthFilter.java` | `login.jsp`<br>`register.jsp` | **Exp 1** (Threading)<br>**Exp 8** (Servlet)<br>**Exp 9** (JSP Login) | Multi-identifier login (Roll No/User), session binding via `HttpSession`, role redirection, URL protection in `AuthFilter`. |
+| **Ayush Sharma** | `24EAIDS052` | 🛠️ Admin Dashboard & Operations | `AdminDashboardServlet.java`<br>`ManageUsersServlet.java`<br>`AuditLogDAO.java`<br>`AuditLog.java` | `admin_dashboard.jsp`<br>`manage_users.jsp` | **Exp 7** (Exception/Log)<br>**Exp 8** (Servlet)<br>**Exp 10** (Role Mini-Proj) | Admin approval flow, audit log tracking with IP logging, 1-click SHA-256 certificate trigger, user CRUD. |
+| **Chetan Sharma** | `24EAIDS053` | 📜 Cryptography & Remote Invocation | `CryptoRMI.java`<br>`CryptoService.java`<br>`Certificate.java` | `verify.jsp` | **Exp 2** (Java RMI)<br>**Exp 5** (Dynamic Layouts)<br>**Exp 8** (Servlet) | Remote SHA-256 generation over RMI registry (Port 1099), distributed architecture, payload tokenization. |
+| **Chavi Jain** | `24EAIDS054` | 🔍 Public Verification & Workflow | `VerifyCertificateServlet.java`<br>`ApplyCertificateServlet.java`<br>`CertificateApplication.java` | `verify.jsp`<br>`student/apply.jsp` | **Exp 3** (Event Handling)<br>**Exp 8** (Servlet)<br>**Exp 9** (Validation) | Zero-login public verification, real-time hash comparison, tamper detection warnings, student request flow. |
+| **Divyanshu Goyal**| `24EAIDS055` | 📊 Event Roster & Data Architecture | `ApplicationDAO.java`<br>`EventDAO.java`<br>`Event.java`<br>`DBConnection.java`<br>`CertificateDAO.java` | `mentor/dashboard.jsp`<br>`student/dashboard.jsp`<br>`registry/list.jsp` | **Exp 4** (JDBC)<br>**Exp 7** (File I/O)<br>**Exp 8** (Servlet) | Anti-forgery coordinator roster matching (`checkEventRosterMatch`), mentor review endorsement, JDBC connection pooling. |
 
 ---
 
-## 📝 180 Daily Work Logs (12 Weeks × 3 Days × 5 Members)
+## 📝 180 Daily Work Logs (12 Weeks × 3 Days × 5 Members = 180 Logs)
 
-### 👤 1. AMIT (Team Leader) — 36 Daily Logs
-
+### 👤 1. AMIT KUMAR (`24EAIDS051`) — 36 Daily Logs
 | Week | Date | Hours | Status | Daily Work Description |
 |---|---|---|---|---|
-| **W1** | 07-07-2026 | 3.0 | Completed | Project ideation and team alignment. Finalized DocuVerify certificate security concept. |
+| **W1** | 07-07-2026 | 3.0 | Completed | Project ideation and team alignment. Finalized Arya College event certificate system requirements. |
 | **W1** | 09-07-2026 | 3.5 | Completed | Drafted project abstract, objective scope, and system boundaries for college submission. |
 | **W1** | 11-07-2026 | 3.0 | Completed | Initialized Git repository on main branch; setup Java project directory structure and packages. |
 | **W2** | 14-07-2026 | 3.0 | Completed | Authored SRS Section 1: Product overview, user classes, operating environment, and constraints. |
 | **W2** | 16-07-2026 | 3.5 | Completed | Defined functional requirements for Authentication, Session Management, and Role Access. |
 | **W2** | 18-07-2026 | 2.5 | Completed | Reviewed and compiled complete SRS document v1.0 with team member module sections. |
-| **W3** | 21-07-2026 | 3.0 | Completed | Designed system-level Use Case diagram featuring Admin, Issuer, and Public Verifier actors. |
+| **W3** | 21-07-2026 | 3.0 | Completed | Designed system-level Use Case diagram featuring Admin, Mentor, and Student actors. |
 | **W3** | 23-07-2026 | 3.5 | Completed | Created Class Diagram for authentication domain: `User`, `AuthFilter`, `UserDAO`, `HttpSession`. |
-| **W3** | 25-07-2026 | 3.0 | Completed | Conducted architecture review with guide Er. Ram Babu Buri; finalized JSP-Servlet track. |
-| **W4** | 28-07-2026 | 3.0 | Completed | Created MySQL schema for `users` table with password_hash, full_name, and role columns. |
-| **W4** | 30-07-2026 | 3.5 | Completed | Designed responsive wireframe mockups for `login.jsp` using Bootstrap 5 auth container. |
-| **W4** | 01-08-2026 | 3.0 | Completed | Designed responsive wireframe mockups for `register.jsp` and user profile views. |
-| **W5** | 04-08-2026 | 4.0 | Completed | Implemented `LoginServlet.java` taking credentials from request and handling POST flow (Exp 8). |
-| **W5** | 06-08-2026 | 3.5 | Completed | Developed `login.jsp` with Bootstrap 5 styling, field validation alerts, and error feedback (Exp 9). |
+| **W3** | 25-07-2026 | 3.0 | Completed | Conducted architecture review with mentor Er. Ram Babu Buri; finalized JSP-Servlet track. |
+| **W4** | 28-07-2026 | 3.0 | Completed | Created MySQL schema for `users` table with `roll_no`, `branch`, `year`, and `role` columns. |
+| **W4** | 30-07-2026 | 3.5 | Completed | Designed responsive wireframe mockups for 3-role `login.jsp` matching Arya College branding. |
+| **W4** | 01-08-2026 | 3.0 | Completed | Designed responsive wireframe mockups for student registration with branch/year dropdowns. |
+| **W5** | 04-08-2026 | 4.0 | Completed | Implemented `LoginServlet.java` taking multi-identifier inputs (Roll No, Email, Username). |
+| **W5** | 06-08-2026 | 3.5 | Completed | Developed `login.jsp` with 3 role tabs (`Admin`, `Mentor`, `Student`) and credentials helper. |
 | **W5** | 08-08-2026 | 3.0 | Completed | Created `PasswordUtil.java` helper class for cryptographic password verification. |
-| **W6** | 11-08-2026 | 3.5 | Completed | Developed `RegisterServlet.java` validating registration input and preventing duplicate usernames. |
-| **W6** | 13-08-2026 | 4.0 | Completed | Implemented `UserDAO.registerUser()` and `UserDAO.loginUser()` using JDBC PreparedStatements. |
+| **W6** | 11-08-2026 | 3.5 | Completed | Developed `RegisterServlet.java` capturing student Roll Number, Branch, and Semester. |
+| **W6** | 13-08-2026 | 4.0 | Completed | Implemented `UserDAO.loginUser()` supporting seamless login via University Roll Number. |
 | **W6** | 15-08-2026 | 3.0 | Completed | Connected `register.jsp` form submission with database insertion and success redirection. |
 | **W7** | 18-08-2026 | 3.5 | Completed | Implemented `HttpSession` state binding, storing authenticated user object upon valid login. |
 | **W7** | 20-08-2026 | 3.0 | Completed | Developed `LogoutServlet.java` to invalidate session tokens and redirect to login with notification. |
-| **W7** | 22-08-2026 | 3.5 | Completed | Added remember session utilities and login state reflection across application headers. |
-| **W8** | 25-08-2026 | 3.0 | Completed | Implemented `ProfileServlet.java` allowing users to view and update personal profile records. |
-| **W8** | 27-08-2026 | 3.5 | Completed | Built `profile.jsp` interface featuring editable user fields and current privilege badge. |
-| **W8** | 29-08-2026 | 3.0 | Completed | Added password change validation ensuring old password confirmation matches database hash. |
-| **W9** | 01-09-2026 | 4.0 | Completed | Developed `AuthFilter.java` intercepting all HTTP requests to enforce authentication boundaries (Exp 10). |
-| **W9** | 03-09-2026 | 3.5 | Completed | Configured role-based restriction blocking non-admin accounts from `/admin/*` servlet endpoints. |
+| **W7** | 22-08-2026 | 3.5 | Completed | Added flash message handling to eliminate persistent login alert banners upon reload. |
+| **W8** | 25-08-2026 | 3.0 | Completed | Implemented `ProfileServlet.java` allowing students to view registered university details. |
+| **W8** | 27-08-2026 | 3.5 | Completed | Built profile interface featuring student roll number, current branch, and academic semester. |
+| **W8** | 29-08-2026 | 3.0 | Completed | Added role-based redirection routing students to `/student/dashboard` and admin to `/admin/dashboard`. |
+| **W9** | 01-09-2026 | 4.0 | Completed | Developed `AuthFilter.java` intercepting all HTTP requests to enforce security boundaries. |
+| **W9** | 03-09-2026 | 3.5 | Completed | Configured role-based restriction blocking unauthorized users from `/admin/*` and `/mentor/*`. |
 | **W9** | 05-09-2026 | 3.0 | Completed | Configured public whitelist in `AuthFilter` for `/`, `/login`, `/register`, `/verify`, and `/registry`. |
 | **W10** | 08-09-2026 | 3.5 | Completed | Audited all servlet parameters against SQL Injection using strict parameterized queries. |
 | **W10** | 10-09-2026 | 3.5 | Completed | Implemented HTML entity escaping across JSP views to eliminate Cross-Site Scripting (XSS). |
 | **W10** | 12-09-2026 | 3.0 | Completed | Designed and implemented custom HTTP error handling pages `404.jsp` and `500.jsp`. |
-| **W11** | 15-09-2026 | 4.0 | Completed | Executed security test suite: SQL injection payload injection, brute force login resistance. |
+| **W11** | 15-09-2026 | 4.0 | Completed | Executed security test suite: SQL injection payload testing, brute-force login resistance. |
 | **W11** | 17-09-2026 | 3.5 | Completed | Conducted session timeout testing and cookie hijacking prevention audits. |
-| **W11** | 19-09-2026 | 3.5 | Completed | Verified cross-module authentication synchronization with Admin and Issuance modules. |
-| **W12** | 22-09-2026 | 4.0 | Completed | Authored Project Report Chapter 1 (Introduction), Chapter 2 (Architecture), and Chapter 6 (Security). |
-| **W12** | 24-09-2026 | 3.5 | Completed | Structured viva voce defense presentation on role-based web filters and servlet lifecycles. |
-| **W12** | 26-09-2026 | 3.0 | Completed | Final project repository review, documentation audit, and final submission sign-off. |
+| **W11** | 19-09-2026 | 3.0 | Completed | Verified cross-browser responsiveness across Chrome, Edge, and mobile viewport sizes. |
+| **W12** | 22-09-2026 | 4.0 | Completed | Conducted end-to-end integration testing for student registration, login, and application flow. |
+| **W12** | 24-09-2026 | 3.5 | Completed | Authored Authentication & Security chapter of Final Project Report. |
+| **W12** | 26-09-2026 | 3.0 | Completed | Prepared viva presentation slides and defense points for module demonstration. |
 
 ---
 
-### 👤 2. AYUSH — 36 Daily Logs
-
+### 👤 2. AYUSH SHARMA (`24EAIDS052`) — 36 Daily Logs
 | Week | Date | Hours | Status | Daily Work Description |
 |---|---|---|---|---|
-| **W1** | 07-07-2026 | 3.0 | Completed | Researched web administration portal design patterns and enterprise audit logging systems. |
-| **W1** | 09-07-2026 | 3.0 | Completed | Assisted in defining project abstract scope and administrative privilege hierarchy. |
-| **W1** | 11-07-2026 | 3.0 | Completed | Configured local Java Development Kit (JDK 24) and Apache Tomcat 9 development environment. |
-| **W2** | 14-07-2026 | 3.5 | Completed | Authored SRS functional specifications for Admin Dashboard metrics and user oversight. |
-| **W2** | 16-07-2026 | 3.0 | Completed | Documented use case specifications for user status management (Activate, Deactivate, Delete). |
-| **W2** | 18-07-2026 | 3.0 | Completed | Formulated audit logging requirements tracking IP address, action type, and action timestamp. |
-| **W3** | 21-07-2026 | 3.5 | Completed | Designed Activity Diagram modeling administrative user management and user deletion flows. |
-| **W3** | 23-07-2026 | 3.0 | Completed | Constructed Class Diagram for administrative layer: `AdminDashboardServlet`, `ManageUsersServlet`. |
-| **W3** | 25-07-2026 | 3.0 | Completed | Mapped relational constraints between `users` table and corresponding `audit_logs` records. |
-| **W4** | 28-07-2026 | 3.5 | Completed | Created MySQL schema for `audit_logs` table with foreign key reference to `users.id`. |
-| **W4** | 30-07-2026 | 3.5 | Completed | Built UI wireframe mockup for `admin_dashboard.jsp` with metrics counters and activity cards. |
-| **W4** | 01-08-2026 | 3.0 | Completed | Built UI wireframe mockup for `manage_users.jsp` featuring user listing and action triggers. |
-| **W5** | 04-08-2026 | 3.5 | Completed | Configured Apache Tomcat 9 deployment descriptor (`web.xml`) session timeout settings. |
-| **W5** | 06-08-2026 | 4.0 | Completed | Developed `AdminDashboardServlet.java` skeleton mapping `/admin/dashboard` endpoint (Exp 8). |
-| **W5** | 08-08-2026 | 3.0 | Completed | Designed `admin_dashboard.jsp` layout with Bootstrap 5 cards for Users and Certificates count. |
-| **W6** | 11-08-2026 | 3.5 | Completed | Implemented `AuditLog.java` POJO entity with getters, setters, and SQL timestamp mapping. |
-| **W6** | 13-08-2026 | 3.5 | Completed | Implemented `AuditLogDAO.java` with `logAction()` method inserting action audit trail to MySQL. |
-| **W6** | 15-08-2026 | 3.0 | Completed | Verified automated audit log recording when users authenticate or perform sensitive operations. |
-| **W7** | 18-08-2026 | 3.5 | Completed | Developed `ManageUsersServlet.java` handling GET request to retrieve all registered accounts. |
-| **W7** | 20-08-2026 | 4.0 | Completed | Built dynamic users table in `manage_users.jsp` displaying User ID, Name, Email, and Roles. |
-| **W7** | 22-08-2026 | 3.0 | Completed | Integrated JSTL `<c:forEach>` tags inside `manage_users.jsp` for database record iteration. |
-| **W8** | 25-08-2026 | 3.5 | Completed | Implemented user deletion POST handler in `ManageUsersServlet.java` with confirmation triggers. |
-| **W8** | 27-08-2026 | 3.5 | Completed | Added safety check preventing deletion of the primary root `admin` superuser account. |
-| **W8** | 29-08-2026 | 3.0 | Completed | Implemented `AuditLogDAO.getRecentLogs()` method querying last 10 security transactions. |
-| **W9** | 01-09-2026 | 4.0 | Completed | Connected `admin_dashboard.jsp` with live database counts: `totalUsers` and `totalCerts`. |
-| **W9** | 03-09-2026 | 3.5 | Completed | Integrated recent audit trail feed inside Admin Dashboard displaying latest system events. |
-| **W9** | 05-09-2026 | 3.0 | Completed | Implemented active RMI service status indicator badge on the admin metrics overview panel. |
-| **W10** | 08-09-2026 | 3.5 | Completed | Configured global error code forwarders in `web.xml` for error 404 and error 500 handling. |
-| **W10** | 10-09-2026 | 3.5 | Completed | Added responsive navigation toggling in `sidebar.jsp` optimized for tablets and mobile devices. |
-| **W10** | 12-09-2026 | 3.0 | Completed | Verified database transaction integrity when deleting users and associated audit dependencies. |
-| **W11** | 15-09-2026 | 3.5 | Completed | Conducted permission testing validating that non-admin accounts receive HTTP 403 Forbidden. |
-| **W11** | 17-09-2026 | 4.0 | Completed | Tested user deletion workflow, audit record generation, and immediate table refresh. |
-| **W11** | 19-09-2026 | 3.0 | Completed | Benchmarked dashboard loading latency with concurrent user sessions active. |
-| **W12** | 22-09-2026 | 4.0 | Completed | Prepared PowerPoint Presentation slides (1-10) detailing problem, architecture, and admin tools. |
-| **W12** | 24-09-2026 | 3.5 | Completed | Documented Admin Module implementation chapter and database entity dictionary for report. |
-| **W12** | 26-09-2026 | 3.0 | Completed | Rehearsed live viva presentation demonstrating admin control panel and user governance. |
+| **W1** | 07-07-2026 | 3.0 | Completed | Researched college event certificate issuance workflows and administrative bottlenecks. |
+| **W1** | 09-07-2026 | 3.0 | Completed | Defined administrative scope: event categorization, coordinator rosters, approval hierarchies. |
+| **W1** | 11-07-2026 | 3.5 | Completed | Setup development environment: Apache Tomcat 9, MySQL Server 8.0, and Workbench. |
+| **W2** | 14-07-2026 | 3.5 | Completed | Authored SRS Section 2: Administrative operations, approval states, and audit tracking. |
+| **W2** | 16-07-2026 | 3.0 | Completed | Defined non-functional requirements: transaction atomicity, audit trail immutability. |
+| **W2** | 18-07-2026 | 3.0 | Completed | Documented security requirements for administrative role separation in SRS. |
+| **W3** | 21-07-2026 | 3.5 | Completed | Designed Admin Dashboard layout wireframes featuring metrics cards and pending request queues. |
+| **W3** | 23-07-2026 | 3.0 | Completed | Designed sequence diagram for certificate approval and cryptographic issuance workflow. |
+| **W3** | 25-07-2026 | 3.0 | Completed | Created ER Diagram relationships between `users`, `audit_logs`, and `certificate_applications`. |
+| **W4** | 28-07-2026 | 3.5 | Completed | Created MySQL schema for `audit_logs` table tracking user ID, action, IP address, and timestamp. |
+| **W4** | 30-07-2026 | 3.0 | Completed | Built `AuditLog.java` model class with all entity fields, getters, and setters. |
+| **W4** | 01-08-2026 | 3.5 | Completed | Developed `AuditLogDAO.java` implementing `logAction()` using JDBC PreparedStatements. |
+| **W5** | 04-08-2026 | 3.5 | Completed | Developed `AdminDashboardServlet.java` pulling live stats (users, certs, pending requests). |
+| **W5** | 06-08-2026 | 4.0 | Completed | Built `admin_dashboard.jsp` featuring metrics counter cards and recent activity audit feed. |
+| **W5** | 08-08-2026 | 3.0 | Completed | Implemented recent audit logs display inside Admin Dashboard with user details. |
+| **W6** | 11-08-2026 | 3.5 | Completed | Developed `ManageUsersServlet.java` for administrative user account management. |
+| **W6** | 13-08-2026 | 3.5 | Completed | Built `manage_users.jsp` displaying user directory with roles and account activation toggles. |
+| **W6** | 15-08-2026 | 3.0 | Completed | Implemented user activation and deactivation toggle actions in `UserDAO`. |
+| **W7** | 18-08-2026 | 4.0 | Completed | Connected Admin Dashboard with `ApplicationDAO.getPendingForAdmin()` queue. |
+| **W7** | 20-08-2026 | 3.5 | Completed | Designed 1-Click "Approve & Generate SHA-256" modal on `admin_dashboard.jsp`. |
+| **W7** | 22-08-2026 | 3.0 | Completed | Integrated rejection modal allowing Admin/HOD to enter rejection reason for invalid claims. |
+| **W8** | 25-08-2026 | 3.5 | Completed | Connected Admin approval button to Java RMI SHA-256 generation trigger in `AdminDashboardServlet`. |
+| **W8** | 27-08-2026 | 4.0 | Completed | Implemented unique Certificate ID generator (`ACEIT-2026-[CAT]-[RANDOM]`). |
+| **W8** | 29-08-2026 | 3.0 | Completed | Handled RMI remote exception handling and fallback logging during certificate creation. |
+| **W9** | 01-09-2026 | 3.5 | Completed | Implemented audit logging for every administrative approval, rejection, and user edit. |
+| **W9** | 03-09-2026 | 3.0 | Completed | Added IP address resolution (`req.getRemoteAddr()`) into all administrative audit entries. |
+| **W9** | 05-09-2026 | 3.5 | Completed | Tested concurrent admin operations and verified audit log integrity under stress. |
+| **W10** | 08-09-2026 | 3.5 | Completed | Enhanced UI layout of Admin Dashboard with responsive data tables and status pills. |
+| **W10** | 10-09-2026 | 3.0 | Completed | Implemented quick search and filtering inside the Admin pending application table. |
+| **W10** | 12-09-2026 | 3.5 | Completed | Tested admin session timeout and forced redirect on expired admin sessions. |
+| **W11** | 15-09-2026 | 4.0 | Completed | Executed full approval lifecycle test: received mentor-verified request, approved, verified cert. |
+| **W11** | 17-09-2026 | 3.5 | Completed | Verified database transaction commit/rollback behavior when certificate insertion fails. |
+| **W11** | 19-09-2026 | 3.0 | Completed | Optimized MySQL indexes on `certificate_applications(status)` and `audit_logs(timestamp)`. |
+| **W12** | 22-09-2026 | 3.5 | Completed | Conducted final regression testing on all admin actions, approval queues, and user management. |
+| **W12** | 24-09-2026 | 4.0 | Completed | Authored Admin Dashboard & Operations chapter in Final Project Documentation. |
+| **W12** | 26-09-2026 | 3.0 | Completed | Prepared viva demonstration walk-through for administrative certificate approval flow. |
 
 ---
 
-### 👤 3. MALI — 36 Daily Logs
-
+### 👤 3. CHETAN SHARMA (`24EAIDS053`) — 36 Daily Logs
 | Week | Date | Hours | Status | Daily Work Description |
 |---|---|---|---|---|
-| **W1** | 07-07-2026 | 3.0 | Completed | Researched cryptographic hash functions, comparing SHA-256 vs MD5 for certificate security. |
-| **W1** | 09-07-2026 | 3.0 | Completed | Investigated Java Remote Method Invocation (RMI) for modular cryptographic service isolation. |
-| **W1** | 11-07-2026 | 3.0 | Completed | Created standalone test script benchmarking SHA-256 hash generation throughput in Java. |
-| **W2** | 14-07-2026 | 3.5 | Completed | Documented functional requirements for Certificate Generation: input fields, validation rules. |
-| **W2** | 16-07-2026 | 3.0 | Completed | Formulated payload serialization format: `rollNo|studentName|courseName|grade`. |
-| **W2** | 18-07-2026 | 3.0 | Completed | Defined RMI cryptographic service contract requirements and error recovery behaviors. |
-| **W3** | 21-07-2026 | 3.5 | Completed | Created Sequence Diagram modeling Certificate Issuance: User Form → Servlet → RMI → MySQL. |
-| **W3** | 23-07-2026 | 3.0 | Completed | Designed Class Diagram for cryptographic layer: `CryptoService`, `CryptoRMI`, `Certificate`. |
-| **W3** | 25-07-2026 | 3.0 | Completed | Documented remote stub registration sequence on RMI registry port 1099. |
-| **W4** | 28-07-2026 | 3.5 | Completed | Created MySQL schema for `certificates` table with `crypto_hash` and `cert_id` unique constraints. |
-| **W4** | 30-07-2026 | 3.5 | Completed | Designed UI wireframe for `issue.jsp` featuring student input form alongside live preview card. |
-| **W4** | 01-08-2026 | 3.0 | Completed | Designed certificate layout template with college seal, candidate details, and hash banner. |
-| **W5** | 04-08-2026 | 3.5 | Completed | Created `Certificate.java` entity model with attributes, constructors, and JavaBeans getters/setters. |
-| **W5** | 06-08-2026 | 4.0 | Completed | Defined `CryptoService.java` remote interface declaring `generateSHA256(String data)` method. |
-| **W5** | 08-08-2026 | 3.0 | Completed | Implemented `CryptoRMI.java` extending `UnicastRemoteObject` with MessageDigest SHA-256 (Exp 2). |
-| **W6** | 11-08-2026 | 4.0 | Completed | Added automatic RMI registry creation (`LocateRegistry.createRegistry(1099)`) in `CryptoRMI`. |
-| **W6** | 13-08-2026 | 3.5 | Completed | Added fallback `CryptoRMI.getService()` method ensuring high availability without manual restarts. |
-| **W6** | 15-08-2026 | 3.0 | Completed | Tested remote invocation of SHA-256 hashing across multiple concurrent thread executions. |
-| **W7** | 18-08-2026 | 4.0 | Completed | Developed `IssueCertificateServlet.java` mapping `/issue` and `/certificate/issue` (Exp 8). |
-| **W7** | 20-08-2026 | 3.5 | Completed | Connected `IssueCertificateServlet` to RMI crypto service to compute hash from input payload. |
-| **W7** | 22-08-2026 | 3.5 | Completed | Implemented unique certificate ID generator formula generating tokens like `DV-2026-XXXX`. |
-| **W8** | 25-08-2026 | 3.5 | Completed | Implemented `CertificateDAO.saveCertificate()` using JDBC PreparedStatement insertion. |
-| **W8** | 27-08-2026 | 3.5 | Completed | Built `issue.jsp` UI form with Bootstrap 5 input floating labels and grade classification options. |
-| **W8** | 29-08-2026 | 3.0 | Completed | Built dynamic Success Card in `issue.jsp` displaying newly issued Cert ID and SHA-256 hash. |
-| **W9** | 01-09-2026 | 3.5 | Completed | Connected certificate issuance with `AuditLogDAO` recording issue actions and issuer user ID. |
-| **W9** | 03-09-2026 | 3.5 | Completed | Implemented client-side live preview in `app.js` updating certificate candidate name in real-time. |
-| **W9** | 05-09-2026 | 3.0 | Completed | Added direct "View Public Verification" button inside issuance success notification card. |
-| **W10** | 08-09-2026 | 3.5 | Completed | Added alias getters (`getCertificateId`, `getHashValue`, `getCourse`) in `Certificate.java`. |
-| **W10** | 10-09-2026 | 3.5 | Completed | Tested edge case inputs: special characters in student names, lengthy degree program titles. |
-| **W10** | 12-09-2026 | 3.0 | Completed | Added JSTL taglib directives to `issue.jsp` resolving dynamic attribute rendering. |
-| **W11** | 15-09-2026 | 4.0 | Completed | Executed cryptographic hash collision testing verifying distinct hashes for similar names. |
-| **W11** | 17-09-2026 | 3.5 | Completed | Conducted RMI communication stress testing simulating network disconnects and auto-rebind. |
-| **W11** | 19-09-2026 | 3.0 | Completed | Validated foreign key linkage between issued certificates and authenticated user IDs. |
-| **W12** | 22-09-2026 | 4.0 | Completed | Recorded 5-minute video walkthrough demonstrating certificate issuance and RMI hash generation. |
-| **W12** | 24-09-2026 | 3.5 | Completed | Authored Chapter 3 (Cryptographic Hashing & RMI Engine) for final project documentation. |
-| **W12** | 26-09-2026 | 3.0 | Completed | Prepared viva defense slides illustrating RMI architectural advantages over local execution. |
+| **W1** | 07-07-2026 | 3.0 | Completed | Researched cryptographic hashing algorithms (MD5 vs SHA-1 vs SHA-256) for academic certificates. |
+| **W1** | 09-07-2026 | 3.5 | Completed | Evaluated Java Remote Method Invocation (RMI) architecture for decoupling cryptographic logic. |
+| **W1** | 11-07-2026 | 3.0 | Completed | Drafted architectural specification for remote cryptographic signing engine (Exp 2). |
+| **W2** | 14-07-2026 | 3.5 | Completed | Authored SRS Section 3: Cryptographic verification, collision resistance, and signature format. |
+| **W2** | 16-07-2026 | 3.0 | Completed | Specified RMI interface methods: `generateSHA256(String data)` and `verifyHash()`. |
+| **W2** | 18-07-2026 | 3.0 | Completed | Defined mathematical payload serialization rules: `rollNo|name|courseName|grade`. |
+| **W3** | 21-07-2026 | 3.5 | Completed | Designed UML Component Diagram showing Java RMI Registry, RMI Client, and MySQL DB. |
+| **W3** | 23-07-2026 | 3.0 | Completed | Designed Sequence Diagram for remote SHA-256 hashing invocation over TCP/IP port 1099. |
+| **W3** | 25-07-2026 | 3.0 | Completed | Conducted review with guide Er. Ram Babu Buri on RMI deployment within Tomcat container. |
+| **W4** | 28-07-2026 | 3.5 | Completed | Implemented `CryptoService.java` remote interface extending `java.rmi.Remote`. |
+| **W4** | 30-07-2026 | 4.0 | Completed | Implemented `CryptoRMI.java` extending `UnicastRemoteObject` with `MessageDigest.getInstance("SHA-256")`. |
+| **W4** | 01-08-2026 | 3.0 | Completed | Built byte-to-hex formatting logic producing standard 64-character lowercase hex digest string. |
+| **W5** | 04-08-2026 | 3.5 | Completed | Implemented dynamic RMI auto-bootstrapping in `CryptoRMI.getService()` using `LocateRegistry.createRegistry(1099)`. |
+| **W5** | 06-08-2026 | 3.5 | Completed | Tested standalone RMI client-server communication using sample strings and verified digests. |
+| **W5** | 08-08-2026 | 3.0 | Completed | Added local fallback instantiation in `CryptoRMI` to ensure system stability even if RMI port is busy. |
+| **W6** | 11-08-2026 | 3.5 | Completed | Built `Certificate.java` model class with `certId`, `rollNo`, `category`, `eventName`, `cryptoHash`. |
+| **W6** | 13-08-2026 | 4.0 | Completed | Created MySQL schema for `certificates` table with unique constraint on `cert_id`. |
+| **W6** | 15-08-2026 | 3.0 | Completed | Implemented `CertificateDAO.saveCertificate()` using parameterized JDBC queries. |
+| **W7** | 18-08-2026 | 3.5 | Completed | Designed manual direct issuance servlet `IssueCertificateServlet.java` for Admin direct issue. |
+| **W7** | 20-08-2026 | 3.5 | Completed | Developed `issue.jsp` form with interactive live preview updating as student details are entered. |
+| **W7** | 22-08-2026 | 3.0 | Completed | Added JavaScript event listeners in `app.js` reflecting certificate preview in real time (Exp 5). |
+| **W8** | 25-08-2026 | 3.5 | Completed | Integrated `CryptoRMI.getService().generateSHA256()` inside `AdminDashboardServlet`. |
+| **W8** | 27-08-2026 | 4.0 | Completed | Ensured exact consistency between certificate generation payload and verification payload. |
+| **W8** | 29-08-2026 | 3.0 | Completed | Tested SHA-256 avalanche effect: altering 1 character in student name generates totally different hash. |
+| **W9** | 01-09-2026 | 3.5 | Completed | Implemented certificate revocation flag logic in `CertificateDAO.revokeCertificate()`. |
+| **W9** | 03-09-2026 | 3.0 | Completed | Added revocation state check in verification servlet so revoked certificates display distinct alert. |
+| **W9** | 05-09-2026 | 3.5 | Completed | Benchmarked RMI hashing performance: verified < 2ms latency for SHA-256 generation. |
+| **W10** | 08-09-2026 | 3.5 | Completed | Conducted tamper test: manually edited certificate student_name in MySQL; verified system detects tampering. |
+| **W10** | 10-09-2026 | 3.5 | Completed | Refined cryptographic proof display in `verify.jsp` showing Original Hash and Computed Hash. |
+| **W10** | 12-09-2026 | 3.0 | Completed | Documented mathematical proof of SHA-256 collision resistance for project report. |
+| **W11** | 15-09-2026 | 4.0 | Completed | Performed load test on RMI service handling 50 concurrent certificate hashing requests. |
+| **W11** | 17-09-2026 | 3.5 | Completed | Verified thread-safety of `MessageDigest` instances under concurrent servlet invocation. |
+| **W11** | 19-09-2026 | 3.0 | Completed | Optimized byte-to-hex loop using `StringBuilder` for maximum JVM throughput. |
+| **W12** | 22-09-2026 | 3.5 | Completed | Conducted final RMI integration verification on Apache Tomcat 9 live instance. |
+| **W12** | 24-09-2026 | 4.0 | Completed | Authored Cryptography & Java RMI Engine chapter of Final Project Report. |
+| **W12** | 26-09-2026 | 3.0 | Completed | Prepared viva defense demonstration showing live SHA-256 tamper detection. |
 
 ---
 
-### 👤 4. ARYAN — 36 Daily Logs
-
+### 👤 4. CHAVI JAIN (`24EAIDS054`) — 36 Daily Logs
 | Week | Date | Hours | Status | Daily Work Description |
 |---|---|---|---|---|
-| **W1** | 07-07-2026 | 3.0 | Completed | Researched online document fraud detection mechanisms and mathematical integrity verification. |
-| **W1** | 09-07-2026 | 3.0 | Completed | Analyzed user interaction models for public certificate verification portals. |
-| **W1** | 11-07-2026 | 3.0 | Completed | Setup testing suite and browser test configurations for Chrome, Firefox, and Edge. |
-| **W2** | 14-07-2026 | 3.5 | Completed | Authored SRS functional requirements for Public Certificate Verification workflow. |
-| **W2** | 16-07-2026 | 3.0 | Completed | Documented verification output states: `VERIFIED` (Authentic), `TAMPERED`, and `NOT_FOUND`. |
-| **W2** | 18-07-2026 | 3.0 | Completed | Defined URL query parameter verification format enabling instant links (`/verify?id=XXXX`). |
-| **W3** | 21-07-2026 | 3.5 | Completed | Created Sequence Diagram modeling Verification: Query → Database Lookup → Hash Recompute. |
-| **W3** | 23-07-2026 | 3.0 | Completed | Designed Activity Diagram detailing mathematical hash comparison decision branch logic. |
-| **W3** | 25-07-2026 | 3.0 | Completed | Designed UI state transition diagrams for Authentic versus Tampered certificate displays. |
-| **W4** | 28-07-2026 | 3.5 | Completed | Created MySQL schema for `verification_history` table logging public verification audits. |
-| **W4** | 30-07-2026 | 3.5 | Completed | Built UI wireframe mockup for public `verify.jsp` search box and certificate badge styling. |
-| **W4** | 01-08-2026 | 3.0 | Completed | Designed Tampered Certificate warning card wireframe with high-contrast alert styling. |
-| **W5** | 04-08-2026 | 3.5 | Completed | Developed public landing page (`index.jsp`) hero banner and verification call-to-action button. |
-| **W5** | 06-08-2026 | 3.5 | Completed | Developed `DashboardServlet.java` displaying user certificates and recent issuance counts. |
-| **W5** | 08-08-2026 | 3.0 | Completed | Built `dashboard.jsp` interface with metrics cards for active certificates and system status. |
-| **W6** | 11-08-2026 | 3.5 | Completed | Developed `VerifyCertificateServlet.java` handling GET request with Certificate ID parameter. |
-| **W6** | 13-08-2026 | 4.0 | Completed | Connected `VerifyCertificateServlet` to `CertificateDAO.getCertificateById()` for DB lookup. |
-| **W6** | 15-08-2026 | 3.0 | Completed | Implemented `NOT_FOUND` state trigger when an unrecorded Certificate ID is queried. |
-| **W7** | 18-08-2026 | 4.0 | Completed | Integrated `CryptoRMI` in `VerifyCertificateServlet` to recalculate SHA-256 hash on stored fields. |
-| **W7** | 20-08-2026 | 3.5 | Completed | Implemented string comparison logic checking computed hash against stored `crypto_hash`. |
-| **W7** | 22-08-2026 | 3.5 | Completed | Built `VERIFIED` Authentic Certificate presentation card in `verify.jsp` with green badge. |
-| **W8** | 25-08-2026 | 3.5 | Completed | Built `TAMPERED` warning card in `verify.jsp` showing expected hash versus computed mismatch. |
-| **W8** | 27-08-2026 | 3.5 | Completed | Added Cryptographic Proof block displaying full 64-character SHA-256 hash strings. |
-| **W8** | 29-08-2026 | 3.0 | Completed | Added direct verification URL support allowing external systems to verify with single click. |
-| **W9** | 01-09-2026 | 3.5 | Completed | Integrated public verification search bar inside landing page header navigation. |
-| **W9** | 03-09-2026 | 3.5 | Completed | Added recent certificate history listing inside user `dashboard.jsp`. |
-| **W9** | 05-09-2026 | 3.0 | Completed | Built interactive verification result card showing roll number, degree program, and issue date. |
-| **W10** | 08-09-2026 | 3.5 | Completed | Added `verificationResult` map attribute support in `VerifyCertificateServlet` for JSP EL. |
-| **W10** | 10-09-2026 | 3.5 | Completed | Polished mobile responsive layout of `verify.jsp` ensuring card readability on small viewports. |
-| **W10** | 12-09-2026 | 3.0 | Completed | Tested verification response time under simulated slow database connection queries. |
-| **W11** | 15-09-2026 | 4.0 | Completed | Conducted intentional data tampering tests by altering MySQL grade values directly in DB. |
-| **W11** | 17-09-2026 | 3.5 | Completed | Verified that tampered certificates immediately trigger red "Hash Mismatch" warning card. |
-| **W11** | 19-09-2026 | 3.5 | Completed | Conducted cross-browser rendering audits across Chrome, Firefox, Edge, and mobile Safari. |
-| **W12** | 22-09-2026 | 4.0 | Completed | Authored Chapter 4 (Verification Algorithm & Integrity Analysis) for final project report. |
-| **W12** | 24-09-2026 | 3.5 | Completed | Prepared PowerPoint slides (11-15) detailing verification workflow and cryptographic proofs. |
-| **W12** | 26-09-2026 | 3.0 | Completed | Finalized viva defense presentation on hash immutability and anti-forgery mechanisms. |
+| **W1** | 07-07-2026 | 3.0 | Completed | Studied certificate verification mechanisms in public universities and job verification portals. |
+| **W1** | 09-07-2026 | 3.0 | Completed | Drafted functional requirements for public verification: zero-login access, QR code compatibility. |
+| **W1** | 11-07-2026 | 3.5 | Completed | Defined student self-service requirements: applying for certificates, checking pending status. |
+| **W2** | 14-07-2026 | 3.5 | Completed | Authored SRS Section 4: Verification workflow, tamper alert indicators, and student submission. |
+| **W2** | 16-07-2026 | 3.0 | Completed | Designed UI mockup for public certificate verification search bar and results card. |
+| **W2** | 18-07-2026 | 3.0 | Completed | Specified form validation rules for student certificate application in SRS. |
+| **W3** | 21-07-2026 | 3.5 | Completed | Created Sequence Diagram for public verification flow from query parameter to DB comparison. |
+| **W3** | 23-07-2026 | 3.0 | Completed | Designed Activity Diagram for student certificate application submission and status tracking. |
+| **W3** | 25-07-2026 | 3.0 | Completed | Participated in architecture review with mentor Er. Ram Babu Buri; finalized public routing rules. |
+| **W4** | 28-07-2026 | 3.5 | Completed | Built `CertificateApplication.java` model class with all application attributes and getters/setters. |
+| **W4** | 30-07-2026 | 3.5 | Completed | Designed wireframe for student application modal and stand-alone application page `student/apply.jsp`. |
+| **W4** | 01-08-2026 | 3.0 | Completed | Created wireframe for `verify.jsp` result cards: Verified (Green), Tampered (Red), Not Found (Yellow). |
+| **W5** | 04-08-2026 | 3.5 | Completed | Developed `VerifyCertificateServlet.java` accepting `GET /verify?id=...` parameter. |
+| **W5** | 06-08-2026 | 4.0 | Completed | Built `verify.jsp` implementing Bootstrap 5 responsive layout, search bar, and result cards. |
+| **W5** | 08-08-2026 | 3.0 | Completed | Integrated hash comparison logic in `VerifyCertificateServlet` matching original vs computed hash. |
+| **W6** | 11-08-2026 | 3.5 | Completed | Implemented `ApplyCertificateServlet.java` (`/certificate/apply`) handling student POST submissions. |
+| **W6** | 13-08-2026 | 4.0 | Completed | Built `student/apply.jsp` form with category auto-filling, event selection, and proof link inputs. |
+| **W6** | 15-08-2026 | 3.0 | Completed | Connected `apply.jsp` with student session extracting authenticated student Roll Number & Name. |
+| **W7** | 18-08-2026 | 3.5 | Completed | Designed `verification_history` table in MySQL logging every verification lookup and timestamp. |
+| **W7** | 20-08-2026 | 3.5 | Completed | Added IP logging in `VerifyCertificateServlet` to track external verification audits. |
+| **W7** | 22-08-2026 | 3.0 | Completed | Handled URL parameter sanitization in `/verify` preventing XSS via malicious certificate IDs. |
+| **W8** | 25-08-2026 | 3.5 | Completed | Enhanced `verify.jsp` with Arya College official branding header and AICTE / RTU affiliation tag. |
+| **W8** | 27-08-2026 | 4.0 | Completed | Added Event Category badge (Cultural, Sports, Drama, Music, Technical) inside `verify.jsp`. |
+| **W8** | 29-08-2026 | 3.0 | Completed | Tested public verification from unauthenticated incognito browser session; confirmed access. |
+| **W9** | 01-09-2026 | 3.5 | Completed | Enhanced `student/dashboard.jsp` with real-time status tracker (Pending, Verified by Mentor, Approved). |
+| **W9** | 03-09-2026 | 3.0 | Completed | Added "View Certificate" direct link in student dashboard for instantly viewing approved certs. |
+| **W9** | 05-09-2026 | 3.5 | Completed | Implemented client-side Bootstrap form validation on application submission form (Exp 3). |
+| **W10** | 08-09-2026 | 3.5 | Completed | Tested edge cases in verification: empty ID, non-existent ID, revoked ID, and valid ID. |
+| **W10** | 10-09-2026 | 3.5 | Completed | Implemented visual "Hashes match exactly. Integrity verified." badge in cryptographic proof box. |
+| **W10** | 12-09-2026 | 3.0 | Completed | Verified mobile responsiveness of verification results card on Android and iOS screen sizes. |
+| **W11** | 15-09-2026 | 4.0 | Completed | Executed student certificate application lifecycle test: submitted application, tracked status. |
+| **W11** | 17-09-2026 | 3.5 | Completed | Verified error notifications when required application fields are missing or improperly formatted. |
+| **W11** | 19-09-2026 | 3.0 | Completed | Added print/export CSS styling for clean printing of verified certificate results. |
+| **W12** | 22-09-2026 | 3.5 | Completed | Conducted final end-to-end verification walkthrough on live deployed application. |
+| **W12** | 24-09-2026 | 4.0 | Completed | Authored Public Verification & Student Application chapter of Final Project Report. |
+| **W12** | 26-09-2026 | 3.0 | Completed | Prepared viva presentation demonstration for public certificate verification flow. |
 
 ---
 
-### 👤 5. ANKIT — 36 Daily Logs
-
+### 👤 5. DIVYANSHU GOYAL (`24EAIDS055`) — 36 Daily Logs
 | Week | Date | Hours | Status | Daily Work Description |
 |---|---|---|---|---|
-| **W1** | 07-07-2026 | 3.0 | Completed | Researched relational database structures and JDBC connection architecture for web applications. |
-| **W1** | 09-07-2026 | 3.0 | Completed | Contributed to project abstract; defined database entity requirements for Team 5A. |
-| **W1** | 11-07-2026 | 3.0 | Completed | Setup MySQL Server 8.0 on local environment and verified service connectivity. |
-| **W2** | 14-07-2026 | 3.5 | Completed | Authored SRS Section on Database Requirements, Entity Definitions, and Storage Sizing. |
-| **W2** | 16-07-2026 | 3.0 | Completed | Formulated functional requirements for Certificate Registry, Search, and Filter operations. |
-| **W2** | 18-07-2026 | 3.0 | Completed | Compiled Hardware and Software system requirements for deployment (Tomcat 9, MySQL 8). |
-| **W3** | 21-07-2026 | 3.5 | Completed | Designed complete Entity-Relationship (ER) Diagram with 4 relational entities and constraints. |
-| **W3** | 23-07-2026 | 3.0 | Completed | Created Component Diagram illustrating web application archive (WAR) deployment structure. |
-| **W3** | 25-07-2026 | 3.0 | Completed | Designed Deployment Diagram mapping Tomcat servlet container and MySQL database port 3306. |
-| **W4** | 28-07-2026 | 4.0 | Completed | Authored `schema.sql` database initialization script with tables, indices, and sample seed records. |
-| **W4** | 30-07-2026 | 3.5 | Completed | Configured global CSS stylesheet (`style.css`) establishing typography, cards, and theme colors. |
-| **W4** | 01-08-2026 | 3.0 | Completed | Designed UI wireframe for `list.jsp` certificate registry featuring tabular listing and search filters. |
-| **W5** | 04-08-2026 | 4.0 | Completed | Implemented `DBConnection.java` with MySQL JDBC connection manager and exception handling. |
-| **W5** | 06-08-2026 | 3.5 | Completed | Configured MySQL Connector/J driver dependency (`mysql-connector-j-26.7.0.jar`) in `WEB-INF/lib`. |
-| **W5** | 08-08-2026 | 3.0 | Completed | Executed connection pooling and leak tests validating connections close cleanly after query execution. |
-| **W6** | 11-08-2026 | 3.5 | Completed | Implemented `CertificateDAO.java` skeleton with parameterized CRUD database access methods. |
-| **W6** | 13-08-2026 | 4.0 | Completed | Developed `CertificateDAO.searchCertificates()` supporting search by ID, name, or roll number. |
-| **W6** | 15-08-2026 | 3.0 | Completed | Added sample test records into database (Amit Kumar, Ayush Sharma, Mali Singh certificates). |
-| **W7** | 18-08-2026 | 3.5 | Completed | Developed `RegistryServlet.java` mapping `/registry` URL to fetch all certificates from DAO (Exp 8). |
-| **W7** | 20-08-2026 | 4.0 | Completed | Built `list.jsp` interface rendering tabular certificate records with student details and grades. |
-| **W7** | 22-08-2026 | 3.0 | Completed | Added JSTL taglib directives to `list.jsp` enabling `<c:forEach>` dynamic row generation. |
-| **W8** | 25-08-2026 | 3.5 | Completed | Added real-time client-side table filter in `app.js` filtering rows by search keystrokes. |
-| **W8** | 27-08-2026 | 3.5 | Completed | Connected "Verify" button on each registry row directly to `/verify?id=DV-XXXX` endpoint. |
-| **W8** | 29-08-2026 | 3.0 | Completed | Added Empty State display in `list.jsp` when search query produces zero certificate matches. |
-| **W9** | 01-09-2026 | 3.5 | Completed | Implemented `CertificateDAO.getCertificateCount()` supporting metrics counter queries. |
-| **W9** | 03-09-2026 | 3.5 | Completed | Added Course and Grade dropdown filter controls in registry table header toolbar. |
-| **W9** | 05-09-2026 | 3.0 | Completed | Implemented client-side CSV table export utility function for administrative reporting. |
-| **W10** | 08-09-2026 | 3.5 | Completed | Resolved column name mapping between DAO methods and MySQL snake_case table columns. |
-| **W10** | 10-09-2026 | 3.5 | Completed | Developed automated build script `build.bat` compiling all 21 Java files into `WEB-INF/classes`. |
-| **W10** | 12-09-2026 | 3.0 | Completed | Developed automated deployment script `deploy.bat` syncing web application to Tomcat `webapps`. |
-| **W11** | 15-09-2026 | 4.0 | Completed | Conducted database load testing inserting 100+ simulated certificates to benchmark query latency. |
-| **W11** | 17-09-2026 | 3.5 | Completed | Optimized SQL indexing on `cert_id` and `student_name` columns for sub-millisecond retrieval. |
-| **W11** | 19-09-2026 | 3.0 | Completed | Audited `.gitignore` configuration ensuring compiled class files are excluded from Git repo. |
-| **W12** | 22-09-2026 | 4.0 | Completed | Finalized `README.md` documentation with setup guide, team list, and lab experiment mapping. |
-| **W12** | 24-09-2026 | 3.5 | Completed | Authored Chapter 5 (Database Schema & Registry Module) for final project documentation. |
-| **W12** | 26-09-2026 | 3.0 | Completed | Prepared viva defense slides (16-20) covering JDBC best practices and deployment architecture. |
+| **W1** | 07-07-2026 | 3.0 | Completed | Researched relational database structures for multi-event collegiate academic systems. |
+| **W1** | 09-07-2026 | 3.5 | Completed | Designed entity-relationship concepts between students, events, coordinators, and rosters. |
+| **W1** | 11-07-2026 | 3.0 | Completed | Setup MySQL Server 8.0 instance and configured connection pool parameters. |
+| **W2** | 14-07-2026 | 3.5 | Completed | Authored SRS Section 5: Data dictionary, table schemas, entity constraints, and indexing. |
+| **W2** | 16-07-2026 | 3.0 | Completed | Defined anti-forgery roster matching rules between event attendance and student submissions. |
+| **W2** | 18-07-2026 | 3.0 | Completed | Finalized database normalization (3NF) across all relational entities. |
+| **W3** | 21-07-2026 | 3.5 | Completed | Created detailed ER Diagram mapping `users`, `events`, `event_roster`, and `certificate_applications`. |
+| **W3** | 23-07-2026 | 3.0 | Completed | Designed schema creation script `arya_college_upgrade.sql` with sample event records. |
+| **W3** | 25-07-2026 | 3.0 | Completed | Conducted database design review with mentor Er. Ram Babu Buri; approved schema design. |
+| **W4** | 28-07-2026 | 3.5 | Completed | Implemented `DBConnection.java` implementing thread-safe MySQL JDBC connection pooling (Exp 4). |
+| **W4** | 30-07-2026 | 4.0 | Completed | Created `events` table with Cultural, Sports, Drama, Music, and Technical event categories. |
+| **W4** | 01-08-2026 | 3.0 | Completed | Created `event_roster` table storing official coordinator attendance and winner lists. |
+| **W5** | 04-08-2026 | 3.5 | Completed | Created `certificate_applications` table with `status`, `auto_matched`, and remarks columns. |
+| **W5** | 06-08-2026 | 4.0 | Completed | Built `Event.java` model class with all event attributes and getters/setters. |
+| **W5** | 08-08-2026 | 3.0 | Completed | Built `EventDAO.java` implementing `getAllEvents()` and `getEventsByCategory()`. |
+| **W6** | 11-08-2026 | 4.0 | Completed | Developed `ApplicationDAO.java` implementing `submitApplication()` with auto-match check. |
+| **W6** | 13-08-2026 | 4.0 | Completed | Implemented `checkEventRosterMatch()` executing SQL join against `event_roster` table. |
+| **W6** | 15-08-2026 | 3.0 | Completed | Tested automated roster matching: verified genuine student roll numbers get `auto_matched = 1`. |
+| **W7** | 18-08-2026 | 3.5 | Completed | Developed `MentorDashboardServlet.java` (`/mentor/dashboard`) for faculty review queue. |
+| **W7** | 20-08-2026 | 4.0 | Completed | Built `mentor/dashboard.jsp` displaying pending student applications with Roster Match badges. |
+| **W7** | 22-08-2026 | 3.0 | Completed | Implemented mentor "Verify & Recommend" and "Reject Application" POST handlers. |
+| **W8** | 25-08-2026 | 3.5 | Completed | Implemented `CertificateDAO.getCertificatesByRollNo()` to display student's certificates. |
+| **W8** | 27-08-2026 | 4.0 | Completed | Developed `StudentDashboardServlet.java` aggregating student certificates, apps, and events. |
+| **W8** | 29-08-2026 | 3.0 | Completed | Built `student/dashboard.jsp` with metrics counters (Approved, Pending, Available Events). |
+| **W9** | 01-09-2026 | 3.5 | Completed | Developed `RegistryServlet.java` and upgraded `registry/list.jsp` with Event Categories. |
+| **W9** | 03-09-2026 | 3.5 | Completed | Added search filter in `list.jsp` supporting search by student name, roll number, and event. |
+| **W9** | 05-09-2026 | 3.0 | Completed | Added color-coded badges in registry list for Sports, Cultural, Drama, Music, and Technical. |
+| **W10** | 08-09-2026 | 3.5 | Completed | Executed database query optimization; verified PreparedStatement caching in MySQL. |
+| **W10** | 10-09-2026 | 3.5 | Completed | Seeded realistic college event data (Arya Tarang, Arya Yuva Spardha, Rangmanch, CodeStorm). |
+| **W10** | 12-09-2026 | 3.0 | Completed | Seeded coordinator roster data for 5th semester students (`24EAIDS051`, `24EAIDS052`). |
+| **W11** | 15-09-2026 | 4.0 | Completed | Tested anti-forgery rejection flow: student with unlisted roll number flagged as unmatched. |
+| **W11** | 17-09-2026 | 3.5 | Completed | Tested mentor endorsement flow updating application status to `verified_by_mentor`. |
+| **W11** | 19-09-2026 | 3.0 | Completed | Conducted database backup and dump verification (`docuverify_db.sql`). |
+| **W12** | 22-09-2026 | 3.5 | Completed | Conducted final database integrity checks across foreign keys and unique constraints. |
+| **W12** | 24-09-2026 | 4.0 | Completed | Authored Database Architecture & Event Roster chapter of Final Project Report. |
+| **W12** | 26-09-2026 | 3.0 | Completed | Prepared viva defense demonstration showing anti-forgery roster matching in MySQL. |
 
 ---
 
-## 📅 12 Weekly Reports (Portal Pe Submit Karne Ke Liye)
+## 📑 12 Comprehensive Weekly Reports (Detailed Submission Ready)
 
-### 📋 Week 1 Report (06 Jul – 12 Jul 2026)
-> **Topic**: Team Formation, Project Selection & Abstract Submission  
-> **Summary**: Formed Team 5A under the guidance of Er. Ram Babu Buri (Research Area: Machine Learning & Data Science) at Arya College of Engineering & I.T. Finalized project title: "DocuVerify™ – Cryptographic Certificate Generator & Verification Portal" under the Web Application track (JSP-Servlet + MySQL). Drafted and submitted project abstract outlining the problem of academic document fraud and our cryptographic SHA-256 solution. Created the central Git repository and established Java project structure.
+### 📅 Week 1 Report (06-07-2026 to 12-07-2026)
+- **Objective:** Project initiation, domain finalization, and architecture planning for Arya College of Engineering & I.T.
+- **Work Carried Out:**
+  - Evaluated existing manual event certificate issuance challenges in Arya College.
+  - Finalized project scope: Event & Merit Certificate Management & Verification System (DocuVerify ACEIT Edition).
+  - Selected technology stack: Apache Tomcat 9, Java Servlets, JSP, MySQL 8.0, and Java RMI (Port 1099).
+  - Divided team responsibilities across 5 modules and initialized Git repository on `main` branch.
+- **Key Challenges & Solutions:** Formulated unified architecture running on a single localhost:8080 Tomcat instance to avoid scattered micro-services.
+- **Faculty Guide Guidance:** Er. Ram Babu Buri advised covering non-technical event categories (Sports, Drama, Music, Cultural) along with Technical hackathons.
 
-### 📋 Week 2 Report (13 Jul – 19 Jul 2026)
-> **Topic**: Software Requirement Specification (SRS) & Literature Review  
-> **Summary**: Conducted comprehensive literature review analyzing document forgery vectors in university credentials. Authored complete Software Requirement Specification (SRS) document v1.0. Defined functional requirements across 5 distinct modules: Authentication, Admin Management, Certificate Issuance, Verification Engine, and Certificate Registry. Documented non-functional requirements including response time, cryptographic collision resistance, and data persistence.
+### 📅 Week 2 Report (13-07-2026 to 19-07-2026)
+- **Objective:** Software Requirements Specification (SRS) authoring and system boundary definitions.
+- **Work Carried Out:**
+  - Authored comprehensive SRS document v1.0 covering Functional and Non-Functional Requirements.
+  - Defined 3 core user personas: Admin/HOD, Faculty Mentor (Er. Ram Babu Buri), and Students (Roll No based).
+  - Specified cryptographic requirements: SHA-256 collision resistance, tamper detection, and public verification.
+  - Formulated Anti-Forgery 3-Tier Verification rules cross-referencing event coordinator master attendance rosters.
+- **Key Deliverables:** SRS Document v1.0 submitted and approved by Faculty Guide.
 
-### 📋 Week 3 Report (20 Jul – 26 Jul 2026)
-> **Topic**: System Architecture & Comprehensive UML Design  
-> **Summary**: Designed formal UML diagrams modeling system behavior and structural components. Created system-level Use Case Diagram defining actors (Admin, Issuer, Public Verifier), Class Diagrams for Auth and Cryptographic domains, Sequence Diagrams for Certificate Issuance via RMI and Verification workflows, Activity Diagrams for user management, and an Entity-Relationship (ER) diagram modeling relational constraints across 4 database entities.
+### 📅 Week 3 Report (20-07-2026 to 26-07-2026)
+- **Objective:** Object-Oriented Analysis & Design (OOAD) and UML Modeling.
+- **Work Carried Out:**
+  - Developed Use Case Diagrams for Admin, Mentor, Student, and Public Verifier roles.
+  - Designed Class Diagrams including `User`, `Event`, `CertificateApplication`, `Certificate`, `CryptoRMI`, and DAOs.
+  - Modeled Sequence Diagrams for Student Application $\rightarrow$ Mentor Verification $\rightarrow$ Admin Approval $\rightarrow$ RMI Hashing.
+  - Formulated Entity-Relationship (ER) model with 7 relational tables in 3rd Normal Form (3NF).
+- **Faculty Guide Guidance:** Er. Ram Babu Buri reviewed RMI registry interaction and suggested automated fallback handling.
 
-### 📋 Week 4 Report (27 Jul – 02 Aug 2026)
-> **Topic**: Database Schema Engineering & UI/UX Wireframing  
-> **Summary**: Designed and executed MySQL relational database schema `docuverify_db` comprising 4 core tables: `users`, `certificates`, `audit_logs`, and `verification_history`. Established foreign key constraints and unique indexes. Created responsive UI wireframes using Bootstrap 5 framework, establishing a consistent purple color theme (#7453df), modern typography, and structured navigation layouts across all module views.
+### 📅 Week 4 Report (27-07-2026 to 02-08-2026)
+- **Objective:** Database Schema Implementation and UI Wireframe Prototyping.
+- **Work Carried Out:**
+  - Executed MySQL schema creation script creating `users`, `events`, `event_roster`, `certificate_applications`, `certificates`, `audit_logs`, `verification_history`.
+  - Implemented `DBConnection.java` with thread-safe JDBC connection pooling.
+  - Designed responsive wireframe mockups for 3-role Login page matching official Arya College header.
+  - Created initial Java model POJO classes (`User.java`, `Certificate.java`, `Event.java`, `AuditLog.java`).
+- **Milestone:** Database created with foreign key integrity and sample event records.
 
-### 📋 Week 5 Report (03 Aug – 09 Aug 2026)
-> **Topic**: Module Coding Sprint 1 — Base Setup & Auth Module (Exp 8 & 9)  
-> **Summary**: Initiated core development phase on Apache Tomcat 9. Implemented **`LoginServlet.java`** taking user credentials via HTTP POST and validating against MySQL database (**Exp 8**). Built **`login.jsp`** featuring Bootstrap 5 form validation and server-side error display (**Exp 9**). Implemented `DBConnection.java` utilizing MySQL JDBC driver (**Exp 4**) and created initial entity POJO models (`User.java`, `Certificate.java`).
+### 📅 Week 5 Report (03-08-2026 to 09-08-2026)
+- **Objective:** Authentication Module & Session Security Implementation.
+- **Work Carried Out:**
+  - Implemented `LoginServlet.java` supporting multi-identifier login (University Roll No, Email, or Username).
+  - Developed `login.jsp` with 3 role tabs (`Admin`, `Mentor`, `Student`) and one-click credential helpers.
+  - Implemented `HttpSession` management storing user context, roll number, and role upon login.
+  - Developed `AdminDashboardServlet.java` and `admin_dashboard.jsp` with metrics counters.
+- **Key Challenges & Solutions:** Fixed flash message persistence bug where success and error banners persisted across reloads.
 
-### 📋 Week 6 Report (10 Aug – 16 Aug 2026)
-> **Topic**: Module Coding Sprint 2 — Cryptographic Engine via Java RMI (Exp 2)  
-> **Summary**: Developed distributed cryptographic subsystem using Java Remote Method Invocation (**Exp 2**). Implemented `CryptoService.java` remote interface and `CryptoRMI.java` computing SHA-256 cryptographic digests on port 1099. Implemented `RegisterServlet.java` and `register.jsp` supporting secure user self-registration with password hashing. Added initial `CertificateDAO` and `AuditLogDAO` data access objects.
+### 📅 Week 6 Report (10-08-2026 to 16-08-2026)
+- **Objective:** Student Self-Service Portal & Anti-Forgery Automated Roster Matching.
+- **Work Carried Out:**
+  - Developed `RegisterServlet.java` and `register.jsp` capturing student Roll Number, Branch, and Semester.
+  - Developed `ApplyCertificateServlet.java` and `student/apply.jsp` for student event claims.
+  - Implemented `ApplicationDAO.checkEventRosterMatch()` cross-checking claims against `event_roster` attendance.
+  - Successfully tagged genuine claims with `auto_matched = 1` and flagged unregistered claims for manual check.
+- **Milestone:** Automated Tier-1 Anti-Forgery matching verified on test data.
 
-### 📋 Week 7 Report (17 Aug – 23 Aug 2026)
-> **Topic**: Module Coding Sprint 3 — Public Verification Engine (Exp 8)  
-> **Summary**: Implemented public verification subsystem. Built **`VerifyCertificateServlet.java`** (**Exp 8**) accepting certificate IDs, retrieving database records, and re-computing SHA-256 hashes on the fly to verify mathematical integrity. Developed `verify.jsp` supporting instant URL parameter lookups (`/verify?id=DV-XXXX`) and displaying Authentic versus Tampered status cards. Added session management and `LogoutServlet.java`.
+### 📅 Week 7 Report (17-08-2026 to 23-08-2026)
+- **Objective:** Faculty Mentor Review Queue & Endorsement Workflow.
+- **Work Carried Out:**
+  - Implemented `MentorDashboardServlet.java` (`/mentor/dashboard`) restricted to Mentor and Admin roles.
+  - Developed `mentor/dashboard.jsp` displaying pending student requests with `[✓ Roster Matched (Genuine)]` badges.
+  - Implemented "Verify & Recommend" and "Reject Application" actions with custom faculty remarks.
+  - Added audit log entries for all mentor decisions with IP address logging via `AuditLogDAO`.
+- **Milestone:** Complete 2-tier approval workflow functioning seamlessly between Student and Mentor.
 
-### 📋 Week 8 Report (24 Aug – 30 Aug 2026)
-> **Topic**: Module Coding Sprint 4 — Certificate Registry & JDBC Queries (Exp 4)  
-> **Summary**: Developed Certificate Registry subsystem (**Exp 4**). Implemented **`RegistryServlet.java`** and **`list.jsp`** dynamically rendering all issued certificates from MySQL database using JSTL tags. Added search input filtering by candidate name, roll number, and certificate ID. Built `IssueCertificateServlet.java` and `issue.jsp` allowing authorized users to issue new certificates and obtain instant cryptographic verification links.
+### 📅 Week 8 Report (24-08-2026 to 30-08-2026)
+- **Objective:** Cryptographic Hashing Engine via Java Remote Method Invocation (Exp 2).
+- **Work Carried Out:**
+  - Implemented `CryptoService.java` remote interface and `CryptoRMI.java` remote implementation.
+  - Configured RMI registry on port 1099 with auto-bootstrapping and self-healing local fallback.
+  - Developed SHA-256 calculation over tokenized payload: `RollNo|StudentName|CourseName|Grade`.
+  - Implemented `StudentDashboardServlet.java` and `student/dashboard.jsp` showing student certificates and metrics.
+- **Lab Integration:** Fulfills Lab Exp 2 (Java RMI) and Exp 5 (Dynamic GUI State).
 
-### 📋 Week 9 Report (31 Aug – 06 Sep 2026)
-> **Topic**: Module Coding Sprint 5 — Admin Control Panel & Role Security (Exp 10)  
-> **Summary**: Implemented role-based access control and administrative operations (**Exp 10**). Developed **`AuthFilter.java`** intercepting HTTP requests to protect administrative routes (`/admin/*`). Built `AdminDashboardServlet.java` and `admin_dashboard.jsp` displaying real-time metrics for total users and certificates. Built `ManageUsersServlet.java` and `manage_users.jsp` providing user management and deletion tools with automated audit logging.
+### 📅 Week 9 Report (31-08-2026 to 06-09-2026)
+- **Objective:** Admin Final Approval, 1-Click Cryptographic Issuance & Registry.
+- **Work Carried Out:**
+  - Connected Admin Dashboard "Approve & Generate SHA-256" button to invoke `CryptoRMI`.
+  - Implemented unique Certificate ID generator (`ACEIT-2026-[CAT]-[RANDOM]`).
+  - Developed `RegistryServlet.java` and upgraded `registry/list.jsp` with Event Category color badges.
+  - Implemented instant CSV export button and search filter across issued certificates.
+- **Milestone:** End-to-end certificate generation from student claim to cryptographic database record.
 
-### 📋 Week 10 Report (07 Sep – 13 Sep 2026)
-> **Topic**: System Integration, Security Hardening & Error Handling  
-> **Summary**: Completed comprehensive cross-module integration into a single unified web application. Connected public navigation across home, verification, and registry pages. Performed security hardening: eliminated SQL injection vulnerabilities using parameterized PreparedStatements, mitigated XSS via output escaping, and implemented custom error handling (`404.jsp`, `500.jsp`). Automated compilation via `build.bat` and `deploy.bat`.
+### 📅 Week 10 Report (07-09-2026 to 13-09-2026)
+- **Objective:** Public Verification Engine & Cryptographic Tamper Detection.
+- **Work Carried Out:**
+  - Developed `VerifyCertificateServlet.java` accepting public GET queries at `/verify?id=...`.
+  - Upgraded `verify.jsp` with Arya College branding, event category badge, and live cryptographic proof card.
+  - Verified live hash re-computation: mathematically verifies integrity and detects database tampering instantly.
+  - Logged all verification checks into `verification_history` table with client IP and timestamps.
+- **Milestone:** Zero-login public verification operational for external recruiters and evaluators.
 
-### 📋 Week 11 Report (14 Sep – 20 Sep 2026)
-> **Topic**: End-to-End System Testing & Quality Assurance  
-> **Summary**: Executed rigorous multi-tier testing. Conducted security penetration testing verifying role isolation and session timeout enforcement. Performed cryptographic stress testing generating 50+ unique certificates to confirm hash uniqueness. Tested tamper detection by manually editing database entries in MySQL and verifying that `verify.jsp` flagged hash discrepancies. Performed cross-browser validation across Chrome, Edge, and Firefox.
+### 📅 Week 11 Report (14-09-2026 to 20-09-2026)
+- **Objective:** Security Hardening, Access Control & Error Handling.
+- **Work Carried Out:**
+  - Upgraded `AuthFilter.java` enforcing strict role boundaries (`admin` $\rightarrow$ `/admin/*`, `mentor` $\rightarrow$ `/mentor/*`).
+  - Configured public route whitelisting for `/`, `/login`, `/register`, `/verify`, and `/registry`.
+  - Audited all SQL statements against SQL Injection using parameterized PreparedStatements.
+  - Created custom HTTP error pages `404.jsp` and `500.jsp` with Arya College portal styling.
+- **Lab Integration:** Fulfills Lab Exp 7 (Exception Handling) and Exp 10 (Role-Based Mini Project).
 
-### 📋 Week 12 Report (21 Sep – 06 Oct 2026)
-> **Topic**: Final Documentation, Presentation Deck & Viva Voce Preparation  
-> **Summary**: Compiled comprehensive Final Project Report incorporating architecture, code listings, and lab experiment mappings. Created 20-slide PowerPoint presentation deck highlighting project problem statement, cryptographic architecture, live screenshots, and team contributions. Recorded full application demonstration video walkthrough. Prepared viva voce defense strategy; completed final project evaluation submission.
+### 📅 Week 12 Report (21-09-2026 to 06-10-2026)
+- **Objective:** End-to-End Testing, Bug Resolution, Documentation & Viva Preparation.
+- **Work Carried Out:**
+  - Resolved servlet URL pattern collision between `DashboardServlet` and `StudentDashboardServlet`.
+  - Successfully recompiled all 27 Java classes with 0 errors and deployed to Apache Tomcat 9.0.97.
+  - Executed full end-to-end workflow: Student Apply $\rightarrow$ Mentor Verify $\rightarrow$ Admin SHA-256 Issue $\rightarrow$ Public Verify.
+  - Compiled complete 180 daily logs (36/student), 12 weekly reports, and project explanation handbook.
+  - Prepared viva defense presentation slides and live demonstration walkthrough.
+- **Final Result:** Complete, production-ready system running on `http://localhost:8080/DocuVerify/` with 100% verified status!
 
 ---
 
-## 🚀 One-Command GitHub Upload Guide
+## 💡 Viva Voce Defense Quick Reference
 
-Tujhe poora project ek hi shot mein GitHub pe upload karna hai:
-
-```powershell
-# 1. Project directory me jao
-cd "c:\Users\amitk\OneDrive\Desktop\COLLEGE\5 sem\java\DocuVerify"
-
-# 2. Apna GitHub repository link connect karo (GitHub pe pehle new blank repo bana lena)
-git remote add origin https://github.com/<tera-github-username>/<repo-naam>.git
-
-# 3. Pura project ek sath push kar do
-git push -u origin main
-```
+| Examiner Question | Ideal Response |
+|---|---|
+| **What makes this project different from a standard certificate generator?** | Traditional systems generate unverified PDFs that can be edited in Canva or Photoshop. DocuVerify ACEIT Edition prevents fake applications using coordinator master attendance rosters, requires faculty mentor endorsement, and cryptographically signs certificates using SHA-256 via Java RMI, making tampering mathematically detectable. |
+| **Why did you use Java RMI instead of a REST API?** | It directly implements **Lab Experiment 2 (Remote Method Invocation)** required by RTU syllabus. It demonstrates distributed object communication in Java where cryptographic logic is decoupled onto an RMI server registry (Port 1099). |
+| **How does public verification prove a certificate has not been tampered with?** | The servlet takes the certificate's details (`RollNo\|Name\|Event\|Grade`), recomputes the SHA-256 hash using the same algorithm, and compares it to the hash stored at issuance. If even one character was altered in the database, the hashes will not match, triggering a RED Tampered alert. |
