@@ -541,7 +541,7 @@
                 <small class="text-muted fw-semibold">Institutional Portal Login • REAP CODE 14</small>
             </div>
             <div>
-                <button class="btn btn-outline-secondary btn-sm" onclick="showView('view-home')">
+                <button class="btn btn-outline-secondary btn-sm" onclick="goBackOrHome()">
                     <i class="bi bi-arrow-left me-1"></i> Back to Home
                 </button>
             </div>
@@ -901,7 +901,7 @@
 
             <!-- Quick Navigation Footer inside Faculty -->
             <div class="text-center mt-4">
-                <button class="btn btn-outline-secondary btn-sm me-2" onclick="showView('view-home')">
+                <button class="btn btn-outline-secondary btn-sm me-2" onclick="goBackOrHome()">
                     <i class="bi bi-house me-1"></i> Back to Home
                 </button>
                 <button class="btn btn-outline-primary btn-sm" onclick="showView('view-verify')">
@@ -1145,7 +1145,7 @@
     <div id="view-verify" class="app-view py-5">
         <div class="container" style="max-width: 820px;">
             <div class="text-center mb-4">
-                <button class="btn btn-outline-secondary btn-sm mb-3" onclick="showView('view-home')">
+                <button class="btn btn-outline-secondary btn-sm mb-3" onclick="goBackOrHome()">
                     <i class="bi bi-arrow-left me-1"></i> Back to Portal Home
                 </button>
                 <div class="d-inline-flex p-3 rounded-circle bg-primary bg-opacity-10 text-primary mb-2">
@@ -1449,18 +1449,120 @@
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // --- 3. View Switcher ---
-        function showView(viewId) {
+        // --- View & Route Mapping for Full Browser Back/Forward Support ---
+        const VIEW_ROUTES = {
+            'view-home': 'home',
+            'view-login': 'login',
+            'view-verify': 'verify',
+            'view-admin': 'admin',
+            'view-faculty': 'faculty',
+            'view-student': 'student'
+        };
+
+        const ROUTE_VIEWS = {
+            'home': 'view-home',
+            'login': 'view-login',
+            'verify': 'view-verify',
+            'admin': 'view-admin',
+            'faculty': 'view-faculty',
+            'student': 'view-student'
+        };
+
+        let currentActiveView = 'view-home';
+
+        // Universal Back Handler (Browser Back Button or Home Fallback)
+        function goBackOrHome() {
+            if (window.history.length > 1 && window.location.hash !== '#home' && window.location.hash !== '') {
+                window.history.back();
+            } else {
+                showView('view-home');
+            }
+        }
+
+        // --- 3. View Switcher with Route Protection & Browser History ---
+        function showView(viewId, pushHistory = true) {
+            const targetRoute = VIEW_ROUTES[viewId] || 'home';
+            const previousRoute = VIEW_ROUTES[currentActiveView] || 'home';
+
+            // 1. Session Invalidation on Leaving Dashboard:
+            // "jab mai back aju faculty ya student ya admin dashboard sia to har baar login mangan chaiye wapis"
+            if (['admin', 'faculty', 'student'].includes(previousRoute) && previousRoute !== targetRoute) {
+                state.currentUser = null;
+            }
+
+            // 2. Protected Route Guard: If entering a dashboard without active session, force login
+            if (targetRoute === 'admin') {
+                if (!state.currentUser || state.currentUser.role !== 'admin') {
+                    selectLoginRole('admin');
+                    if (pushHistory) {
+                        history.pushState({ viewId: 'view-login', route: 'login' }, '', '#login');
+                    }
+                    activateDOMView('view-login');
+                    return;
+                }
+            } else if (targetRoute === 'faculty') {
+                if (!state.currentUser || state.currentUser.role !== 'mentor') {
+                    selectLoginRole('mentor');
+                    if (pushHistory) {
+                        history.pushState({ viewId: 'view-login', route: 'login' }, '', '#login');
+                    }
+                    activateDOMView('view-login');
+                    return;
+                }
+            } else if (targetRoute === 'student') {
+                if (!state.currentUser || state.currentUser.role !== 'student') {
+                    selectLoginRole('student');
+                    if (pushHistory) {
+                        history.pushState({ viewId: 'view-login', route: 'login' }, '', '#login');
+                    }
+                    activateDOMView('view-login');
+                    return;
+                }
+            }
+
+            // 3. Push Browser History (Enables browser ← and → buttons)
+            if (pushHistory) {
+                const targetHash = '#' + targetRoute;
+                if (window.location.hash !== targetHash) {
+                    history.pushState({ viewId: viewId, route: targetRoute }, '', targetHash);
+                }
+            }
+
+            activateDOMView(viewId);
+        }
+
+        function activateDOMView(viewId) {
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
             const target = document.getElementById(viewId);
             if (target) {
                 target.classList.add('active-view');
+                currentActiveView = viewId;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+
             if (viewId === 'view-admin') renderAdminView();
             if (viewId === 'view-faculty') renderFacultyView();
             if (viewId === 'view-student') renderStudentView();
+            if (viewId === 'view-verify') performVerification();
         }
+
+        // Browser Back / Forward Button Handler (popstate)
+        window.addEventListener('popstate', (e) => {
+            let hash = window.location.hash.replace('#', '').trim();
+            if (!hash) hash = 'home';
+            const targetView = ROUTE_VIEWS[hash] || 'view-home';
+            showView(targetView, false);
+        });
+
+        // Hash change fallback
+        window.addEventListener('hashchange', () => {
+            let hash = window.location.hash.replace('#', '').trim();
+            if (!hash) hash = 'home';
+            const targetView = ROUTE_VIEWS[hash] || 'view-home';
+            if (targetView !== currentActiveView) {
+                showView(targetView, false);
+            }
+        });
 
         // --- 4. Login System ---
         let selectedLoginRole = 'admin';
@@ -1919,9 +2021,22 @@
             performVerification();
         }
 
-        // Initialize on load
+        // Initialize on load with full hash routing support
         window.addEventListener('DOMContentLoaded', () => {
             performVerification();
+
+            let hash = window.location.hash.replace('#', '').trim();
+            if (hash && ROUTE_VIEWS[hash]) {
+                if (['admin', 'faculty', 'student'].includes(hash) && !state.currentUser) {
+                    selectLoginRole(hash === 'admin' ? 'admin' : (hash === 'faculty' ? 'mentor' : 'student'));
+                    showView('view-login', false);
+                } else {
+                    showView(ROUTE_VIEWS[hash], false);
+                }
+            } else {
+                history.replaceState({ viewId: 'view-home', route: 'home' }, '', '#home');
+                showView('view-home', false);
+            }
         });
     </script>
 </body>
