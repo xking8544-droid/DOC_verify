@@ -34,7 +34,8 @@
         <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
             <i class="bi bi-shield-check me-2"></i>DocuVerify
         </a>
-        <div class="ms-auto">
+        <div class="ms-auto d-flex align-items-center gap-3">
+            <a href="${pageContext.request.contextPath}/registry" class="nav-link text-secondary"><i class="bi bi-journal-text me-1"></i>Registry</a>
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                     <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-outline-primary">Go to Dashboard</a>

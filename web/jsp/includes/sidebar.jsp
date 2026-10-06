@@ -56,17 +56,24 @@
             </button>
             
             <div class="ms-auto d-flex align-items-center">
-                <span class="me-3 fw-medium">Welcome, ${sessionScope.user.fullName != null ? sessionScope.user.fullName : sessionScope.username}</span>
-                <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle rounded-circle p-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle fs-5 text-primary"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile"><i class="bi bi-person me-2"></i>Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
-                    </ul>
-                </div>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <span class="me-3 fw-medium">Welcome, ${sessionScope.user.fullName != null ? sessionScope.user.fullName : sessionScope.username}</span>
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle rounded-circle p-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle fs-5 text-primary"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile"><i class="bi bi-person me-2"></i>Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${pageContext.request.contextPath}/login" class="btn btn-sm btn-primary"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </nav>

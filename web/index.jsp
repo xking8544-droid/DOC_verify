@@ -50,7 +50,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/verify">Verify Certificate</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/verify"><i class="bi bi-search me-1"></i>Verify Certificate</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/registry"><i class="bi bi-journal-text me-1"></i>Registry</a>
                     </li>
                     <c:choose>
                         <c:when test="${not empty sessionScope.user}">
