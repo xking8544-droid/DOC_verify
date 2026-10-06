@@ -25,6 +25,7 @@ public class AuthFilter implements Filter {
 
         // Allow public paths
         if (uri.endsWith("/login") || uri.endsWith("/register") || uri.endsWith("/verify") ||
+            uri.endsWith("/registry") ||
             uri.endsWith("/index.jsp") || uri.equals(req.getContextPath()) || uri.equals(req.getContextPath() + "/") ||
             uri.contains("/css/") || uri.contains("/js/") || uri.contains("/images/") || uri.contains("/fonts/")) {
             chain.doFilter(request, response);
