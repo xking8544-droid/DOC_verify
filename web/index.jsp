@@ -210,6 +210,23 @@
     <!-- Footer -->
     <footer class="bg-dark text-white py-4 text-center">
         <div class="container">
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3 small">
+                <a href="${pageContext.request.contextPath}/login" class="text-white-50 text-decoration-none hover-white">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Student & Faculty Login
+                </a>
+                <span class="text-white-50">•</span>
+                <a href="${pageContext.request.contextPath}/register" class="text-white-50 text-decoration-none hover-white">
+                    <i class="bi bi-person-plus me-1"></i> Student Registration
+                </a>
+                <span class="text-white-50">•</span>
+                <a href="${pageContext.request.contextPath}/verify" class="text-white-50 text-decoration-none hover-white">
+                    <i class="bi bi-shield-check me-1"></i> Public Verification
+                </a>
+                <span class="text-white-50">•</span>
+                <a href="${pageContext.request.contextPath}/registry" class="text-white-50 text-decoration-none hover-white">
+                    <i class="bi bi-journal-text me-1"></i> Certificate Registry
+                </a>
+            </div>
             <h6 class="fw-bold mb-1">Arya College of Engineering & I.T., Jaipur</h6>
             <p class="small text-white-50 mb-1">Project Based Learning (PBL) 2026-27 • Team 5A (PBL2627-AI&DS-A-051)</p>
             <p class="small text-white-50 mb-0">Team Leader: Amit Kumar • Mentor: Er. Ram Babu Buri (Dept. of CSE)</p>
