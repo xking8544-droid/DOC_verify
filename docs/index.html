@@ -357,6 +357,9 @@
                 <button class="btn btn-outline-primary btn-sm fw-semibold" onclick="showView('view-verify')">
                     <i class="bi bi-search me-1"></i> Verify Certificate
                 </button>
+                <button class="btn btn-outline-success btn-sm fw-semibold" onclick="showView('view-register')">
+                    <i class="bi bi-person-plus-fill me-1"></i> Student Register
+                </button>
                 <button class="btn btn-primary btn-sm fw-bold" onclick="showView('view-login')">
                     <i class="bi bi-box-arrow-in-right me-1"></i> Portal Login
                 </button>
@@ -388,6 +391,9 @@
                     </button>
                     <button onclick="showView('view-login')" class="btn btn-warning btn-lg px-4 fw-bold shadow-sm">
                         <i class="bi bi-person-lock me-2"></i> Student & Faculty Login
+                    </button>
+                    <button onclick="showView('view-register')" class="btn btn-outline-light btn-lg px-4 fw-bold shadow-sm">
+                        <i class="bi bi-person-plus-fill me-2"></i> New Student Registration
                     </button>
                 </div>
             </div>
@@ -514,6 +520,10 @@
                         <i class="bi bi-box-arrow-in-right me-1"></i> Student & Faculty Login
                     </a>
                     <span class="text-white-50">•</span>
+                    <a href="javascript:void(0)" onclick="showView('view-register')" class="text-white-50 text-decoration-none">
+                        <i class="bi bi-person-plus-fill me-1"></i> New Student Registration
+                    </a>
+                    <span class="text-white-50">•</span>
                     <a href="javascript:void(0)" onclick="showView('view-verify')" class="text-white-50 text-decoration-none">
                         <i class="bi bi-shield-check me-1"></i> Public Verification
                     </a>
@@ -599,6 +609,134 @@
                     <button type="submit" class="btn btn-portal-submit">
                         Sign In to Dashboard <i class="bi bi-arrow-right ms-1"></i>
                     </button>
+
+                    <div class="auth-footer mt-3 pt-3 border-top text-center small">
+                        <div class="mb-2">
+                            New student? <a href="javascript:void(0)" onclick="showView('view-register')" class="fw-bold text-primary text-decoration-none">
+                                <i class="bi bi-person-plus-fill me-1"></i> Create Student Profile / Register
+                            </a>
+                        </div>
+                        <div class="text-muted">
+                            <a href="javascript:void(0)" onclick="showView('view-verify')" class="text-decoration-none text-muted"><i class="bi bi-shield-check me-1"></i> Verify Certificate</a>
+                            <span class="mx-1">•</span>
+                            <a href="javascript:void(0)" onclick="showView('view-home')" class="text-decoration-none text-muted"><i class="bi bi-house me-1"></i> Portal Home</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================================== -->
+    <!-- VIEW: STUDENT REGISTRATION (Exact web/jsp/register.jsp)       -->
+    <!-- ============================================================== -->
+    <div id="view-register" class="app-view">
+        <!-- Top bar -->
+        <div class="college-topbar d-flex justify-content-between align-items-center">
+            <div>
+                <h4 class="arya-heading mb-0" onclick="showView('view-home')">ARYA COLLEGE OF ENGINEERING & I.T.</h4>
+                <small class="text-muted fw-semibold">Student Profile Registration • Dept. of CSE & AI&DS • REAP CODE 14</small>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-outline-primary btn-sm" onclick="showView('view-login')">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" onclick="goBackOrHome()">
+                    <i class="bi bi-arrow-left me-1"></i> Back
+                </button>
+            </div>
+        </div>
+
+        <div class="login-view-wrapper">
+            <div class="auth-card" style="max-width: 560px;">
+                <div class="text-center mb-3">
+                    <div class="d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-success bg-opacity-10 text-success mb-2" style="width: 58px; height: 58px;">
+                        <i class="bi bi-person-plus-fill fs-2"></i>
+                    </div>
+                    <h4 class="fw-bold text-dark mb-1">Create Student Profile</h4>
+                    <p class="text-muted small mb-0">Register your university credentials for event certificate issuance</p>
+                </div>
+
+                <form onsubmit="handleStudentRegister(event)">
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-dark mb-1">Full Student Name <span class="text-danger">*</span></label>
+                            <div class="input-group-modern">
+                                <span class="input-icon"><i class="bi bi-person"></i></span>
+                                <input type="text" id="regFullName" required placeholder="e.g. Rahul Verma">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-dark mb-1">University Roll No <span class="text-danger">*</span></label>
+                            <div class="input-group-modern">
+                                <span class="input-icon"><i class="bi bi-credit-card-2-front"></i></span>
+                                <input type="text" id="regRollNo" required placeholder="e.g. 24EAIDS058">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-dark mb-1">Academic Branch</label>
+                            <div class="input-group-modern">
+                                <span class="input-icon"><i class="bi bi-diagram-3"></i></span>
+                                <select id="regBranch" class="form-select border-0">
+                                    <option value="AI & Data Science" selected>AI & Data Science (AI&DS)</option>
+                                    <option value="Computer Science (CSE)">Computer Science (CSE)</option>
+                                    <option value="Information Technology (IT)">Information Technology (IT)</option>
+                                    <option value="Electronics & Comm. (ECE)">Electronics & Comm. (ECE)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-dark mb-1">Semester / Year</label>
+                            <div class="input-group-modern">
+                                <span class="input-icon"><i class="bi bi-calendar3"></i></span>
+                                <select id="regYear" class="form-select border-0">
+                                    <option value="3rd Year / 5th Sem" selected>3rd Year / 5th Semester</option>
+                                    <option value="3rd Year / 6th Sem">3rd Year / 6th Semester</option>
+                                    <option value="2nd Year / 4th Sem">2nd Year / 4th Semester</option>
+                                    <option value="4th Year / 7th Sem">4th Year / 7th Semester</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-dark mb-1">Portal Username <span class="text-danger">*</span></label>
+                        <div class="input-group-modern">
+                            <span class="input-icon"><i class="bi bi-at"></i></span>
+                            <input type="text" id="regUsername" required placeholder="Choose username (or use Roll No)">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-dark mb-1">College / Official Email <span class="text-danger">*</span></label>
+                        <div class="input-group-modern">
+                            <span class="input-icon"><i class="bi bi-envelope"></i></span>
+                            <input type="email" id="regEmail" required placeholder="e.g. rahul@aryacollege.in">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-dark mb-1">Create Password <span class="text-danger">*</span></label>
+                        <div class="input-group-modern">
+                            <span class="input-icon"><i class="bi bi-shield-lock"></i></span>
+                            <input type="password" id="regPassword" required placeholder="Create a secure password">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-portal-submit">
+                        Complete Student Registration <i class="bi bi-check-circle ms-1"></i>
+                    </button>
+
+                    <div class="text-center mt-3 pt-3 border-top small text-muted">
+                        Already registered? 
+                        <a href="javascript:void(0)" onclick="showView('view-login')" class="fw-bold text-primary text-decoration-none">
+                            Sign in with your Roll Number / Username
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -925,7 +1063,7 @@
                 <small class="text-muted fw-semibold">Event & Merit E-Certificate Portal | REAP CODE 14</small>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <span class="badge bg-light text-dark border p-2">
+                <span class="badge bg-light text-dark border p-2" id="studentHeaderBadge">
                     <i class="bi bi-person-circle text-primary me-1"></i> Amit Kumar (24EAIDS051)
                 </span>
                 <button class="btn btn-outline-danger btn-sm" onclick="performLogout()">
@@ -949,8 +1087,8 @@
             <!-- Student Hero Profile Banner -->
             <div class="student-hero d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <div>
-                    <h3 class="fw-bold mb-1">Welcome back, Amit Kumar! 🎓</h3>
-                    <p class="mb-0 text-white-50">
+                    <h3 class="fw-bold mb-1" id="studentWelcomeHeading">Welcome back, Amit Kumar! 🎓</h3>
+                    <p class="mb-0 text-white-50" id="studentProfileDetails">
                         Roll No: <strong class="text-white">24EAIDS051</strong> &nbsp;|&nbsp; 
                         Branch: <strong class="text-white">AI & Data Science</strong> &nbsp;|&nbsp; 
                         Year: <strong class="text-white">3rd Year (5th Sem)</strong>
@@ -1301,7 +1439,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="adminUsersTableBody">
                                 <tr>
                                     <td class="ps-3 fw-bold">1</td>
                                     <td>Dr. S. K. Sharma</td>
@@ -1424,9 +1562,18 @@
             }
         ];
 
+        const DEFAULT_USERS = [
+            { id: 1, fullName: "Dr. S. K. Sharma", username: "admin", role: "admin", branch: "HOD - CSE & AI&DS", rollNo: "", active: true },
+            { id: 2, fullName: "Prof. Rajesh Gupta", username: "faculty", role: "mentor", branch: "Event Coordinator", rollNo: "", active: true },
+            { id: 3, fullName: "Amit Kumar", username: "student", role: "student", branch: "AI & Data Science", year: "3rd Year (5th Sem)", rollNo: "24EAIDS051", active: true },
+            { id: 4, fullName: "Ayush Sharma", username: "ayush", role: "student", branch: "AI & Data Science", year: "3rd Year (5th Sem)", rollNo: "24EAIDS052", active: true },
+            { id: 5, fullName: "Chetan Sharma", username: "chetan", role: "student", branch: "AI & Data Science", year: "3rd Year (5th Sem)", rollNo: "24EAIDS053", active: true }
+        ];
+
         // Load State from LocalStorage or Defaults
         let state = {
             currentUser: null,
+            users: JSON.parse(localStorage.getItem('docu_users') || JSON.stringify(DEFAULT_USERS)),
             certificates: JSON.parse(localStorage.getItem('docu_certs') || JSON.stringify(DEFAULT_CERTIFICATES)),
             pendingAdmin: JSON.parse(localStorage.getItem('docu_pending_admin') || JSON.stringify(DEFAULT_PENDING_ADMIN)),
             pendingFaculty: JSON.parse(localStorage.getItem('docu_pending_faculty') || JSON.stringify(DEFAULT_PENDING_FACULTY)),
@@ -1434,6 +1581,7 @@
         };
 
         function persistState() {
+            localStorage.setItem('docu_users', JSON.stringify(state.users));
             localStorage.setItem('docu_certs', JSON.stringify(state.certificates));
             localStorage.setItem('docu_pending_admin', JSON.stringify(state.pendingAdmin));
             localStorage.setItem('docu_pending_faculty', JSON.stringify(state.pendingFaculty));
@@ -1453,6 +1601,7 @@
         const VIEW_ROUTES = {
             'view-home': 'home',
             'view-login': 'login',
+            'view-register': 'register',
             'view-verify': 'verify',
             'view-admin': 'admin',
             'view-faculty': 'faculty',
@@ -1462,6 +1611,7 @@
         const ROUTE_VIEWS = {
             'home': 'view-home',
             'login': 'view-login',
+            'register': 'view-register',
             'verify': 'view-verify',
             'admin': 'view-admin',
             'faculty': 'view-faculty',
@@ -1594,18 +1744,94 @@
             document.getElementById('inputPassword').value = pass;
         }
 
+        function handleStudentRegister(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('regFullName').value.trim();
+            const rollNo = document.getElementById('regRollNo').value.trim().toUpperCase();
+            const branch = document.getElementById('regBranch').value;
+            const year = document.getElementById('regYear').value;
+            const username = document.getElementById('regUsername').value.trim().toLowerCase();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+
+            // Check if already registered
+            const exists = state.users.some(u => 
+                u.username.toLowerCase() === username || 
+                (u.rollNo && u.rollNo.toUpperCase() === rollNo)
+            );
+
+            if (exists) {
+                alert('⚠️ A student with this Roll Number (' + rollNo + ') or Username (' + username + ') is already registered.\n\nRedirecting you to login.');
+                selectLoginRole('student');
+                document.getElementById('inputUsername').value = rollNo;
+                document.getElementById('inputPassword').value = '';
+                showView('view-login');
+                return;
+            }
+
+            const newUser = {
+                id: state.users.length + 1,
+                fullName: fullName,
+                username: username,
+                rollNo: rollNo,
+                branch: branch,
+                year: year,
+                email: email,
+                password: password,
+                role: 'student',
+                active: true
+            };
+
+            state.users.push(newUser);
+            persistState();
+
+            alert('🎉 Registration Successful!\n\nStudent profile created for:\nName: ' + fullName + '\nRoll No: ' + rollNo + '\nBranch: ' + branch + '\n\nPlease sign in with your credentials.');
+
+            // Switch to login view, select student tab, and autofill
+            selectLoginRole('student');
+            document.getElementById('inputUsername').value = rollNo;
+            document.getElementById('inputPassword').value = password;
+            showView('view-login');
+        }
+
         function performLogin(e) {
             e.preventDefault();
             const u = document.getElementById('inputUsername').value.trim();
+            const uLower = u.toLowerCase();
 
-            if (selectedLoginRole === 'admin' || u === 'admin') {
-                state.currentUser = { role: 'admin', name: 'Dr. S. K. Sharma' };
+            if (selectedLoginRole === 'admin' || uLower === 'admin') {
+                state.currentUser = { role: 'admin', name: 'Dr. S. K. Sharma', username: 'admin' };
                 showView('view-admin');
-            } else if (selectedLoginRole === 'mentor' || u === 'faculty') {
-                state.currentUser = { role: 'mentor', name: 'Prof. Rajesh Gupta' };
+            } else if (selectedLoginRole === 'mentor' || uLower === 'faculty' || uLower === 'mentor') {
+                state.currentUser = { role: 'mentor', name: 'Prof. Rajesh Gupta', username: 'faculty' };
                 showView('view-faculty');
             } else {
-                state.currentUser = { role: 'student', name: 'Amit Kumar', rollNo: '24EAIDS051' };
+                // Find matching student by username or rollNo
+                const matchedUser = state.users.find(usr => 
+                    usr.role === 'student' && 
+                    (usr.username.toLowerCase() === uLower || (usr.rollNo && usr.rollNo.toLowerCase() === uLower))
+                );
+
+                if (matchedUser) {
+                    state.currentUser = {
+                        role: 'student',
+                        name: matchedUser.fullName,
+                        rollNo: matchedUser.rollNo,
+                        branch: matchedUser.branch || 'AI & Data Science',
+                        year: matchedUser.year || '3rd Year (5th Sem)',
+                        username: matchedUser.username
+                    };
+                } else {
+                    // Default fallback
+                    state.currentUser = {
+                        role: 'student',
+                        name: u.toUpperCase() === '24EAIDS051' ? 'Amit Kumar' : u,
+                        rollNo: u.toUpperCase() === '24EAIDS051' ? '24EAIDS051' : (u.toUpperCase().startsWith('24E') ? u.toUpperCase() : '24EAIDS051'),
+                        branch: 'AI & Data Science',
+                        year: '3rd Year (5th Sem)',
+                        username: u
+                    };
+                }
                 showView('view-student');
             }
         }
@@ -1623,7 +1849,7 @@
 
         function renderAdminView() {
             // Stats
-            document.getElementById('statAdminUsers').innerText = '8';
+            document.getElementById('statAdminUsers').innerText = state.users.length;
             document.getElementById('statAdminIssued').innerText = Object.keys(state.certificates).length;
             document.getElementById('statAdminPending').innerText = state.pendingAdmin.length;
 
@@ -1698,14 +1924,21 @@
             // Remove from admin pending
             state.pendingAdmin.splice(index, 1);
 
-            // Update student tracking if matches
-            state.studentApps.push({
-                appNo: item.appNo,
-                eventName: item.eventName,
-                category: item.category,
-                rosterMatched: true,
-                status: "Approved & Issued"
-            });
+            // Update student tracking
+            const existingApp = state.studentApps.find(a => a.appNo === item.appNo);
+            if (existingApp) {
+                existingApp.status = "Approved & Issued";
+            } else {
+                state.studentApps.push({
+                    appNo: item.appNo,
+                    studentName: item.studentName,
+                    rollNo: item.rollNo,
+                    eventName: item.eventName,
+                    category: item.category,
+                    rosterMatched: true,
+                    status: "Approved & Issued"
+                });
+            }
 
             persistState();
             renderAdminView();
@@ -1717,7 +1950,29 @@
             new bootstrap.Modal(document.getElementById('directIssueModal')).show();
         }
 
+        function renderAdminUsersTable() {
+            const tbody = document.getElementById('adminUsersTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            state.users.forEach((u, idx) => {
+                const badgeColor = u.role === 'admin' ? 'bg-danger' : (u.role === 'mentor' ? 'bg-primary' : 'bg-info text-dark');
+                const branchText = u.rollNo ? `${u.branch || 'AI & Data Science'} (${u.rollNo})` : (u.branch || 'Arya College');
+                const row = `
+                    <tr>
+                        <td class="ps-3 fw-bold">${u.id || (idx + 1)}</td>
+                        <td>${u.fullName}</td>
+                        <td>${u.username}</td>
+                        <td><span class="badge ${badgeColor}">${(u.role === 'mentor' ? 'FACULTY' : u.role).toUpperCase()}</span></td>
+                        <td>${branchText}</td>
+                        <td><span class="badge bg-success">Active</span></td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
         function openManageUsersModal() {
+            renderAdminUsersTable();
             new bootstrap.Modal(document.getElementById('manageUsersModal')).show();
         }
 
@@ -1814,6 +2069,11 @@
 
         function facultyReject(index) {
             const item = state.pendingFaculty[index];
+            if (!item) return;
+            const existingApp = state.studentApps.find(a => a.appNo === item.appNo);
+            if (existingApp) {
+                existingApp.status = "Rejected by Faculty (Roster Discrepancy)";
+            }
             state.pendingFaculty.splice(index, 1);
             persistState();
             renderFacultyView();
@@ -1822,49 +2082,75 @@
 
         // --- 7. Student Dashboard Actions ---
         function renderStudentView() {
-            const myCerts = Object.values(state.certificates).filter(c => c.rollNo === '24EAIDS051');
+            const currentRoll = (state.currentUser && state.currentUser.rollNo) ? state.currentUser.rollNo : '24EAIDS051';
+            const currentName = (state.currentUser && state.currentUser.name) ? state.currentUser.name : 'Amit Kumar';
+            const currentBranch = (state.currentUser && state.currentUser.branch) ? state.currentUser.branch : 'AI & Data Science';
+            const currentYear = (state.currentUser && state.currentUser.year) ? state.currentUser.year : '3rd Year (5th Sem)';
+
+            // Update banner profile elements
+            const badgeEl = document.getElementById('studentHeaderBadge');
+            if (badgeEl) badgeEl.innerText = `${currentRoll} | ${currentBranch}`;
+
+            const welcomeEl = document.getElementById('studentWelcomeHeading');
+            if (welcomeEl) welcomeEl.innerText = `Welcome, ${currentName}!`;
+
+            const profileEl = document.getElementById('studentProfileDetails');
+            if (profileEl) profileEl.innerText = `University Roll No: ${currentRoll} • Department: ${currentBranch} • ${currentYear}`;
+
+            const myCerts = Object.values(state.certificates).filter(c => c.rollNo === currentRoll);
+            const myApps = state.studentApps.filter(a => (!a.rollNo && currentRoll === '24EAIDS051') || a.rollNo === currentRoll);
+
             document.getElementById('studentStatApproved').innerText = myCerts.length;
-            document.getElementById('studentStatPending').innerText = state.studentApps.filter(a => a.status.includes('Pending')).length;
-            document.getElementById('studentStatTotal').innerText = state.studentApps.length;
+            document.getElementById('studentStatPending').innerText = myApps.filter(a => a.status.includes('Pending')).length;
+            document.getElementById('studentStatTotal').innerText = myApps.length;
             document.getElementById('tabCountCerts').innerText = myCerts.length;
-            document.getElementById('tabCountApps').innerText = state.studentApps.length;
+            document.getElementById('tabCountApps').innerText = myApps.length;
 
             // Certs table
             const cBody = document.getElementById('studentCertTableBody');
             cBody.innerHTML = '';
-            myCerts.forEach(cert => {
-                const row = `
-                    <tr>
-                        <td class="ps-3 fw-bold text-primary font-monospace">${cert.certId}</td>
-                        <td><span class="badge bg-primary">${cert.category}</span></td>
-                        <td>${cert.eventName}</td>
-                        <td><span class="badge bg-success bg-opacity-10 text-success border border-success">${cert.grade}</span></td>
-                        <td><span class="badge bg-success">Issued & Verified</span></td>
-                        <td class="text-end pe-3">
-                            <button class="btn btn-sm btn-outline-primary" onclick="quickTestVerify('${cert.certId}')">
-                                <i class="bi bi-shield-check me-1"></i> View Cryptographic Proof
-                            </button>
-                        </td>
-                    </tr>
-                `;
-                cBody.insertAdjacentHTML('beforeend', row);
-            });
+            if (myCerts.length === 0) {
+                cBody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-muted"><i class="bi bi-info-circle me-1"></i> No issued certificates found for Roll No <strong>${currentRoll}</strong>. Apply for an event below to get started!</td></tr>`;
+            } else {
+                myCerts.forEach(cert => {
+                    const row = `
+                        <tr>
+                            <td class="ps-3 fw-bold text-primary font-monospace">${cert.certId}</td>
+                            <td><span class="badge bg-primary">${cert.category}</span></td>
+                            <td>${cert.eventName}</td>
+                            <td><span class="badge bg-success bg-opacity-10 text-success border border-success">${cert.grade}</span></td>
+                            <td><span class="badge bg-success">Issued & Verified</span></td>
+                            <td class="text-end pe-3">
+                                <button class="btn btn-sm btn-outline-primary" onclick="quickTestVerify('${cert.certId}')">
+                                    <i class="bi bi-shield-check me-1"></i> View Cryptographic Proof
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    cBody.insertAdjacentHTML('beforeend', row);
+                });
+            }
 
             // Apps table
             const aBody = document.getElementById('studentAppTableBody');
             aBody.innerHTML = '';
-            state.studentApps.forEach(app => {
-                const row = `
-                    <tr>
-                        <td class="ps-3 font-monospace fw-bold">${app.appNo}</td>
-                        <td>${app.eventName}</td>
-                        <td><span class="badge bg-primary">${app.category}</span></td>
-                        <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span></td>
-                        <td><span class="badge ${app.status.includes('Pending') ? 'bg-warning text-dark' : 'bg-success'}">${app.status}</span></td>
-                    </tr>
-                `;
-                aBody.insertAdjacentHTML('beforeend', row);
-            });
+            if (myApps.length === 0) {
+                aBody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-muted"><i class="bi bi-info-circle me-1"></i> No submitted claims yet. Click <strong>"Claim Certificate"</strong> above to participate!</td></tr>`;
+            } else {
+                myApps.forEach(app => {
+                    const badgeClass = app.status.includes('Pending') ? 'bg-warning text-dark' : (app.status.includes('Approved') ? 'bg-success' : 'bg-danger');
+                    const row = `
+                        <tr>
+                            <td class="ps-3 font-monospace fw-bold">${app.appNo}</td>
+                            <td>${app.eventName}</td>
+                            <td><span class="badge bg-primary">${app.category}</span></td>
+                            <td><span class="badge bg-success"><i class="bi bi-check-circle me-1"></i> Roster Matched (Genuine)</span></td>
+                            <td><span class="badge ${badgeClass}">${app.status}</span></td>
+                        </tr>
+                    `;
+                    aBody.insertAdjacentHTML('beforeend', row);
+                });
+            }
         }
 
         function switchStudentTab(tab) {
@@ -1895,9 +2181,15 @@
             const proof = document.getElementById('inpProofUrl').value;
             const appNo = 'APP-2026-' + Math.floor(100 + Math.random() * 900);
 
+            const currentRoll = (state.currentUser && state.currentUser.rollNo) ? state.currentUser.rollNo : '24EAIDS051';
+            const currentName = (state.currentUser && state.currentUser.name) ? state.currentUser.name : 'Amit Kumar';
+            const currentBranch = (state.currentUser && state.currentUser.branch) ? state.currentUser.branch : 'AI&DS';
+
             // Add to student applications
             state.studentApps.unshift({
                 appNo: appNo,
+                studentName: currentName,
+                rollNo: currentRoll,
                 eventName: eventName,
                 category: category,
                 rosterMatched: true,
@@ -1907,9 +2199,9 @@
             // Add to faculty queue
             state.pendingFaculty.unshift({
                 appNo: appNo,
-                studentName: "Amit Kumar",
-                rollNo: "24EAIDS051",
-                branch: "AI&DS",
+                studentName: currentName,
+                rollNo: currentRoll,
+                branch: currentBranch,
                 category: category,
                 eventName: eventName,
                 position: pos,

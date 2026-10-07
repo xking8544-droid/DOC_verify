@@ -14,3 +14,7 @@ logs/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Offline Submission Documents (Keep local, do not push to Git)
+PBL_Submission_Documents/
+
