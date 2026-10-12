@@ -163,10 +163,11 @@ Start Tomcat (`catalina.bat run`) and open:
   
 ### Documentation LINK->
 - **SRS:** https://drive.google.com/file/d/1EuArnrJHhOlKqVSlGKF9LvPzRLzwvmNS/view?usp=drivesdk
-- **REPORT:** ``
-- **RESEARCH PAPER:** ``
-- **PPT:**  ``
-- **VIDEO:**``
+- **REPORT:** https://drive.google.com/file/d/1iYBdZ6-UdD3CmDQoy7g129xTqG1U8Mbe/view?usp=drivesdk
+- **RESEARCH PAPER:** https://drive.google.com/file/d/1oFcsyYQS0i_ltcHJCLOFDaEfr_M7q6To/view?usp=drivesdk
+- **PPT:** https://docs.google.com/presentation/d/1hppDrfImGMn8384Tv-ScooyxHZhcpfJA/edit?usp=drivesdk&ouid=114305611851050083954&rtpof=true&sd=true
+- **ABSTRACT:**https://drive.google.com/file/d/1G_HYJ0VG8EckQ1qv5Dp1cNCGN5ZHXxvM/view?usp=drivesdk
+- **Dfd:**https://drive.google.com/file/d/1H8OnhGwx5MOC5z6s_QUSjahAlBKqnIfz/view?usp=drivesdk
 ---
 
 ## 📜 Academic License
