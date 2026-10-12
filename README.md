@@ -160,7 +160,13 @@ Start Tomcat (`catalina.bat run`) and open:
 - **Faculty Reviewer:** `mentor` / `mentor123`
 - **Student Portal:** `24EAIDS051` / `student123`
 - **Public Verification:** Test Certificate ID `ACEIT-2026-TECH-5143`
-
+  
+### Documentation LINK->
+-SRS:
+-REPORT:
+-PPT:
+-RESEARCH PAPER:
+-VIDEO:
 ---
 
 ## 📜 Academic License
