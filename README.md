@@ -162,11 +162,11 @@ Start Tomcat (`catalina.bat run`) and open:
 - **Public Verification:** Test Certificate ID `ACEIT-2026-TECH-5143`
   
 ### Documentation LINK->
--SRS:
--REPORT:
--PPT:
--RESEARCH PAPER:
--VIDEO:
+- **SRS:** `admin` / `admin123`
+- **REPORT:** `mentor` / `mentor123`
+- **RESEARCH PAPER:** `24EAIDS051` / `student123`
+- **PPT:**  `ACEIT-2026-TECH-5143`
+- **VIDEO:**``
 ---
 
 ## 📜 Academic License
