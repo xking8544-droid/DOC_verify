@@ -776,6 +776,11 @@
                             <i class="bi bi-journal-text"></i> Issued Cert Archive
                         </a>
                     </li>
+                    <li>
+                        <a onclick="openTemplateModal()">
+                            <i class="bi bi-file-earmark-richtext-fill text-warning"></i> Certificate Templates
+                        </a>
+                    </li>
                     <hr class="mx-3 my-2 text-muted">
                     <li class="px-4 py-1 text-muted small fw-bold text-uppercase">Navigation</li>
                     <li>
@@ -1488,6 +1493,123 @@
         </div>
     </div>
 
+    <!-- 4. Certificate Template Modal (Admin) -->
+    <div class="modal fade" id="templateModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-file-earmark-richtext-fill text-warning me-2"></i>Certificate Template Manager</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <!-- Left: Template Options -->
+                        <div class="col-md-4">
+                            <h6 class="fw-bold text-dark mb-3"><i class="bi bi-palette me-2 text-primary"></i>Template Style</h6>
+                            <div class="mb-3">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="tplStyle" id="tplGold" value="gold" checked onchange="previewTemplate()">
+                                    <label class="form-check-label fw-semibold" for="tplGold">🏅 Gold Classic (Default)</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="tplStyle" id="tplBlue" value="blue" onchange="previewTemplate()">
+                                    <label class="form-check-label fw-semibold" for="tplBlue">🔵 Royal Blue</label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="tplStyle" id="tplRed" value="red" onchange="previewTemplate()">
+                                    <label class="form-check-label fw-semibold" for="tplRed">🔴 Crimson Academic</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <h6 class="fw-bold text-dark mb-3"><i class="bi bi-image me-2 text-success"></i>Custom Background Template</h6>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Upload Your Template Image (PNG/JPG):</label>
+                                <input type="file" id="customTemplateFile" class="form-control form-control-sm" accept="image/*" onchange="loadCustomTemplate(event)">
+                                <div class="form-text">Upload a certificate background (1123×794px recommended)</div>
+                            </div>
+                            <div id="customTemplateStatus" class="d-none">
+                                <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Custom Template Loaded</span>
+                                <button class="btn btn-sm btn-outline-danger ms-2" onclick="clearCustomTemplate()">Remove</button>
+                            </div>
+                            <hr>
+                            <h6 class="fw-bold text-dark mb-3"><i class="bi bi-gear me-2 text-secondary"></i>Preview With Data</h6>
+                            <div class="mb-2">
+                                <label class="form-label small fw-bold">Student Name:</label>
+                                <input type="text" id="prevName" class="form-control form-control-sm" value="Amit Kumar" oninput="previewTemplate()">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small fw-bold">Roll Number:</label>
+                                <input type="text" id="prevRoll" class="form-control form-control-sm" value="24EAIDS051" oninput="previewTemplate()">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small fw-bold">Event Name:</label>
+                                <input type="text" id="prevEvent" class="form-control form-control-sm" value="CodeStorm Hackathon 2026" oninput="previewTemplate()">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label small fw-bold">Award / Position:</label>
+                                <input type="text" id="prevAward" class="form-control form-control-sm" value="1st Place - Winner" oninput="previewTemplate()">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Category:</label>
+                                <input type="text" id="prevCategory" class="form-control form-control-sm" value="Technical" oninput="previewTemplate()">
+                            </div>
+                            <button class="btn btn-success w-100 fw-bold" onclick="saveTemplateSettings()">
+                                <i class="bi bi-floppy-fill me-1"></i>Save Template Settings
+                            </button>
+                        </div>
+                        <!-- Right: Live Preview -->
+                        <div class="col-md-8">
+                            <h6 class="fw-bold text-dark mb-3"><i class="bi bi-eye me-2 text-warning"></i>Live Certificate Preview</h6>
+                            <div id="certPreviewBox" style="transform-origin:top left; overflow:hidden; border:2px solid #dee2e6; border-radius:8px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Email Notification Modal (Admin) -->
+    <div class="modal fade" id="emailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-envelope-fill text-primary me-2"></i>Send Certificate Email Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info small mb-3">
+                        <i class="bi bi-info-circle me-1"></i>
+                        A pre-composed email with the student's certificate details is ready. Click <strong>Send Email</strong> to open your mail client and deliver it.
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">To (Student Email):</label>
+                        <input type="email" id="emailTo" class="form-control" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Subject:</label>
+                        <input type="text" id="emailSubject" class="form-control" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Email Body:</label>
+                        <textarea id="emailBody" class="form-control font-monospace small" rows="10" readonly></textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary fw-bold flex-grow-1" onclick="sendEmailNow()">
+                            <i class="bi bi-send-fill me-1"></i> Send Email (Opens Mail Client)
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="copyEmailBody()">
+                            <i class="bi bi-clipboard me-1"></i> Copy Body
+                        </button>
+                    </div>
+                    <div id="emailSentBadge" class="d-none mt-3 text-center">
+                        <span class="badge bg-success px-3 py-2 fs-6">
+                            <i class="bi bi-check-circle-fill me-2"></i>Email Sent Successfully via Mail Client!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1891,8 +2013,11 @@
                         <td>${cert.issueDate}</td>
                         <td><span class="badge bg-dark font-monospace text-success">${cert.hash.substring(0, 24)}...</span></td>
                         <td class="text-end pe-3">
-                            <button class="btn btn-sm btn-outline-primary" onclick="quickTestVerify('${cert.certId}')">
-                                <i class="bi bi-shield-check me-1"></i> Verify Proof
+                            <button class="btn btn-sm btn-success fw-bold me-1" onclick="generateCertificate('${cert.certId}')">
+                                <i class="bi bi-file-earmark-arrow-down me-1"></i> Generate
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary me-1" onclick="openEmailModal('${cert.certId}')">
+                                <i class="bi bi-envelope me-1"></i> Email
                             </button>
                         </td>
                     </tr>
@@ -2121,8 +2246,8 @@
                             <td><span class="badge bg-success bg-opacity-10 text-success border border-success">${cert.grade}</span></td>
                             <td><span class="badge bg-success">Issued & Verified</span></td>
                             <td class="text-end pe-3">
-                                <button class="btn btn-sm btn-outline-primary" onclick="quickTestVerify('${cert.certId}')">
-                                    <i class="bi bi-shield-check me-1"></i> View Cryptographic Proof
+                                <button class="btn btn-sm btn-success fw-bold me-1" onclick="generateCertificate('${cert.certId}')">
+                                    <i class="bi bi-download me-1"></i> Download
                                 </button>
                             </td>
                         </tr>
@@ -2311,6 +2436,207 @@
             showView('view-verify');
             document.getElementById('certSearchInput').value = id;
             performVerification();
+        }
+
+        // =====================================================
+        // --- CERTIFICATE TEMPLATE & GENERATION ENGINE ---
+        // =====================================================
+
+        let certTemplateStyle = localStorage.getItem('docu_tpl_style') || 'gold';
+        let certCustomBg = localStorage.getItem('docu_tpl_custom_bg') || null;
+
+        const TPL_THEMES = {
+            gold: { bg:'linear-gradient(135deg,#fffdf0,#fef9e7)', border:'#c9a227', border2:'#8b6914', accent:'#7d5a1e', titleColor:'#5c3d00', ribbon:'#c9a227', ribbonText:'#fff' },
+            blue: { bg:'linear-gradient(135deg,#f0f4ff,#e8eeff)', border:'#1e40af', border2:'#1e3a8a', accent:'#1e40af', titleColor:'#0f2b5c', ribbon:'#1e40af', ribbonText:'#fff' },
+            red:  { bg:'linear-gradient(135deg,#fff5f5,#ffe8e8)', border:'#d32f2f', border2:'#b71c1c', accent:'#c62828', titleColor:'#7f0000', ribbon:'#d32f2f', ribbonText:'#fff' }
+        };
+
+        function getCertHTML(cert, forPrint) {
+            const t = TPL_THEMES[certTemplateStyle] || TPL_THEMES.gold;
+            const hasBg = certCustomBg && certCustomBg.startsWith('data:');
+            const bgStyle = hasBg ? `background-image:url('${certCustomBg}');background-size:cover;background-position:center;` : `background:${t.bg};`;
+            return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Certificate - ${cert.certId}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Lato',sans-serif;background:#e0e0e0;display:flex;justify-content:center;padding:20px}
+.cp{width:1100px;min-height:780px;${bgStyle}border:14px solid ${t.border};outline:4px solid ${t.border2};outline-offset:-22px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:48px 64px 40px;box-shadow:0 8px 40px rgba(0,0,0,.18)}
+.ch{text-align:center;width:100%}.cn{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:${t.titleColor};letter-spacing:2px;text-transform:uppercase}
+.cs{font-size:.85rem;color:${t.accent};letter-spacing:1.5px;margin-top:4px}
+.dv{width:85%;height:2px;background:linear-gradient(90deg,transparent,${t.border},transparent);margin:14px auto}
+.ct{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;color:${t.titleColor};letter-spacing:4px;text-align:center;margin:8px 0 4px}
+.cst{font-size:1.05rem;color:${t.accent};text-align:center;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.cb{text-align:center;width:100%;padding:0 20px}
+.pt{font-size:1rem;color:#555;letter-spacing:1px;margin:18px 0 6px}
+.sn{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:${t.titleColor};border-bottom:2px solid ${t.border};padding-bottom:4px;display:inline-block}
+.rb{font-size:1rem;color:#666;margin:8px 0 14px}
+.cd{font-size:1.05rem;color:#444;line-height:1.8;max-width:700px;margin:0 auto 8px}
+.en{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:${t.accent};margin:6px 0}
+.ab{display:inline-block;background:${t.ribbon};color:${t.ribbonText};padding:8px 32px;font-size:1.1rem;font-weight:700;letter-spacing:1px;border-radius:3px;margin:10px 0 6px}
+.cf{width:100%;display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px}
+.sb{text-align:center}.sl{width:160px;border-top:2px solid ${t.border};margin:0 auto 4px}
+.sn2{font-size:.85rem;font-weight:700;color:${t.accent}}.st{font-size:.75rem;color:#777}
+.ci{text-align:center}.cid{font-size:.8rem;font-family:monospace;color:#888;letter-spacing:1px}
+.cd2{font-size:.8rem;color:#888;margin-top:2px}
+.co{position:absolute;width:60px;height:60px;border:3px solid ${t.border}}
+.tl{top:14px;left:14px;border-right:none;border-bottom:none}.tr{top:14px;right:14px;border-left:none;border-bottom:none}
+.bl{bottom:14px;left:14px;border-right:none;border-top:none}.br{bottom:14px;right:14px;border-left:none;border-top:none}
+.cc{display:inline-block;background:${t.accent};color:#fff;font-size:.75rem;padding:3px 12px;border-radius:20px;letter-spacing:1px;margin-bottom:8px}
+@media print{body{background:white;padding:0}.cp{box-shadow:none}.np{display:none!important}}</style></head>
+<body><div class="cp">
+<div class="co tl"></div><div class="co tr"></div><div class="co bl"></div><div class="co br"></div>
+<div class="ch"><div class="cn">Arya College of Engineering &amp; I.T.</div>
+<div class="cs">SP-40, RIICO Industrial Area, Kukas, Jaipur, Rajasthan | RTU Affiliated | AICTE Approved | REAP Code: 14</div>
+<div class="dv"></div><div class="ct">Certificate</div><div class="cst">of Achievement</div></div>
+<div class="cb"><div class="pt">This is to certify that</div>
+<div class="sn">${cert.studentName}</div>
+<div class="rb">University Roll No: <strong>${cert.rollNo}</strong> &nbsp;|&nbsp; Department of CSE &amp; AI&amp;DS</div>
+<div class="cd">has successfully participated and achieved a distinguished position in the</div>
+<span class="cc">${cert.category}</span>
+<div class="en">${cert.eventName}</div>
+<div class="cd">organized by Arya College of Engineering &amp; I.T., Jaipur</div>
+<div class="ab">🏆 &nbsp; ${cert.grade} &nbsp; 🏆</div>
+<div class="dv"></div></div>
+<div class="cf">
+<div class="sb"><div class="sl"></div><div class="sn2">Prof. Rajesh Gupta</div><div class="st">Faculty Coordinator</div><div class="st">Dept. of CSE &amp; AI&amp;DS</div></div>
+<div class="ci"><div class="cid">Cert ID: ${cert.certId}</div><div class="cd2">Date of Issue: ${cert.issueDate}</div><div class="cd2" style="color:#aaa;font-size:.7rem;margin-top:4px">Digitally verified · Arya College Portal</div>
+${forPrint ? `<button class="np" onclick="window.print()" style="margin-top:10px;background:#1e40af;color:#fff;border:none;padding:8px 24px;border-radius:4px;font-size:.9rem;cursor:pointer;font-weight:700">🖨️ Print / Save as PDF</button>` : ''}</div>
+<div class="sb"><div class="sl"></div><div class="sn2">Dr. S. K. Sharma</div><div class="st">Head of Department</div><div class="st">CSE &amp; AI&amp;DS, ACEIT</div></div>
+</div></div></body></html>`;
+        }
+
+        function generateCertificate(certId) {
+            const cert = state.certificates[certId];
+            if (!cert) { alert('Certificate not found!'); return; }
+            const win = window.open('', '_blank', 'width=1160,height=860,scrollbars=yes');
+            win.document.write(getCertHTML(cert, true));
+            win.document.close();
+        }
+
+        function openTemplateModal() {
+            const savedStyle = localStorage.getItem('docu_tpl_style') || 'gold';
+            certTemplateStyle = savedStyle;
+            const radio = document.querySelector(`input[name="tplStyle"][value="${savedStyle}"]`);
+            if (radio) radio.checked = true;
+            if (certCustomBg) document.getElementById('customTemplateStatus').classList.remove('d-none');
+            new bootstrap.Modal(document.getElementById('templateModal')).show();
+            setTimeout(() => previewTemplate(), 350);
+        }
+
+        function previewTemplate() {
+            const sel = document.querySelector('input[name="tplStyle"]:checked');
+            if (sel) certTemplateStyle = sel.value;
+            const mockCert = {
+                certId: 'ACEIT-2026-PREV-0000',
+                studentName: document.getElementById('prevName')?.value || 'Amit Kumar',
+                rollNo: document.getElementById('prevRoll')?.value || '24EAIDS051',
+                eventName: document.getElementById('prevEvent')?.value || 'CodeStorm Hackathon 2026',
+                grade: document.getElementById('prevAward')?.value || '1st Place - Winner',
+                category: document.getElementById('prevCategory')?.value || 'Technical',
+                issueDate: new Date().toISOString().split('T')[0]
+            };
+            const box = document.getElementById('certPreviewBox');
+            if (!box) return;
+            box.innerHTML = '';
+            const iframe = document.createElement('iframe');
+            iframe.style.cssText = 'width:1100px;height:780px;border:none;transform:scale(0.56);transform-origin:top left;';
+            box.style.height = '438px';
+            box.appendChild(iframe);
+            iframe.contentDocument.write(getCertHTML(mockCert, false));
+            iframe.contentDocument.close();
+        }
+
+        function loadCustomTemplate(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                certCustomBg = e.target.result;
+                localStorage.setItem('docu_tpl_custom_bg', certCustomBg);
+                document.getElementById('customTemplateStatus').classList.remove('d-none');
+                previewTemplate();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearCustomTemplate() {
+            certCustomBg = null;
+            localStorage.removeItem('docu_tpl_custom_bg');
+            document.getElementById('customTemplateStatus').classList.add('d-none');
+            document.getElementById('customTemplateFile').value = '';
+            previewTemplate();
+        }
+
+        function saveTemplateSettings() {
+            const sel = document.querySelector('input[name="tplStyle"]:checked');
+            if (sel) certTemplateStyle = sel.value;
+            localStorage.setItem('docu_tpl_style', certTemplateStyle);
+            bootstrap.Modal.getInstance(document.getElementById('templateModal')).hide();
+            alert('✅ Template settings saved! All future certificates will use this design.');
+        }
+
+        // =====================================================
+        // --- EMAIL NOTIFICATION ENGINE ---
+        // =====================================================
+
+        function openEmailModal(certId) {
+            const cert = state.certificates[certId];
+            if (!cert) { alert('Certificate not found!'); return; }
+
+            const userMatch = state.users.find(u => u.rollNo && u.rollNo.toUpperCase() === cert.rollNo.toUpperCase());
+            const studentEmail = userMatch?.email || cert.rollNo.toLowerCase() + '@aryacollege.in';
+
+            const subject = `Your Certificate from Arya College — ${cert.certId}`;
+            const body = `Dear ${cert.studentName},
+
+Congratulations!
+
+We are pleased to inform you that your Event Achievement Certificate has been officially issued and digitally verified by Arya College of Engineering & I.T., Jaipur.
+
+CERTIFICATE DETAILS
+----------------------------
+Certificate ID : ${cert.certId}
+Student Name   : ${cert.studentName}
+Roll Number    : ${cert.rollNo}
+Event          : ${cert.eventName}
+Category       : ${cert.category}
+Achievement    : ${cert.grade}
+Date of Issue  : ${cert.issueDate}
+----------------------------
+
+Download your certificate by logging in to the portal:
+https://xking8544-droid.github.io/DOC_verify/
+
+Employers/Institutions can verify authenticity at:
+https://xking8544-droid.github.io/DOC_verify/#verify
+(Enter Certificate ID: ${cert.certId})
+
+Warm Regards,
+Dr. S. K. Sharma (HOD)
+Department of CSE & AI&DS
+Arya College of Engineering & I.T., Jaipur`;
+
+            document.getElementById('emailTo').value = studentEmail;
+            document.getElementById('emailSubject').value = subject;
+            document.getElementById('emailBody').value = body;
+            document.getElementById('emailSentBadge').classList.add('d-none');
+
+            new bootstrap.Modal(document.getElementById('emailModal')).show();
+        }
+
+        function sendEmailNow() {
+            const to = document.getElementById('emailTo').value;
+            const subject = encodeURIComponent(document.getElementById('emailSubject').value);
+            const body = encodeURIComponent(document.getElementById('emailBody').value);
+            window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+            setTimeout(() => document.getElementById('emailSentBadge').classList.remove('d-none'), 800);
+        }
+
+        function copyEmailBody() {
+            const body = document.getElementById('emailBody').value;
+            navigator.clipboard.writeText(body).then(() => alert('✅ Email body copied to clipboard!')).catch(() => {
+                document.getElementById('emailBody').select();
+                document.execCommand('copy');
+                alert('✅ Copied!');
+            });
         }
 
         // Initialize on load with full hash routing support
