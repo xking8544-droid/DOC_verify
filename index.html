@@ -814,7 +814,7 @@
                         <span class="text-muted small ms-2 d-none d-md-inline">• Project Based Learning (PBL) 2026-27</span>
                     </div>
                     <div class="d-flex align-items-center gap-2">
-                        <span class="fw-medium text-dark">Dr. S. K. Sharma</span>
+                        <span class="fw-medium text-dark">RAM BABU BURI</span>
                         <span class="badge bg-danger">ADMIN</span>
                         <button class="btn btn-outline-danger btn-sm ms-2" onclick="performLogout()">
                             <i class="bi bi-box-arrow-right me-1"></i> Logout
@@ -1447,7 +1447,7 @@
                             <tbody id="adminUsersTableBody">
                                 <tr>
                                     <td class="ps-3 fw-bold">1</td>
-                                    <td>Dr. S. K. Sharma</td>
+                                    <td>RAM BABU BURI</td>
                                     <td>admin</td>
                                     <td><span class="badge bg-danger">ADMIN</span></td>
                                     <td>HOD - CSE & AI&DS</td>
@@ -1685,7 +1685,7 @@
         ];
 
         const DEFAULT_USERS = [
-            { id: 1, fullName: "Dr. S. K. Sharma", username: "admin", role: "admin", branch: "HOD - CSE & AI&DS", rollNo: "", active: true },
+            { id: 1, fullName: "RAM BABU BURI", username: "admin", role: "admin", branch: "HOD - CSE & AI&DS", rollNo: "", active: true },
             { id: 2, fullName: "Prof. Rajesh Gupta", username: "faculty", role: "mentor", branch: "Event Coordinator", rollNo: "", active: true },
             { id: 3, fullName: "Amit Kumar", username: "student", role: "student", branch: "AI & Data Science", year: "3rd Year (5th Sem)", rollNo: "24EAIDS051", active: true },
             { id: 4, fullName: "Ayush Sharma", username: "ayush", role: "student", branch: "AI & Data Science", year: "3rd Year (5th Sem)", rollNo: "24EAIDS052", active: true },
@@ -1701,6 +1701,11 @@
             pendingFaculty: JSON.parse(localStorage.getItem('docu_pending_faculty') || JSON.stringify(DEFAULT_PENDING_FACULTY)),
             studentApps: JSON.parse(localStorage.getItem('docu_student_apps') || JSON.stringify(DEFAULT_STUDENT_APPS))
         };
+
+        if (state.users && state.users.length > 0) {
+            const adminUser = state.users.find(u => u.username === 'admin');
+            if (adminUser) adminUser.fullName = "RAM BABU BURI";
+        }
 
         function persistState() {
             localStorage.setItem('docu_users', JSON.stringify(state.users));
@@ -1922,7 +1927,7 @@
             const uLower = u.toLowerCase();
 
             if (selectedLoginRole === 'admin' || uLower === 'admin') {
-                state.currentUser = { role: 'admin', name: 'Dr. S. K. Sharma', username: 'admin' };
+                state.currentUser = { role: 'admin', name: 'RAM BABU BURI', username: 'admin' };
                 showView('view-admin');
             } else if (selectedLoginRole === 'mentor' || uLower === 'faculty' || uLower === 'mentor') {
                 state.currentUser = { role: 'mentor', name: 'Prof. Rajesh Gupta', username: 'faculty' };
@@ -2499,7 +2504,7 @@
 <div class="sb"><div class="sl"></div><div class="sn2">Prof. Rajesh Gupta</div><div class="st">Faculty Coordinator</div><div class="st">Dept. of CSE &amp; AI&amp;DS</div></div>
 <div class="ci"><div class="cid">Cert ID: ${cert.certId}</div><div class="cd2">Date of Issue: ${cert.issueDate}</div><div class="cd2" style="color:#aaa;font-size:.7rem;margin-top:4px">Digitally verified · Arya College Portal</div>
 ${forPrint ? `<button class="np" onclick="window.print()" style="margin-top:10px;background:#1e40af;color:#fff;border:none;padding:8px 24px;border-radius:4px;font-size:.9rem;cursor:pointer;font-weight:700">🖨️ Print / Save as PDF</button>` : ''}</div>
-<div class="sb"><div class="sl"></div><div class="sn2">Dr. S. K. Sharma</div><div class="st">Head of Department</div><div class="st">CSE &amp; AI&amp;DS, ACEIT</div></div>
+<div class="sb"><div class="sl"></div><div class="sn2">RAM BABU BURI</div><div class="st">Head of Department</div><div class="st">CSE &amp; AI&amp;DS, ACEIT</div></div>
 </div></div></body></html>`;
         }
 
@@ -2610,7 +2615,7 @@ https://xking8544-droid.github.io/DOC_verify/#verify
 (Enter Certificate ID: ${cert.certId})
 
 Warm Regards,
-Dr. S. K. Sharma (HOD)
+RAM BABU BURI (HOD)
 Department of CSE & AI&DS
 Arya College of Engineering & I.T., Jaipur`;
 
