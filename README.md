@@ -63,11 +63,11 @@ In academic institutions, students participate in various intra-college and inte
 
 | Member | Roll Number | Designated Role | Core Java Files Owned | Lab Experiments |
 |---|---|---|---|---|
-| **Amit Kumar** *(Lead)* | `24EAIDS051` | Lead Architect & Auth | `LoginServlet.java`, `RegisterServlet.java`, `UserDAO.java`, `AuthFilter.java` | **Exp 1** (Threading), **Exp 8** (Servlet), **Exp 9** (JSP Login) |
-| **Ayush Sharma** | `24EAIDS052` | Operations & Admin | `AdminDashboardServlet.java`, `AuditLogDAO.java`, `AuditLog.java` | **Exp 7** (Exceptions/Logs), **Exp 8** (Servlet), **Exp 10** (Role Mini-Proj) |
-| **Chetan Sharma** | `24EAIDS053` | Cryptography & RMI | `CryptoRMI.java`, `CryptoService.java`, `Certificate.java` | **Exp 2** (Java RMI), **Exp 5** (Dynamic Layouts), **Exp 8** (Servlet) |
-| **Chavi Jain** | `24EAIDS054` | Public Verification | `VerifyCertificateServlet.java`, `ApplyCertificateServlet.java` | **Exp 3** (Event Handling), **Exp 8** (Servlet), **Exp 9** (Validation) |
-| **Divyanshu Goyal** | `24EAIDS055` | Roster & Data Arch | `ApplicationDAO.java`, `EventDAO.java`, `DBConnection.java`, `CertificateDAO.java` | **Exp 4** (JDBC), **Exp 7** (File I/O), **Exp 8** (Servlet) |
+| **Amit Kumar** *(Lead)* | `24EARAD010` | Lead Architect & Auth | `LoginServlet.java`, `RegisterServlet.java`, `UserDAO.java`, `AuthFilter.java` | **Exp 1** (Threading), **Exp 8** (Servlet), **Exp 9** (JSP Login) |
+| **Ayush Tiwari** | `24EARAD029` | Operations & Admin | `AdminDashboardServlet.java`, `AuditLogDAO.java`, `AuditLog.java` | **Exp 7** (Exceptions/Logs), **Exp 8** (Servlet), **Exp 10** (Role Mini-Proj) |
+| **Aryan Mali** | `24EARAD023` | Cryptography & RMI | `CryptoRMI.java`, `CryptoService.java`, `Certificate.java` | **Exp 2** (Java RMI), **Exp 5** (Dynamic Layouts), **Exp 8** (Servlet) |
+| **Aryan Jangir** | `24EARAD021` | Public Verification | `VerifyCertificateServlet.java`, `ApplyCertificateServlet.java` | **Exp 3** (Event Handling), **Exp 8** (Servlet), **Exp 9** (Validation) |
+| **Ankit Jangir** | `24EARAD015` | Roster & Data Arch | `ApplicationDAO.java`, `EventDAO.java`, `DBConnection.java`, `CertificateDAO.java` | **Exp 4** (JDBC), **Exp 7** (File I/O), **Exp 8** (Servlet) |
 
 ---
 
@@ -160,7 +160,15 @@ Start Tomcat (`catalina.bat run`) and open:
 - **Faculty Reviewer:** `mentor` / `mentor123`
 - **Student Portal:** `24EAIDS051` / `student123`
 - **Public Verification:** Test Certificate ID `ACEIT-2026-TECH-5143`
-
+  
+### Documentation LINK->
+- **SRS:** https://drive.google.com/file/d/1EuArnrJHhOlKqVSlGKF9LvPzRLzwvmNS/view?usp=drivesdk
+- **REPORT:** https://drive.google.com/file/d/1iYBdZ6-UdD3CmDQoy7g129xTqG1U8Mbe/view?usp=drivesdk
+- **RESEARCH PAPER:** https://drive.google.com/file/d/1oFcsyYQS0i_ltcHJCLOFDaEfr_M7q6To/view?usp=drivesdk
+- **PPT:** https://docs.google.com/presentation/d/1hppDrfImGMn8384Tv-ScooyxHZhcpfJA/edit?usp=drivesdk&ouid=114305611851050083954&rtpof=true&sd=true
+- **ABSTRACT:**https://drive.google.com/file/d/1G_HYJ0VG8EckQ1qv5Dp1cNCGN5ZHXxvM/view?usp=drivesdk
+- **Dfd:**https://drive.google.com/file/d/1H8OnhGwx5MOC5z6s_QUSjahAlBKqnIfz/view?usp=drivesdk
+- **VIDEO DEMO:** https://drive.google.com/file/d/1v5Exd1hHE51XYNTmUvMrdXAs4draIQE8/view?usp=drivesdk
 ---
 
 ## 📜 Academic License
